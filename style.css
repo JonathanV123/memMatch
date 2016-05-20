@@ -1,0 +1,100 @@
+
+
+body{
+    width:100%;
+    height:100vh;
+    margin: 0;
+    padding: 0;
+    background-image: url("https://images4.alphacoders.com/784/78424.jpg");
+    background-repeat:no-repeat;
+    background-size:100% 100%;
+}
+.container{
+    display:flex;
+    width: 100%;
+    height: 100vh;
+    flex-direction:row;
+    flex-wrap:wrap;
+}
+
+.battleground {
+    width: 40%;
+    height: 75%;
+    flex-direction:row;
+    outline: 1px dashed orange;
+    display:inline-flex;
+}
+
+
+/* LEFT SIDE START */
+.game-area.left_side{
+    width:30%;
+    height:75%;
+    outline: 1px dashed deeppink;
+    margin:0;
+    padding:0;
+    display:inline-flex;
+    align-content: space-between;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+/* LEFT SIDE START */
+.game-area.right_side{
+    width:30%;
+    height:75%;
+    outline: 1px dashed deeppink;
+    margin:0;
+    padding:0;
+    display:inline-flex;
+    align-content: space-between;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.game-info{
+    display:flex;
+    height:25%;
+    width:100%;
+    flex-direction:row;
+    justify-content: space-between;
+    align-content:flex-end;
+    align-items:center;
+    outline: 1px solid white;
+
+}
+.info{
+    height:100%;
+    width:10%;
+    outline: 1px solid white;
+    color:white;
+}
+.card{
+    width:120px;
+    height:150px;
+    outline: 1px solid white;
+    margin: 2% 3% 2% 3%;
+
+}
+/* RIGHT SIDE END */
+
+/* Front Side */
+.front{
+    width:120px;
+    height:150px;
+    outline: 1px solid white;
+    position:absolute;
+    margin:0 0 0 0;
+    padding:0 0 0 0;
+    border: solid purple 1px;
+}
+
+/* Back Side */
+.back{
+    width:120px;
+    height:150px;
+    outline: 1px solid white;
+    position:absolute;
+    border: solid orange 1px;
+    margin:0 0 0 0;
+    padding:0 0 0 0;
+}
+
