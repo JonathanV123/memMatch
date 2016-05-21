@@ -27,20 +27,32 @@ var Card = function(frontImage) {
 //Class Game
 var Game = function(){
     this.cards = [];
-    
+// This refers to an instance of Game Class
 
+};
+Game.prototype.setUpGame = function(){
+    this.getCards(9);
+    this.createCards();
 };
 
 
 Game.prototype.createCards = function() {
-    this.cards.forEach(function(card) {
-        $(".game-area").append(
-            $("<img src='" + card.backImage + "' class='card'>")
-            )
-    }
-    )
+    this.cards.forEach(function(card,i) {
+        var cardElement = $("<img src='" + card.backImage + "' class='card card-" + i + "'>");
+        $(".left_side").append(cardElement);
+                                                //Event Object gives information on the event
+        cardElement.on('click', function(event){
+            debugger;
+        });
+        $(".right_side").append(
+          $("<img src='" + card.backImage + "' class='card card-" + i + "'>")
+        );
+    })
 };
 
+Game.prototype.bindClickEvents = function(){
+
+};
 //game1 = new Game();
 //game1.fart = function() {console.log('fart')};
 //game1.fart();
@@ -57,18 +69,10 @@ Game.prototype.getCards = function(cardCount) {
         this.cards.push(new Card('Images/' + imageFileName + '.jpg'))
     }
 };
-Game.prototype.printCards = function(){
-    this.cards.forEach(function(card){
-        console.log(card);
-    })
-
-};
 
 $(document).ready(function() {
     game = new Game();
-    game.getCards(9);
-    game.printCards();
-    game.createCards();
+    game.setUpGame();
 });
 
 /*
