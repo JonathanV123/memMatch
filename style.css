@@ -23,6 +23,7 @@ body{
     flex-direction:row;
     outline: 1px dashed orange;
     display:inline-flex;
+
 }
 
 
@@ -98,3 +99,19 @@ body{
     padding:0 0 0 0;
 }
 
+.card1{
+    background: url(Images/1.jpg);
+    background-size: 120px 150px;
+    background-repeat: no-repeat;
+}
+
+
+.card2{
+    background: url(Images/2.png);
+    background-size: 120px 150px;
+    background-repeat: no-repeat;
+}
+
+.a{
+    background-image:none;
+}

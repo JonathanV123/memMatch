@@ -57,16 +57,29 @@ var images = [
 function cardCreation() {
     $(function cardCreationLeft() {
         for (var x = 0; x < 9; x++) {
-            $("<div>").addClass("card").appendTo(".game-area.left_side");
+            $("<div>").addClass("card left").appendTo(".game-area.left_side");
         }
     });
     $(function cardCreationRight() {
         for (var x = 0; x < 9; x++) {
-            $("<div>").addClass("card").appendTo(".game-area.right_side");
+            $("<div>").addClass("card right").appendTo(".game-area.right_side");
         }
     });
 }
-
 cardCreation();
-
-
+function addImages(){
+    $(function cardImageLeft() {
+        for (var x = 0; x < 2; x++) {
+           console.log('firstloop');
+            for (var j = 0; j < 1; j++) {
+                $(".card.left").addClass("card1");
+                console.log('secondloop');
+            }
+        }});
+    $(function cardImageRight() {
+        for (var x = 0; x < 9; x++) {
+            $(".card.right").addClass("card2");
+        }
+    });
+}
+addImages();
