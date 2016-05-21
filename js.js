@@ -18,54 +18,60 @@ $(document).ready(function(){
     })
 });
 
-/*var myCard = {
-    card1: {card1Front: Images/1.jpg/ , card1Back:"Images/1b.jpg/"},
-    card2: {card2Front: " " , card2Back:" "},
-    card3: {card3Front: " " , card3Back:" "},
-    card4: {card4Front: " " , card4Back:" "},
-    card5: {card5Front: " " , card5Back:" "},
-    card6: {card6Front: " " , card6Back:" "},
-    card7: {card7Front: " " , card7Back:" "},
-    card8: {card8Front: " " , card8Back:" "},
-    card9: {card9Front: " " , card9Back:" "},
-    card10: {card10Front: " " , card10Back:" "},
-    card11: {card11Front: " " , card11Back:" "},
-    card12: {card12Front: " " , card12Back:" "},
-    card13: {card13Front: "2 " , card13Back:" 2"},
-    card14: {card14Front: " " , card14Back:" "},
-    card15: {card15Front: " " , card15Back:" "},
-    card16: {card16Front: " " , card16Back:" "},
-    card17: {card17Front: " " , card17Back:" "},
-    card118: {card18Front: " " , card18Back:" "}
-}*/
-/*
-function cardCreation(){
-    var myCards = {};
-    for(i = 0; i <= 18; i++) {
-        myCards[i] = {front: null , back: null };
-            for(j = 0; i <=18; j++){
-            }
+
+//Class Card
+var Card = function(frontImage) {
+    this.frontImage = frontImage;
+    this.backImage = 'Images/back.jpg';
+};
+//Class Game
+var Game = function(){
+    this.cards = [];
+    
+
+};
+
+
+Game.prototype.createCards = function() {
+    this.cards.forEach(function(card) {
+        $(".game-area").append(
+            $("<img src='" + card.backImage + "' class='card'>")
+            )
     }
-console.log(myCards);
-}
-function addImage{
-var images = [
-    card1F = img ,id="youtubeimg" ,src="http://i1.ytimg.com/vi/VK4ah66jBvE/0.jpg"/
-]
-}
-*/
-function cardCreation() {
-    $(function cardCreationLeft() {
-        for (var x = 0; x < 9; x++) {
-            $("<div>").addClass("card left").appendTo(".game-area.left_side");
-        }
-    });
-    $(function cardCreationRight() {
-        for (var x = 0; x < 9; x++) {
-            $("<div>").addClass("card right").appendTo(".game-area.right_side");
-        }
-    });
-}
+    )
+};
+
+//game1 = new Game();
+//game1.fart = function() {console.log('fart')};
+//game1.fart();
+// will out put 'fart'
+//game2 = new Game();
+//game2.fart();
+//will blow up because fart is defined on the instance of a game class
+
+
+//Defining getCards methods on the game class every instance of Game will have this function
+Game.prototype.getCards = function(cardCount) {
+    for (i = 0; i <cardCount; i++){
+        var imageFileName = i + 1;
+        this.cards.push(new Card('Images/' + imageFileName + '.jpg'))
+    }
+};
+Game.prototype.printCards = function(){
+    this.cards.forEach(function(card){
+        console.log(card);
+    })
+
+};
+
+$(document).ready(function() {
+    game = new Game();
+    game.getCards(9);
+    game.printCards();
+    game.createCards();
+});
+
+/*
 cardCreation();
 function addImages(){
     $(function cardImageLeft() {
@@ -83,3 +89,4 @@ function addImages(){
     });
 }
 addImages();
+*/
