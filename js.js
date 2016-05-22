@@ -5,24 +5,14 @@ $(document).ready(function(){
         $(this).toggleClass('flipcard');
         console.log('flip test complete2');
     })});
-
 var first_card_clicked = null;
 var second_card_clicked = null;
 total_possible_matches = 2;
 match_counter = 0;
-
-$(document).ready(function(){
-    $('#lurtz').click(function(){
-        $(this).hide();
-        console.log('Hide Success')
-    })
-});
-
-
-//Class Card
-var Card = function(frontImage) {
-    this.frontImage = frontImage;
-    this.backImage = 'Images/back.jpg';
+//Creating Card CLASS that takes 1 parameter
+var Card = function(id) {
+    //THIS refers to instance of Card Class
+    this.id = id;
 };
 //Class Game
 var Game = function(){
@@ -30,29 +20,45 @@ var Game = function(){
 // This refers to an instance of Game Class
 
 };
+//Defining a Method (setUpGame) on the Game Class
 Game.prototype.setUpGame = function(){
-    this.getCards(9);
-    this.createCards();
+  //This is an instance of game calling createCards and renderCards on THIS instance of Game
+    this.createCards(9);
+    this.renderCards();
 };
-
-
-Game.prototype.createCards = function() {
-    this.cards.forEach(function(card,i) {
-        var cardElement = $("<img src='" + card.backImage + "' class='card card-" + i + "'>");
-        $(".left_side").append(cardElement);
-                                                //Event Object gives information on the event
-        cardElement.on('click', function(event){
-            debugger;
+//Defining a Method (renderCards) on the Game Class
+Game.prototype.renderCards = function() {
+    var game = this;
+    //
+    this.cards.forEach(function(card) {
+       var cardHtmlString =  '<div class="card"><div class = "front card-' + card.id + '"></div><div class = "back"></div></div>';
+        // var cardHtmlString = "<img data-id='" + card.id + "' src='" + card.backImage + "' class='card card-" + card.id + "'>";
+        var leftCardElement = $(cardHtmlString);
+        var rightCardElement = $(cardHtmlString);
+        $(".right_side").append(rightCardElement);
+        $(".left_side").append(leftCardElement);
+        leftCardElement.on('click', function(event){{
+                $(this).toggleClass('flipcard');
+            }
         });
-        $(".right_side").append(
-          $("<img src='" + card.backImage + "' class='card card-" + i + "'>")
-        );
+        rightCardElement.on('click', function(event){{
+                $(this).toggleClass('flipcard');
+            }
+        });
     })
 };
-
-Game.prototype.bindClickEvents = function(){
-
+Game.prototype.createCards = function(cardCount) {
+    for (i = 1; i <=cardCount; i++){
+        this.cards.push(
+            new Card('Images/' + i + '.jpg',i)
+        )
+    }
 };
+$(document).ready(function() {
+    game = new Game();
+    game.setUpGame();
+});
+
 //game1 = new Game();
 //game1.fart = function() {console.log('fart')};
 //game1.fart();
@@ -60,20 +66,7 @@ Game.prototype.bindClickEvents = function(){
 //game2 = new Game();
 //game2.fart();
 //will blow up because fart is defined on the instance of a game class
-
-
 //Defining getCards methods on the game class every instance of Game will have this function
-Game.prototype.getCards = function(cardCount) {
-    for (i = 0; i <cardCount; i++){
-        var imageFileName = i + 1;
-        this.cards.push(new Card('Images/' + imageFileName + '.jpg'))
-    }
-};
-
-$(document).ready(function() {
-    game = new Game();
-    game.setUpGame();
-});
 
 /*
 cardCreation();
