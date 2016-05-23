@@ -18,7 +18,6 @@ var Card = function(id) {
 var Game = function(){
     this.cards = [];
 // This refers to an instance of Game Class
-
 };
 //Defining a Method (setUpGame) on the Game Class
 Game.prototype.setUpGame = function(){
@@ -29,9 +28,8 @@ Game.prototype.setUpGame = function(){
 //Defining a Method (renderCards) on the Game Class
 Game.prototype.renderCards = function() {
     var game = this;
-    //
     this.cards.forEach(function(card) {
-       var cardHtmlString =  '<div class="card"><div class = "front card-' + card.id + '"></div><div class = "back"></div></div>';
+        var cardHtmlString =  '<div class="card"><div class = "front card-' + card.id + '"></div><div class = "back"></div></div>';
         // var cardHtmlString = "<img data-id='" + card.id + "' src='" + card.backImage + "' class='card card-" + card.id + "'>";
         var leftCardElement = $(cardHtmlString);
         var rightCardElement = $(cardHtmlString);
