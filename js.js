@@ -55,8 +55,10 @@ Game.prototype.createCards = function(cardCount) {
     }
 };
 Game.prototype.randomizeCards = function(){
-    for (i = 1; this.cards.length;  i++){
-    if  (i === 40){
+    for (i = 1; i <= game.cards.length;  i++){
+        var random = Math.floor(Math.random())
+
+        if  (i === 40){
         break;
     }
     console.log("Fart");

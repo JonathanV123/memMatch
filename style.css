@@ -1,5 +1,4 @@
 
-
 body{
     width:100%;
     height:100vh;
@@ -16,21 +15,22 @@ body{
     flex-direction:row;
     flex-wrap:wrap;
 }
-
+.topbar{
+    outline: 1px dashed deeppink;
+    height:15%;
+    width:100%;
+}
 .battleground {
-    width: 40%;
-    height: 75%;
+    width: 50%;
+    height: 70%;
     flex-direction:row;
     outline: 1px dashed orange;
     display:inline-flex;
-
 }
-
-
 /* LEFT SIDE START */
 .game-area.left_side{
-    width:30%;
-    height:75%;
+    width:25%;
+    height:70%;
     outline: 1px dashed deeppink;
     margin:0;
     padding:0;
@@ -41,8 +41,8 @@ body{
 }
 /* LEFT SIDE START */
 .game-area.right_side{
-    width:30%;
-    height:75%;
+    width:25%;
+    height:70%;
     outline: 1px dashed deeppink;
     margin:0;
     padding:0;
@@ -53,14 +53,13 @@ body{
 }
 .game-info{
     display:flex;
-    height:25%;
+    height:15%;
     width:100%;
     flex-direction:row;
     justify-content: space-between;
     align-content:flex-end;
     align-items:center;
     outline: 1px solid white;
-
 }
 .info{
     height:100%;
@@ -69,8 +68,8 @@ body{
     color:white;
 }
 .card{
-    width:120px;
-    height:150px;
+    width:20%;
+    height:25%;
     outline: 1px solid white;
     margin: 2% 3% 2% 3%;
     transform-style: preserve-3d;
@@ -80,8 +79,8 @@ body{
 
 /* Front Side */
 .front{
-    width:120px;
-    height:150px;
+    width:100%;
+    height:100%;
     outline: 1px solid white;
     position:absolute;
     margin:0 0 0 0;
@@ -93,45 +92,46 @@ body{
 }
 .card-1{
     background-image:url(Images/1.jpg );
-    background-size: 120px 150px;
+    background-size: 100% 100%;
 }
 .card-2{
     background-image:url(Images/2.jpg );
-    background-size: 120px 150px;
+    background-size: 100% 100%;
 }.card-3{
      background-image:url(Images/3.jpg );
-     background-size: 120px 150px;
+     background-size: 100% 100%;
  }.card-4{
       background-image:url(Images/4.jpg );
-      background-size: 120px 150px;
+       background-size: 100% 100%;
   }.card-5{
        background-image:url(Images/5.jpg );
-       background-size: 120px 150px;
+          background-size: 100% 100%;
    }.card-6{
         background-image:url(Images/6.jpg );
-        background-size: 120px 150px;
+        background-size: 100% 100%;
     }.card-7{
          background-image:url(Images/7.jpg );
-         background-size: 120px 150px;
+         background-size: 100% 100%;
      }.card-8{
           background-image:url(Images/8.jpg );
-          background-size: 120px 150px;
+          background-size: 100% 100%;
       }.card-9{
            background-image:url(Images/9.jpg );
-           background-size: 120px 150px;
+           background-size: 100% 100%;
        }
 /* Back Side */
 .back{
-    width:120px;
-    height:150px;
+    width:100%;
+    height:100%;
     outline: 1px solid white;
     position:absolute;
     border: solid orange 1px;
     margin:0 0 0 0;
     padding:0 0 0 0;
     background-image:url(Images/back.jpg );
-    background-size: 120px 150px;
+    background-size: 150%;
     backface-visibility: hidden;
+    background-repeat:no-repeat;
 }
 
 .flipcard{
