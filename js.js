@@ -1,14 +1,14 @@
 
-$(document).ready(function(){
-    console.log('hi');
-    $(".card").click(function(){
-        $(this).toggleClass('flipcard');
-        console.log('flip test complete2');
-    })});
-var first_card_clicked = null;
-var second_card_clicked = null;
-total_possible_matches = 2;
-match_counter = 0;
+// $(document).ready(function(){
+//     console.log('hi');
+//     $(".card").click(function(){
+//         $(this).toggleClass('flipcard');
+//         console.log('flip test complete2');
+//     })});
+// var first_card_clicked = null;
+// var second_card_clicked = null;
+// total_possible_matches = 2;
+// match_counter = 0;
 //Creating Card CLASS that takes 1 parameter
 var Card = function(id) {
     //THIS refers to instance of Card Class
@@ -24,6 +24,7 @@ Game.prototype.setUpGame = function(){
   //This is an instance of game calling createCards and renderCards on THIS instance of Game
     this.createCards(9);
     this.renderCards();
+    this.randomizeCards();
 };
 //Defining a Method (renderCards) on the Game Class
 Game.prototype.renderCards = function() {
@@ -48,10 +49,19 @@ Game.prototype.renderCards = function() {
 Game.prototype.createCards = function(cardCount) {
     for (i = 1; i <=cardCount; i++){
         this.cards.push(
-            new Card('Images/' + i + '.jpg',i)
+            new Card(i)
+            // new Card('Images/' + i + '.jpg',i)
         )
     }
 };
+Game.prototype.randomizeCards = function(){
+    for (i = 1; this.cards.length;  i++){
+    if  (i === 40){
+        break;
+    }
+    console.log("Fart");
+    }};
+
 $(document).ready(function() {
     game = new Game();
     game.setUpGame();

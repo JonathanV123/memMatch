@@ -89,6 +89,7 @@ body{
     border: solid purple 1px;
     transform: rotate3D(0,1,0,180deg);
     backface-visibility: hidden;
+
 }
 .card-1{
     background-image:url(Images/1.jpg );
