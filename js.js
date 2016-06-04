@@ -24,7 +24,6 @@ Game.prototype.setUpGame = function(){
   //This is an instance of game calling createCards and renderCards on THIS instance of Game
     this.createCards(9);
     this.renderCards();
-    this.randomizeCards();
 };
 //Defining a Method (renderCards) on the Game Class
 Game.prototype.renderCards = function() {
@@ -48,27 +47,18 @@ Game.prototype.renderCards = function() {
 };
 Game.prototype.createCards = function(cardCount) {
     for (i = 1; i <=cardCount; i++){
+        var randNum = 0;
+        var randNum = Math.floor(Math.random() * 5 );
         this.cards.push(
-            new Card(i)
             // new Card('Images/' + i + '.jpg',i)
+        new Card(i)
         )
     }
 };
-Game.prototype.randomizeCards = function(){
-    for (i = 1; i <= game.cards.length;  i++){
-        var random = Math.floor(Math.random())
-
-        if  (i === 40){
-        break;
-    }
-    console.log("Fart");
-    }};
-
 $(document).ready(function() {
     game = new Game();
     game.setUpGame();
 });
-
 //game1 = new Game();
 //game1.fart = function() {console.log('fart')};
 //game1.fart();
