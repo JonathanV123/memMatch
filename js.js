@@ -19,6 +19,25 @@ var Game = function(){
     this.cards = [];
 // This refers to an instance of Game Class
 };
+// var Shuffle = function(array){
+//     var currentIndex = array.length, temporaryValue, randomIndex;
+//
+//     // While there remain elements to shuffle...
+//     while (0 !== currentIndex) {
+//
+//         // Pick a remaining element...
+//         randomIndex = Math.floor(Math.random() * currentIndex);
+//         currentIndex -= 1;
+//
+//         // And swap it with the current element.
+//         temporaryValue = array[currentIndex];
+//         array[currentIndex] = array[randomIndex];
+//         array[randomIndex] = temporaryValue;
+//     }
+//
+//     return array;
+// };
+// Shuffle(game.cards);
 //Defining a Method (setUpGame) on the Game Class
 Game.prototype.setUpGame = function(){
   //This is an instance of game calling createCards and renderCards on THIS instance of Game
@@ -47,8 +66,7 @@ Game.prototype.renderCards = function() {
 };
 Game.prototype.createCards = function(cardCount) {
     for (i = 1; i <=cardCount; i++){
-        var randNum = 0;
-        var randNum = Math.floor(Math.random() * 5 );
+        Math.floor(Math.random() * 5 );
         this.cards.push(
             // new Card('Images/' + i + '.jpg',i)
         new Card(i)
