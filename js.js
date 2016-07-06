@@ -22,32 +22,45 @@ var Game = function(){
 //Defining a Method (setUpGame) on the Game Class
 Game.prototype.setUpGame = function(){
   //This is an instance of game calling createCards and renderCards on THIS instance of Game
-    this.createCardsAndRandomize(9);
+  //   this.createCards(9);
     this.renderCards();
+    this.randomizeCards(9);
 };
-Game.prototype.createCardsAndRandomize = function(cardCount) { //Review with Chris or Dan!!!!!!!!
-    var leftList = new Array(9);
-    var rightList = new Array(9);
-    for (i = 1; i <=cardCount; i++){
-        leftList[i]= Math.floor(Math.random() * 9) + 1;
-        rightList[i]= Math.floor(Math.random() * 9) + 1;
+// Game.prototype.createCards = function(cardCount) { //Review
+//     for (i = 1; i <= cardCount; i++) {
+//         // listId[i] = Math.floor(Math.random() * 9) + 1;
+//         this.cards.push(
+//             // new Card('Images/' + i + '.jpg',i)
+//             new Card(i)
+//         )
+//     }
+//     // for (var i = game.cards.length - 1; i > 0; i--) {
+//     //     var j = Math.floor(Math.random() * (i + 1));
+//     //     var temp = this.cards[i];
+//     //     this.cards[i] = this.cards[j];
+//     //     this.cards[j] = temp;
+//     // }
+// };
+Game.prototype.randomizeCards = function(count){
+    for (var i = count - 1; i > 0; i--){
+        console.log("ID" + i);
+        var j = Math.floor(Math.random() * (i + 1));
+        var temp = this.cards[i];
+        this.cards[i] = this.cards[j];
+        this.cards[j] = temp;
         this.cards.push(
             // new Card('Images/' + i + '.jpg',i)
-            new Card(leftList[i],rightList[i])
-
-        )
+            new Card(i))
     }
 };
 //Defining a Method (renderCards) on the Game Class
 Game.prototype.renderCards = function() {
-    this.cards.forEach(function(cards) {
-        var leftCardHtmlString =  '<div class="card"><div class = "front card-' + cards.id + '"></div><div class =' +
-            ' "back"></div></div>';
-        var rightCardHtmlString =  '<div class="card"><div class = "front card-' + cards.id + '"></div><div class =' +
-            ' "back"></div></div>';
+    this.cards.forEach(function() {
+        var CardHtmlString =  '<div class="card"><div class = "front card-' + + '"></div><div class' +
+            ' =' + ' "back"></div></div>';
         // var cardHtmlString = "<img data-id='" + card.id + "' src='" + card.backImage + "' class='card card-" + card.id + "'>";
-        var leftCardElement = $(leftCardHtmlString);
-        var rightCardElement = $(rightCardHtmlString);
+        var leftCardElement = $(CardHtmlString);
+        var rightCardElement = $(CardHtmlString);
         $(".right_side").append(rightCardElement);
         $(".left_side").append(leftCardElement);
         leftCardElement.on('click', function(event){{
@@ -60,7 +73,6 @@ Game.prototype.renderCards = function() {
         });
     })
 };
-
 $(document).ready(function() {
     game = new Game();
     game.setUpGame();
