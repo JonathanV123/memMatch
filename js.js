@@ -9,77 +9,71 @@
 // var second_card_clicked = null;
 // total_possible_matches = 2;
 // match_counter = 0;
-//Creating Card CLASS that takes 1 parameter
-var Card = function(id) {
-    //THIS refers to instance of Card ClassGa
-    this.id = id;
-};
 //Class Game
 var Game = function(){
-    this.cards = [];
+    this.leftCards = [];
+    this.rightCards = [];
     console.log(this);
 // This refers to an instance of Game Class
+};
+//Creating Card CLASS that takes 1 parameter
+var Card = function(id) {
+    //THIS refers to instance of Card Class
+    this.id = id;
 };
 //Defining a Method (setUpGame) on the Game Class
 Game.prototype.setUpGame = function(){
   //This is an instance of game calling createCards and renderCards on THIS instance of Game
   this.createCards(9);
+  this.shuffleCards(this.leftCards);
+  this.shuffleCards(this.rightCards);
   this.renderCards();
- // this.randomizeCards(9);
+
+    //this.dealCards();
 };
-Game.prototype.createCards = function(cardCount) { //Review
+Game.prototype.createCards = function(cardCount,leftCard,rightCard) { //Review
     for (i = 1; i <= cardCount; i++) {
         // listId[i] = Math.floor(Math.random() * 9) + 1;
-        this.cards.push(
+        this.leftCards.push(
             // new Card('Images/' + i + '.jpg',i)
-            new Card(i +' createCardLoop')
+            new Card(i)
+        );
+        this.rightCards.push(
+            new Card(i)
         )
     }
-    for (j = 1; j <= cardCount; j++) {
-        // listId[i] = Math.floor(Math.random() * 9) + 1;
-        this.cards.push(
-            // new Card('Images/' + i + '.jpg',i)
-            new Card(j +' createCardLoop')
-        )
-    }
-    for (var i = game.cards.length - 1; i > 0; i--) {
+Game.prototype.shuffleCards = function(cards){
+    //Shuffle Cards
+    for (var i = cards.length - 1; i > 0; i--) {
         var j = Math.floor(Math.random() * (i + 1));
-        var temp = this.cards[i];
-        this.cards[i] = this.cards[j];
-        this.cards[j] = temp;
+        var temp = cards[i];
+        cards[i] = cards[j];
+        cards[j] = temp;
     }
 };
-// Game.prototype.randomizeCards = function(count){
-//     for (var i = count - 1; i > 0; i--){
-//         console.log("ID" + i);
-//         var j = Math.floor(Math.random() * (i + 1));
-//         var temp = this.cards[i];
-//         this.cards[i] = this.cards[j];
-//         this.cards[j] = temp;
-//         this.cards.push(
-//             // new Card('Images/' + i + '.jpg',i)
-//             new Card(i +' fail shuffle'))
-//     }
-// };
 //Defining a Method (renderCards) on the Game Class
-Game.prototype.renderCards = function() {
-    this.cards.forEach(function() {
-        var CardHtmlString =  '<div class="card"><div class = "front card-' +  + '"></div><div class' +
+Game.prototype.renderCards = function(){
+        for(var i = 0; i < game.leftCards.length; i++){
+            var CardHtmlStringLeft =  '<div class="card"> <div class = "front card-' +  game.leftCards[i].id  + '"></div><div' + ' class' +
             ' =' + ' "back"></div></div>';
-        // var cardHtmlString = "<img data-id='" + card.id + "' src='" + card.backImage + "' class='card card-" + card.id + "'>";
-        var leftCardElement = $(CardHtmlString);
-        var rightCardElement = $(CardHtmlString);
-        $(".right_side").append(rightCardElement);
-        $(".left_side").append(leftCardElement);
-        leftCardElement.on('click', function(event){{
-                $(this).toggleClass('flipcard');
+
+            var CardHtmlStringRight =  '<div class="card"> <div class = "front card-' + game.rightCards[i].id  + '"></div><div' +
+            ' class' +
+            ' =' + ' "back"></div></div>';
+            var leftCardElement = $(CardHtmlStringLeft);
+            var rightCardElement = $(CardHtmlStringRight);
+            $(".right_side").append(rightCardElement);
+            $(".left_side").append(leftCardElement);
+            leftCardElement.on('click', function(event){{
+                    $(this).toggleClass('flipcard');
+                }
+            });
+            rightCardElement.on('click', function(event){{
+                    $(this).toggleClass('flipcard');
+                }
+            });
+        }
             }
-        });
-        rightCardElement.on('click', function(event){{
-                $(this).toggleClass('flipcard');
-            }
-        });
-    })
 };
 $(document).ready(function() {
     game = new Game();
