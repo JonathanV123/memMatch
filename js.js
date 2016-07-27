@@ -13,7 +13,6 @@
 var Game = function(){
     this.leftCards = [];
     this.rightCards = [];
-    console.log(this);
 // This refers to an instance of Game Class
 };
 //Creating Card CLASS that takes 1 parameter
@@ -28,14 +27,12 @@ Game.prototype.setUpGame = function(){
   this.shuffleCards(this.leftCards);
   this.shuffleCards(this.rightCards);
   this.renderCards();
-
-    //this.dealCards();
+  this.cardMatch();
+  this.updateGame();
 };
-Game.prototype.createCards = function(cardCount,leftCard,rightCard) { //Review
+Game.prototype.createCards = function(cardCount) { //Review
     for (i = 1; i <= cardCount; i++) {
-        // listId[i] = Math.floor(Math.random() * 9) + 1;
         this.leftCards.push(
-            // new Card('Images/' + i + '.jpg',i)
             new Card(i)
         );
         this.rightCards.push(
@@ -53,27 +50,39 @@ Game.prototype.shuffleCards = function(cards){
 };
 //Defining a Method (renderCards) on the Game Class
 Game.prototype.renderCards = function(){
-        for(var i = 0; i < game.leftCards.length; i++){
+    for(var i = 0; i < game.leftCards.length; i++){
             var CardHtmlStringLeft =  '<div class="card"> <div class = "front card-' +  game.leftCards[i].id  + '"></div><div' + ' class' +
             ' =' + ' "back"></div></div>';
-
             var CardHtmlStringRight =  '<div class="card"> <div class = "front card-' + game.rightCards[i].id  + '"></div><div' +
-            ' class' +
-            ' =' + ' "back"></div></div>';
+            ' class' + ' =' + ' "back"></div></div>';
             var leftCardElement = $(CardHtmlStringLeft);
             var rightCardElement = $(CardHtmlStringRight);
             $(".right_side").append(rightCardElement);
             $(".left_side").append(leftCardElement);
-            leftCardElement.on('click', function(event){{
-                    $(this).toggleClass('flipcard');
-                }
+            leftCardElement.on('click',function(event){{
+                $(this).toggleClass('flipcard');
+
+            }
             });
-            rightCardElement.on('click', function(event){{
-                    $(this).toggleClass('flipcard');
-                }
+            rightCardElement.on('click',function(event){{
+                $(this).toggleClass('flipcard');
+            }
             });
         }
             }
+};
+Game.prototype.updateGame = function(theFunction){
+    setInterval(function(){theFunction()},2000);
+};
+Game.prototype.cardMatch = function(){
+        console.log(this === window );
+        console.log('di');
+        if($('cards').hasClass('flipcard')){
+            $('CardHtmlStringRight').removeClass('flipcard')
+        }
+        if(this === window) {
+            console.log('it isd')
+        }
 };
 $(document).ready(function() {
     game = new Game();
