@@ -14,6 +14,9 @@ var Game = function(){
     this.leftCards = [];
     this.rightCards = [];
     this.checkCards = 0;
+    this.accuracy = 0;
+    this.amountClicked= 0;
+    this.correctMatch = 0;
 // This refers to an instance of Game Class
 };
 //Creating Card CLASS that takes 1 parameter
@@ -65,6 +68,12 @@ Game.prototype.renderCards = function() {
                 {
                     $(this).toggleClass('flipcard');
                     game.checkCards++;
+                    game.accuracy ++;
+                    game.amountClicked ++;
+                    $(".accValue").empty(game.accuracy);
+                    $(".accValue").append(game.accuracy + 1 / game.amountClicked);
+                    console.log(game.accuracy + 'is accuracy');
+                    console.log(game.amountClicked + 'times clicked');
                     console.log(game.checkCards);
                 }
             })
@@ -72,7 +81,7 @@ Game.prototype.renderCards = function() {
        else if (game.checkCards >= 2) {
             game.checkCards = 0;
             leftCardElement.on('click', function (event) {
-                $(this).toggleClass('emptyClass');
+                $(this).removeClass('flipcard');
             });
         }
     }
@@ -90,6 +99,9 @@ Game.prototype.cardMatch = function() {
         console.log('Check Complete');
         $('.card').removeClass('flipcard');
     }
+   for(id in game.leftCards && game.rightCards ){
+       console.log('Success');
+   }
 };
 $(document).ready(function() {
     game = new Game();
