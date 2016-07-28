@@ -28,7 +28,7 @@ Game.prototype.setUpGame = function(){
   this.shuffleCards(this.rightCards);
   this.renderCards();
   this.cardMatch();
-  this.updateGame();
+  // this.updateGame();
 };
 Game.prototype.createCards = function(cardCount) { //Review
     for (i = 1; i <= cardCount; i++) {
@@ -61,7 +61,7 @@ Game.prototype.renderCards = function(){
             $(".left_side").append(leftCardElement);
             leftCardElement.on('click',function(event){{
                 $(this).toggleClass('flipcard');
-
+                console.log(this);
             }
             });
             rightCardElement.on('click',function(event){{
@@ -71,16 +71,25 @@ Game.prototype.renderCards = function(){
         }
             }
 };
-Game.prototype.updateGame = function(theFunction){
-    setInterval(function(){theFunction()},2000);
-};
-Game.prototype.cardMatch = function(){
-        console.log(this === window );
-        console.log('di');
-        if($('cards').hasClass('flipcard')){
-            $('CardHtmlStringRight').removeClass('flipcard')
+// Game.prototype.updateGame = setTimeout(function(){
+//     // console.log(this === window );
+//     // console.log('di');
+//     // if($('cards').hasClass('flipcard')){
+//     //     $('CardHtmlStringRight').removeClass('flipcard')
+//     // }
+//     // if(this === window) {
+//     //     console.log('itd isd')
+//     // }
+//     // },2000);
+Game.prototype.cardMatch = function() {
+    setTimeout(this.cardMatch.bind(this),2000);
+        console.log(this === window);
+        console.log('doopedr');
+        if ($('card').hasClass('flipcard')) {
+            console.log('fart');
+            $('card').removeClass('flipcard')
         }
-        if(this === window) {
+        if (this === window) {
             console.log('it isd')
         }
 };
