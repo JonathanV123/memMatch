@@ -16,7 +16,8 @@ var Game = function(){
     this.checkCards = 0;
     this.accuracy = 0;
     this.amountClicked= 0;
-    this.correctMatch = 0;
+    this.card1 = null;
+    this.card2 = null;
 // This refers to an instance of Game Class
 };
 //Creating Card CLASS that takes 1 parameter
@@ -32,7 +33,8 @@ Game.prototype.setUpGame = function(){
   this.shuffleCards(this.rightCards);
   this.renderCards();
   this.cardMatch();
-  // this.updateGame();
+  this.append();
+    // this.updateGame();
 };
 Game.prototype.createCards = function(cardCount) { //Review
     for (i = 1; i <= cardCount; i++) {
@@ -43,6 +45,7 @@ Game.prototype.createCards = function(cardCount) { //Review
             new Card(i)
         )
     }
+};
 Game.prototype.shuffleCards = function(cards){
     //Shuffle Cards
     for (var i = cards.length - 1; i > 0; i--) {
@@ -54,48 +57,74 @@ Game.prototype.shuffleCards = function(cards){
 };
 //Defining a Method (renderCards) on the Game Class
 Game.prototype.renderCards = function() {
-    for (var i = 0; i < game.leftCards.length; i++) {
-        var CardHtmlStringLeft = '<div class="card"> <div class = "front card-' + game.leftCards[i].id + '"></div><div' + ' class' +
-            ' =' + ' "back"></div></div>';
-        var CardHtmlStringRight = '<div class="card"> <div class = "front card-' + game.rightCards[i].id + '"></div><div' +
-            ' class' + ' =' + ' "back"></div></div>';
-        var leftCardElement = $(CardHtmlStringLeft);
-        var rightCardElement = $(CardHtmlStringRight);
-        $(".right_side").append(rightCardElement);
-        $(".left_side").append(leftCardElement);
-        if (game.checkCards < 2) {
+    setTimeout(this.cardMatch.bind(this),2000);
+    Game.prototype.append = function() {
+        clearTimeout(this);
+        console.log('Ye!');
+        for (var i = 0; i < game.leftCards.length; i++) {
+            var CardHtmlStringLeft = '<div class="card"> <div class = "front card-' + game.leftCards[i].id + '"></div><div' + ' class' +
+                ' =' + ' "back"></div></div>';
+            var CardHtmlStringRight = '<div class="card"> <div class = "front card-' + game.rightCards[i].id + '"></div><div' +
+                ' class' + ' =' + ' "back"></div></div>';
+            var leftCardElement = $(CardHtmlStringLeft);
+            var rightCardElement = $(CardHtmlStringRight);
+            $(".right_side").append(rightCardElement);
+            $(".left_side").append(leftCardElement);
+        }
+    };
+        if (game.card1 == null) {
             leftCardElement.on('click', function (event) {
                 {
                     $(this).toggleClass('flipcard');
+                    game.card1 = true;
+                    console.log('Game.card1 is: ' + game.card1);
+                    game.checkCards++;
+                    game.accuracy++;
+                    game.amountClicked++;
+                    $(".accValue").empty(game.accuracy);
+                    $(".accValue").append(game.accuracy + 1 / game.amountClicked);
+                    console.log(game.accuracy + 'is accuracy');
+                    console.log(game.amountClicked + ': times clicked');
+                    console.log(game.checkCards);
+                }
+            })
+        }
+
+        if(game.card1 == true)   {
+            leftCardElement.on('click', function (event) {
+                {
+                    $(this).toggleClass('flipcard');
+                    console.log('Game.card2 is: ' +game.card2);
+                    game.card2 = true;
                     game.checkCards++;
                     game.accuracy ++;
                     game.amountClicked ++;
                     $(".accValue").empty(game.accuracy);
                     $(".accValue").append(game.accuracy + 1 / game.amountClicked);
                     console.log(game.accuracy + 'is accuracy');
-                    console.log(game.amountClicked + 'times clicked');
+                    console.log(game.amountClicked + ': times clicked');
                     console.log(game.checkCards);
                 }
             })
+
         }
-       else if (game.checkCards >= 2) {
-            game.checkCards = 0;
+        if (game.card1 && game.card2 == null) {
             leftCardElement.on('click', function (event) {
                 $(this).removeClass('flipcard');
             });
         }
-    }
-}
+
 };
 Game.prototype.cardMatch = function() {
-    setTimeout(this.cardMatch.bind(this),1700);
-    console.log('fart');
+    setTimeout(this.cardMatch.bind(this),900);
     // if (game.checkCards = 0 ){
     //    game.checkCards ++;
     //    console.log(game.checkCards)
     // }
-    if (game.checkCards >= 2) {
+    if (game.card1 && game.card2 == true) {
         game.checkCards = 0;
+        game.card1 = false;
+        game.card2 = false;
         console.log('Check Complete');
         $('.card').removeClass('flipcard');
     }
