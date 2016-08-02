@@ -67,7 +67,15 @@ body{
     outline: 1px solid white;
     color:white;
 }
-.card{
+.leftCard{
+    width:20%;
+    height:25%;
+    outline: 1px solid white;
+    margin: 2% 3% 2% 3%;
+    transform-style: preserve-3d;
+    transition-duration: 1.25s;
+}
+.rightCard{
     width:20%;
     height:25%;
     outline: 1px solid white;
@@ -131,6 +139,13 @@ body{
     background-size: 150%;
     backface-visibility: hidden;
     background-repeat:no-repeat;
+}
+.block{
+    width:20%;
+    height:25%;
+    outline: 1px solid pink;
+    margin: 2% 3% 2% 3%;
+
 }
 
 .flipcard{

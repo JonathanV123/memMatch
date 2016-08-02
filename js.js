@@ -33,8 +33,7 @@ Game.prototype.setUpGame = function(){
   this.shuffleCards(this.rightCards);
   this.renderCards();
   this.cardMatch();
-  this.append();
-    // this.updateGame();
+  this.scan();
 };
 Game.prototype.createCards = function(cardCount) { //Review
     for (i = 1; i <= cardCount; i++) {
@@ -57,80 +56,87 @@ Game.prototype.shuffleCards = function(cards){
 };
 //Defining a Method (renderCards) on the Game Class
 Game.prototype.renderCards = function() {
-    setTimeout(this.cardMatch.bind(this),2000);
-    Game.prototype.append = function() {
-        clearTimeout(this);
+        // clearTimeout(this);
         console.log('Ye!');
         for (var i = 0; i < game.leftCards.length; i++) {
-            var CardHtmlStringLeft = '<div class="card"> <div class = "front card-' + game.leftCards[i].id + '"></div><div' + ' class' +
+            var CardHtmlStringLeft = '<div class="leftCard"> <div class = "front card-' + game.leftCards[i].id + '"></div><div' + ' class' +
                 ' =' + ' "back"></div></div>';
-            var CardHtmlStringRight = '<div class="card"> <div class = "front card-' + game.rightCards[i].id + '"></div><div' +
+            var CardHtmlStringRight = '<div class="rightCard"> <div class = "front card-' + game.rightCards[i].id + '"></div><div' +
                 ' class' + ' =' + ' "back"></div></div>';
             var leftCardElement = $(CardHtmlStringLeft);
             var rightCardElement = $(CardHtmlStringRight);
             $(".right_side").append(rightCardElement);
             $(".left_side").append(leftCardElement);
         }
-    };
-        if (game.card1 == null) {
-            leftCardElement.on('click', function (event) {
-                {
-                    $(this).toggleClass('flipcard');
-                    game.card1 = true;
-                    console.log('Game.card1 is: ' + game.card1);
-                    game.checkCards++;
-                    game.accuracy++;
-                    game.amountClicked++;
-                    $(".accValue").empty(game.accuracy);
-                    $(".accValue").append(game.accuracy + 1 / game.amountClicked);
-                    console.log(game.accuracy + 'is accuracy');
-                    console.log(game.amountClicked + ': times clicked');
-                    console.log(game.checkCards);
-                }
-            })
-        }
-
-        if(game.card1 == true)   {
-            leftCardElement.on('click', function (event) {
-                {
-                    $(this).toggleClass('flipcard');
-                    console.log('Game.card2 is: ' +game.card2);
-                    game.card2 = true;
-                    game.checkCards++;
-                    game.accuracy ++;
-                    game.amountClicked ++;
-                    $(".accValue").empty(game.accuracy);
-                    $(".accValue").append(game.accuracy + 1 / game.amountClicked);
-                    console.log(game.accuracy + 'is accuracy');
-                    console.log(game.amountClicked + ': times clicked');
-                    console.log(game.checkCards);
-                }
-            })
-
-        }
-        if (game.card1 && game.card2 == null) {
-            leftCardElement.on('click', function (event) {
-                $(this).removeClass('flipcard');
-            });
-        }
-
+           //WHY DO THE FUNCTIONS BELOW NEED TO BE WITHIN THE FOR Statement...! Ask ask ask
 };
 Game.prototype.cardMatch = function() {
-    setTimeout(this.cardMatch.bind(this),900);
-    // if (game.checkCards = 0 ){
-    //    game.checkCards ++;
-    //    console.log(game.checkCards)
-    // }
-    if (game.card1 && game.card2 == true) {
-        game.checkCards = 0;
-        game.card1 = false;
-        game.card2 = false;
-        console.log('Check Complete');
-        $('.card').removeClass('flipcard');
+    $('.leftCard').on('click', function () {
+        game.amountClicked++;
+        console.log(game.amountClicked + ': times clickeeeeed');
+        if(game.amountClicked == 1 || 2) {
+            $(this).toggleClass('flipcard');
+            game.card1 = true;
+            console.log('Game.Card1 is =  ' + game.card1);
+            game.checkCards++;
+            game.accuracy++;
+            game.amountClicked++;
+        }
+        else
+        if(game.amountClicked > 2) {
+            $(this).toggleClass('block');
+        }
+    });
+    $('.rightCard').on('click', function () {
+        $(this).toggleClass('flipcard');
+        game.card2 = true;
+        console.log('Game.Card2 is =  ' +game.card2);
+        game.checkCards++;
+        game.accuracy++;
+        game.amountClicked++;
+    });
+   // for(id in game.leftCards && game.rightCards ){
+   //     console.log('Success');
+   // }
+};
+Game.prototype.scan = function(){
+    setTimeout(this.scan.bind(this),300);
+    if(game.amountClicked == 1) {
+        console.log('Game.card1 is: ' + game.card1);
+        game.card1 = true;
+        game.checkCards++;
+        game.accuracy++;
+        game.amountClicked++;
+        $(".accValue").empty(game.accuracy);
+        $(".accValue").append(game.accuracy + 1 / game.amountClicked);
+        console.log(game.accuracy + 'is accuracy');
+        console.log(game.amountClicked + ': times clicked');
+        console.log(game.checkCards);
     }
-   for(id in game.leftCards && game.rightCards ){
-       console.log('Success');
-   }
+    if(game.amountClicked == 2){
+        if(game.amountClicked == 0) {
+            console.log('Game.card1 is: ' + game.card2);
+            game.card2 = true;
+            game.checkCards++;
+            game.accuracy++;
+            game.amountClicked++;
+            $(".accValue").empty(game.accuracy);
+            $(".accValue").append(game.accuracy + 1 / game.amountClicked);
+            console.log(game.accuracy + 'is accuracy');
+            console.log(game.amountClicked + ': times clicked');
+            console.log(game.checkCards);
+        }
+    }
+    if(game.amountClicked > 2){
+        console.log('WOOHOOO');
+        game.card1 = null;
+        game.card2 = null;
+        game.amountClicked = 0;
+        console.log('made the card1: ' +game.card1 + 'made the card2: ' + game.card2);
+        console.log('Made the amountClicked to: ' + game.amountClicked);
+        $('.leftCard' && '.rightCard').toggleClass('block');
+    }
+
 };
 $(document).ready(function() {
     game = new Game();
