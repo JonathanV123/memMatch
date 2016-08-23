@@ -4,7 +4,7 @@ body{
     height:100vh;
     margin: 0;
     padding: 0;
-    background-image: url("https://images4.alphacoders.com/784/78424.jpg");
+    background-image: url("http://www.walldevil.com/wallpapers/w02/768521-artwork-helms-deep-screenshots-siege-the-lord-of-the-rings.jpg");
     background-repeat:no-repeat;
     background-size:100% 100%;
 }
@@ -19,6 +19,8 @@ body{
     outline: 1px dashed deeppink;
     height:15%;
     width:100%;
+    background-repeat:no-repeat;
+    background-size:100% 100%;
 }
 .battleground {
     width: 50%;
@@ -26,6 +28,8 @@ body{
     flex-direction:row;
     outline: 1px dashed orange;
     display:inline-flex;
+    background-repeat:no-repeat;
+    background-size:100% 100%;
 }
 /* LEFT SIDE START */
 .game-area.left_side{
@@ -68,18 +72,18 @@ body{
     color:white;
 }
 .leftCard{
-    width:20%;
-    height:25%;
+    width:27%;
+    height:30%;
     outline: 1px solid white;
-    margin: 2% 3% 2% 3%;
+    margin: 2% 3% 2% 1%;
     transform-style: preserve-3d;
     transition-duration: 1.25s;
 }
 .rightCard{
-    width:20%;
-    height:25%;
+    width:27%;
+    height:30%;
     outline: 1px solid white;
-    margin: 2% 3% 2% 3%;
+    margin: 2% 3% 2% 1%;
     transform-style: preserve-3d;
     transition-duration: 1.25s;
 }
@@ -91,7 +95,7 @@ body{
     height:100%;
     outline: 1px solid white;
     position:absolute;
-    margin:0 0 0 0;
+    margin: 2% 3% 2% 1%;
     padding:0 0 0 0;
     border: solid purple 1px;
     transform: rotate3D(0,1,0,180deg);
@@ -133,21 +137,22 @@ body{
     outline: 1px solid white;
     position:absolute;
     border: solid orange 1px;
-    margin:0 0 0 0;
+    margin: 2% 3% 2% 1%;
     padding:0 0 0 0;
-    background-image:url(Images/back.jpg );
-    background-size: 150%;
-    backface-visibility: hidden;
+    background-image: url("http://vignette1.wikia.nocookie.net/lego-lord-of-the-rings/images/4/4c/The_One_Ring.jpg/revision/latest?cb=20130113172456");
     background-repeat:no-repeat;
+    background-size:100% 100%;
+    backface-visibility: hidden;
 }
 .block{
-    width:20%;
-    height:25%;
+    width:27%;
+    height:30%;
     outline: 1px solid pink;
-    margin: 2% 3% 2% 3%;
+    margin: 2% 3% 2% 1%;
 
 }
 
 .flipcard{
     transform: rotate3D(0,1,0,180deg);
+
 }

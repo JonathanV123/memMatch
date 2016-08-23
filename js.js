@@ -136,7 +136,6 @@ Game.prototype.scan = function(){
         console.log('Made the amountClicked to: ' + game.amountClicked);
         $('.leftCard' && '.rightCard').toggleClass('block');
     }
-
 };
 $(document).ready(function() {
     game = new Game();
