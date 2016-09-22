@@ -98,50 +98,42 @@ body{
     backface-visibility: hidden;
 }
 .card-1{
-    background-image:url(Images/1.jpg );
-    border: 1px solid wheat;
-
-    background-size: 100% 100%;
+ background-image:url(Images/1.jpg );
+ border: 1px solid wheat;
+ background-size: 100% 100%;
 }
 .card-2{
-    background-image:url(Images/2.jpg );
-    border: 1px solid wheat;
-
-    background-size: 100% 100%;
+ background-image:url(Images/2.jpg );
+ border: 1px solid wheat;
+ background-size: 100% 100%;
 }.card-3{
-     background-image:url(Images/3.jpg );
-     border: 1px solid wheat;
-
-     background-size: 100% 100%;
+ background-image:url(Images/3.jpg );
+ border: 1px solid wheat;
+ background-size: 100% 100%;
 }.card-4{
-     background-image:url(Images/4.jpg );
-      border: 1px solid wheat;
-
-      background-size: 100% 100%;
+ background-image:url(Images/4.jpg );
+ border: 1px solid wheat;
+ background-size: 100% 100%;
 }.card-5{
-       background-image:url(Images/5.jpg );
-       border: 1px solid wheat;
-
-       background-size: 100% 100%;
+ background-image:url(Images/5.jpg );
+ border: 1px solid wheat;
+ background-size: 100% 100%;
 }.card-6{
-        background-image:url(Images/6.jpg );
-        border: 1px solid wheat;
-
-        background-size: 100% 100%;
+ background-image:url(Images/6.jpg );
+ border: 1px solid wheat;
+ background-size: 100% 100%;
 }.card-7{
-         background-image:url(Images/7.jpg );
-         border: 1px solid wheat;
-
-         background-size: 100% 100%;
+ background-image:url(Images/7.jpg );
+ border: 1px solid wheat;
+ background-size: 100% 100%;
 }.card-8{
-          background-image:url(Images/8.jpg );
-          border: 1px solid wheat;
-
-          background-size: 100% 100%;
+ background-image:url(Images/8.jpg );
+ border: 1px solid wheat;
+ background-size: 100% 100%;
 }.card-9{
-           background-image:url(Images/9.jpg );
-           background-size: 100% 100%;
-           border: 1px solid wheat;
+ background-image:url(Images/9.jpg );
+ background-size: 100% 100%;
+ border: 1px solid wheat;
        }
 /* Back Side */
 .back{
@@ -164,4 +156,10 @@ body{
 .flipcard{
     transform: rotate3D(0,1,0,180deg);
 
+}
+.inactive{
+    pointer-events:none;
+}
+.active{
+    pointer-events:auto;
 }

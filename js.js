@@ -16,8 +16,8 @@ var Game = function(){
     this.checkCards = 0;
     this.accuracy = 0;
     this.amountClicked= 0;
-    this.card1 = null;
-    this.card2 = null;
+    this.card1 = false;
+    this.card2 = false;
 // This refers to an instance of Game Class
 };
 //Creating Card CLASS that takes 1 parameter
@@ -33,7 +33,9 @@ Game.prototype.setUpGame = function(){
   this.shuffleCards(this.rightCards);
   this.renderCards();
   this.cardMatch();
+  this.cardDefault();
   this.scan();
+
 };
 Game.prototype.createCards = function(cardCount) { //Review
     for (i = 1; i <= cardCount; i++) {
@@ -59,9 +61,9 @@ Game.prototype.renderCards = function() {
         // clearTimeout(this);
         console.log('Ye!');
         for (var i = 0; i < game.leftCards.length; i++) {
-            var CardHtmlStringLeft = '<div class="leftCard"> <div class = "front card-' + game.leftCards[i].id + '"></div><div' + ' class' +
+            var CardHtmlStringLeft = '<div class="leftCard"> <div class = "front left card-' + game.leftCards[i].id + '"></div><div' + ' class' +
                 ' =' + ' "back"></div></div>';
-            var CardHtmlStringRight = '<div class="rightCard"> <div class = "front card-' + game.rightCards[i].id + '"></div><div' +
+            var CardHtmlStringRight = '<div class="rightCard"> <div class = "front right card-' + game.rightCards[i].id + '"></div><div' +
                 ' class' + ' =' + ' "back"></div></div>';
             var leftCardElement = $(CardHtmlStringLeft);
             var rightCardElement = $(CardHtmlStringRight);
@@ -70,72 +72,54 @@ Game.prototype.renderCards = function() {
         }
            //WHY DO THE FUNCTIONS BELOW NEED TO BE WITHIN THE FOR Statement...! Ask ask ask
 };
+Game.prototype.cardDefault = function(){
+    $(".leftCard").removeClass("flipcard inactive");
+    $(".rightCard").removeClass("flipcard inactive");
+    game.card1 = false;
+    game.card2 = false;
+    console.log('Kool with a k');
+};
 Game.prototype.cardMatch = function() {
     $('.leftCard').on('click', function () {
         game.amountClicked++;
-        console.log(game.amountClicked + ': times clickeeeeed');
-        if(game.amountClicked == 1 || 2) {
             $(this).toggleClass('flipcard');
-            game.card1 = true;
-            console.log('Game.Card1 is =  ' + game.card1);
-            game.checkCards++;
+            $(".leftCard").addClass("inactive");
             game.accuracy++;
-            game.amountClicked++;
-        }
-        else
-        if(game.amountClicked > 2) {
-            $(this).toggleClass('block');
-        }
+            if(game.card1 == false){
+                game.card1 = true;
+
+            }
+           else if(game.card1 = true){
+                game.card2 = true;
+                setTimeout(Game.prototype.cardDefault,1300);
+
+            }
+        console.log('Game.Card1 is =  ' + game.card1);
     });
     $('.rightCard').on('click', function () {
         $(this).toggleClass('flipcard');
-        game.card2 = true;
-        console.log('Game.Card2 is =  ' +game.card2);
-        game.checkCards++;
+        $(".rightCard").addClass("inactive");
+        if(game.card1 == false){
+            game.card1 = true;
+        }
+        else if(game.card1 = true){
+            game.card2 = true;
+            setTimeout(Game.prototype.cardDefault,1300);
+            for (i=0; i<= game.rightCards.length; i++){
+                
+            }
+        }
+        console.log('Game.Card2 is =  ' + game.card2);
         game.accuracy++;
-        game.amountClicked++;
+
     });
-   // for(id in game.leftCards && game.rightCards ){
-   //     console.log('Success');
-   // }
 };
 Game.prototype.scan = function(){
-    setTimeout(this.scan.bind(this),300);
-    if(game.amountClicked == 1) {
-        console.log('Game.card1 is: ' + game.card1);
-        game.card1 = true;
-        game.checkCards++;
-        game.accuracy++;
-        game.amountClicked++;
-        $(".accValue").empty(game.accuracy);
-        $(".accValue").append(game.accuracy + 1 / game.amountClicked);
-        console.log(game.accuracy + 'is accuracy');
-        console.log(game.amountClicked + ': times clicked');
-        console.log(game.checkCards);
-    }
-    if(game.amountClicked == 2){
-        if(game.amountClicked == 0) {
-            console.log('Game.card1 is: ' + game.card2);
-            game.card2 = true;
-            game.checkCards++;
-            game.accuracy++;
-            game.amountClicked++;
-            $(".accValue").empty(game.accuracy);
-            $(".accValue").append(game.accuracy + 1 / game.amountClicked);
-            console.log(game.accuracy + 'is accuracy');
-            console.log(game.amountClicked + ': times clicked');
-            console.log(game.checkCards);
-        }
-    }
-    if(game.amountClicked > 2){
-        console.log('WOOHOOO');
-        game.card1 = null;
-        game.card2 = null;
-        game.amountClicked = 0;
-        console.log('made the card1: ' +game.card1 + 'made the card2: ' + game.card2);
-        console.log('Made the amountClicked to: ' + game.amountClicked);
-        $('.leftCard' && '.rightCard').toggleClass('block');
-    }
+    // setTimeout(this.scan.bind(this),300);
+    // if(game.card1 && game.card1 == true) {
+    //  setTimeout(Game.prototype.cardDefault,1000);
+    //     console.log('Card 1 and Card 2 are true')
+    // }
 };
 $(document).ready(function() {
     game = new Game();
