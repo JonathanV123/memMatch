@@ -70,7 +70,6 @@ Game.prototype.renderCards = function() {
             $(".right_side").append(rightCardElement);
             $(".left_side").append(leftCardElement);
         }
-           //WHY DO THE FUNCTIONS BELOW NEED TO BE WITHIN THE FOR Statement...! Ask ask ask
 };
 Game.prototype.cardDefault = function(){
     $(".leftCard").removeClass("flipcard inactive");
@@ -81,18 +80,28 @@ Game.prototype.cardDefault = function(){
 };
 Game.prototype.cardMatch = function() {
     $('.leftCard').on('click', function () {
-        game.amountClicked++;
+            console.log(this);
+
+            game.amountClicked++;
             $(this).toggleClass('flipcard');
             $(".leftCard").addClass("inactive");
             game.accuracy++;
             if(game.card1 == false){
                 game.card1 = true;
-
+                for (i=0; i<= game.leftCards.length; i++){
+                    if($(this).hasClass("card-"[i])){
+                        console.log('COOOL');
+                    }
+                }
             }
            else if(game.card1 = true){
                 game.card2 = true;
                 setTimeout(Game.prototype.cardDefault,1300);
+                for (i=0; i<= game.rightCards.length; i++){
+                    $(this).hasClass("card-"[i]);
+                    console.log('COOOL');
 
+                }
             }
         console.log('Game.Card1 is =  ' + game.card1);
     });
@@ -106,7 +115,9 @@ Game.prototype.cardMatch = function() {
             game.card2 = true;
             setTimeout(Game.prototype.cardDefault,1300);
             for (i=0; i<= game.rightCards.length; i++){
-                
+                $(this).hasClass("card-"[i]);
+                console.log('COOOL');
+
             }
         }
         console.log('Game.Card2 is =  ' + game.card2);
