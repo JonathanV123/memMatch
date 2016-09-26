@@ -102,12 +102,7 @@ Game.prototype.cardMatch = function() {
                 // else if(game.checkCards.indexOf(0) != game.checkCards.indexOf(1)){
                 //     console.log("no match")
                 // }
-                 game.checkCards.reduce(function(a,b){
-                    return (a === b) ? a : NaN;
-                });
-                if(game.checkCards.reduce == true){
-                    console.log('cooz')
-                }
+
             }
     });
     $('.rightCard').on('click', function () {
@@ -127,9 +122,7 @@ Game.prototype.cardMatch = function() {
             // else if(game.checkCards.indexOf(0) != game.checkCards.indexOf(1)){
             //     console.log("no match")
             // }
-            game.checkCards.reduce(function(a,b){
-                return (a === b) ? a : NaN;
-            })
+
         }
         console.log('Game.Card2 is =  ' + game.card2);
         game.accuracy++;
