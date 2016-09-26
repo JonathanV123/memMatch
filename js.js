@@ -13,7 +13,7 @@
 var Game = function(){
     this.leftCards = [];
     this.rightCards = [];
-    this.checkCards = 0;
+    this.checkCards = [];
     this.accuracy = 0;
     this.amountClicked= 0;
     this.card1 = false;
@@ -61,9 +61,9 @@ Game.prototype.renderCards = function() {
         // clearTimeout(this);
         console.log('Ye!');
         for (var i = 0; i < game.leftCards.length; i++) {
-            var CardHtmlStringLeft = '<div class="leftCard"> <div class = "front left card-' + game.leftCards[i].id + '"></div><div' + ' class' +
+            var CardHtmlStringLeft = '<div class="leftCard"> <div class = "front card-' + game.leftCards[i].id + '"></div><div' + ' class' +
                 ' =' + ' "back"></div></div>';
-            var CardHtmlStringRight = '<div class="rightCard"> <div class = "front right card-' + game.rightCards[i].id + '"></div><div' +
+            var CardHtmlStringRight = '<div class="rightCard"> <div class = "front card-' + game.rightCards[i].id + '"></div><div' +
                 ' class' + ' =' + ' "back"></div></div>';
             var leftCardElement = $(CardHtmlStringLeft);
             var rightCardElement = $(CardHtmlStringRight);
@@ -80,45 +80,56 @@ Game.prototype.cardDefault = function(){
 };
 Game.prototype.cardMatch = function() {
     $('.leftCard').on('click', function () {
-            console.log(this);
-
             game.amountClicked++;
             $(this).toggleClass('flipcard');
             $(".leftCard").addClass("inactive");
+            console.log($(this).children(":first"));
             game.accuracy++;
             if(game.card1 == false){
                 game.card1 = true;
-                for (i=0; i<= game.leftCards.length; i++){
-                    if($(this).hasClass("card-"[i])){
-                        console.log('COOOL');
-                    }
-                }
+                console.log('okie dokie');
+                game.checkCards.push($(this).children(":first"));
+
             }
            else if(game.card1 = true){
                 game.card2 = true;
                 setTimeout(Game.prototype.cardDefault,1300);
-                for (i=0; i<= game.rightCards.length; i++){
-                    $(this).hasClass("card-"[i]);
-                    console.log('COOOL');
-
+                game.checkCards.push($(this).children(":first"));
+                console.log('Game.Card1 is =  ' + game.card1);
+                // if(game.checkCards.indexOf(0) == game.checkCards.indexOf(1)) {
+                //     console.log("match")
+                // }
+                // else if(game.checkCards.indexOf(0) != game.checkCards.indexOf(1)){
+                //     console.log("no match")
+                // }
+                 game.checkCards.reduce(function(a,b){
+                    return (a === b) ? a : NaN;
+                });
+                if(game.checkCards.reduce == true){
+                    console.log('cooz')
                 }
             }
-        console.log('Game.Card1 is =  ' + game.card1);
     });
     $('.rightCard').on('click', function () {
         $(this).toggleClass('flipcard');
         $(".rightCard").addClass("inactive");
         if(game.card1 == false){
             game.card1 = true;
+            game.checkCards.push($(this).children(":first"));
         }
         else if(game.card1 = true){
             game.card2 = true;
             setTimeout(Game.prototype.cardDefault,1300);
-            for (i=0; i<= game.rightCards.length; i++){
-                $(this).hasClass("card-"[i]);
-                console.log('COOOL');
-
-            }
+            game.checkCards.push($(this).children(":first"));
+            // if(game.checkCards.indexOf(0) == game.checkCards.indexOf(1)){
+            //     console.log("match")
+            // }
+            // else if(game.checkCards.indexOf(0) != game.checkCards.indexOf(1)){
+            //     console.log("no match")
+            // }
+            game.checkCards.reduce(function(a,b){
+                return (a === b) ? a : NaN;
+            })
         }
         console.log('Game.Card2 is =  ' + game.card2);
         game.accuracy++;
