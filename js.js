@@ -16,8 +16,8 @@ var Game = function(){
     this.checkCards = [];
     this.accuracy = 0;
     this.amountClicked= 0;
-    this.card1 = false;
-    this.card2 = false;
+    this.leftCard = false;
+    this.rightCard = false;
 // This refers to an instance of Game Class
 };
 //Creating Card CLASS that takes 1 parameter
@@ -32,7 +32,7 @@ Game.prototype.setUpGame = function(){
   this.shuffleCards(this.leftCards);
   this.shuffleCards(this.rightCards);
   this.renderCards();
-  this.cardMatch();
+  this.addClickHandlers();
   this.cardDefault();
   this.scan();
 
@@ -73,72 +73,53 @@ Game.prototype.renderCards = function() {
         }
 };
 Game.prototype.cardDefault = function(){
+    console.log("Card default called, what is this: ", this);
     $(".leftCard").removeClass("flipcard inactive");
     $(".rightCard").removeClass("flipcard inactive");
-    game.card1 = false;
-    game.card2 = false;
+    this.leftCard = false;
+    this.rightCard = false;
     console.log('Kool with a k');
 };
-Game.prototype.cardMatch = function() {
-    $('.leftCard').on('click', function () {
-            game.amountClicked++;
-            $(this).toggleClass('flipcard');
-            $(".leftCard").addClass("inactive");
-            console.log($(this).children(":first"));
-            game.accuracy++;
-            if(game.card1 == false) {
-                game.card1 = true;
-                console.log('okie dokie');
-                game.checkCards.push($(this).children(":first"));
-                // $(this).children(":first").addClass('cool');
-                // if($(this).children(":first").hasClass('cool')){
-                // }
-            }
-           else if(game.card1 = true){
-                game.card2 = true;
-                setTimeout(Game.prototype.cardDefault,1300);
-                $(this).children(":first").addClass('cool');
-                if($(this).children(":first").hasClass('cool')){
-                    console.log("IT WORKED!")
-                }
-                console.log('Game.Card1 is =  ' + game.card1);
-                // if(game.checkCards.indexOf(0) == game.checkCards.indexOf(1)) {
-                //     console.log("match")
-                // }
-                // else if(game.checkCards.indexOf(0) != game.checkCards.indexOf(1)){
-                //     console.log("no match")
-                // }
 
-            }
+Game.prototype.checkMatch = function(card, side, op){
+    var self = this;
+    var $card = $(card);
+
+    self.amountClicked++;
+    $card.toggleClass('flipcard');
+    $("." + side + "Card").addClass("inactive");
+    console.log($(card).children(":first"));
+    self.accuracy++;
+    self[side + 'Card'] = true;
+    if(self[side + 'Card'] && !self[op + 'Card'] ) {
+
+        console.log('okie dokie');
+        self.checkCards.push($card.children(":first"));
+    }
+    else {
+        self.checkCards.push($card.children(":first"));
+        console.log('check cards', self.checkCards[0].css('background-image'));
+        $card.children(":first").addClass('cool');
+        console.log('card 1: ', self.checkCards[0].css('background-image'), ' Card 2: ', self.checkCards[1].css('background-image'))
+        if(self.checkCards[0].css('background-image') === self.checkCards[1].css('background-image')){
+            console.log("IT WORKED! They match")
+
+        } else {
+            setTimeout(self.cardDefault.bind(self),1300);
+        }
+        self.checkCards = [];
+    }
+
+};
+
+Game.prototype.addClickHandlers = function() {
+    console.log('What is this: ', this);
+    var self = this;
+    $('.leftCard').on('click', function () {
+        self.checkMatch(this, 'left', 'right');
     });
     $('.rightCard').on('click', function () {
-        $(this).toggleClass('flipcard');
-        $(".rightCard").addClass("inactive");
-        if(game.card1 == false){
-            game.card1 = true;
-            $(this).children(":first").addClass('cool');
-            if($(this).children(":first").hasClass('cool')){
-                console.log("IT WORKED!")
-            }
-        }
-        else if(game.card1 = true){
-            game.card2 = true;
-            setTimeout(Game.prototype.cardDefault,1300);
-            // if(game.checkCards.indexOf(0) == game.checkCards.indexOf(1)){
-            //     console.log("match")
-            // }
-            // else if(game.checkCards.indexOf(0) != game.checkCards.indexOf(1)){
-            //     console.log("no match")
-            // }
-            $(this).children(":first").addClass('cool');
-            if($(this).children(":first").hasClass('cool')){
-                console.log("IT WORKED!")
-            }
-
-        }
-        console.log('Game.Card2 is =  ' + game.card2);
-        game.accuracy++;
-
+        self.checkMatch(this, 'right', 'left');
     });
 };
 Game.prototype.scan = function(){
