@@ -61,9 +61,10 @@ Game.prototype.renderCards = function() {
         // clearTimeout(this);
         console.log('Ye!');
         for (var i = 0; i < game.leftCards.length; i++) {
-            var CardHtmlStringLeft = '<div class="leftCard"> <div class = "front card-' + game.leftCards[i].id + '"></div><div' + ' class' +
+                                                                                                //why Plus needed here
+            var CardHtmlStringLeft = '<div class="leftCard"><div class = "front card-' + game.leftCards[i].id + '"></div><div' + ' class' +
                 ' =' + ' "back"></div></div>';
-            var CardHtmlStringRight = '<div class="rightCard"> <div class = "front card-' + game.rightCards[i].id + '"></div><div' +
+            var CardHtmlStringRight = '<div class="rightCard"><div class = "front card-' + game.rightCards[i].id + '"></div><div' +
                 ' class' + ' =' + ' "back"></div></div>';
             var leftCardElement = $(CardHtmlStringLeft);
             var rightCardElement = $(CardHtmlStringRight);
@@ -85,16 +86,21 @@ Game.prototype.cardMatch = function() {
             $(".leftCard").addClass("inactive");
             console.log($(this).children(":first"));
             game.accuracy++;
-            if(game.card1 == false){
+            if(game.card1 == false) {
                 game.card1 = true;
                 console.log('okie dokie');
                 game.checkCards.push($(this).children(":first"));
-
+                // $(this).children(":first").addClass('cool');
+                // if($(this).children(":first").hasClass('cool')){
+                // }
             }
            else if(game.card1 = true){
                 game.card2 = true;
                 setTimeout(Game.prototype.cardDefault,1300);
-                game.checkCards.push($(this).children(":first"));
+                $(this).children(":first").addClass('cool');
+                if($(this).children(":first").hasClass('cool')){
+                    console.log("IT WORKED!")
+                }
                 console.log('Game.Card1 is =  ' + game.card1);
                 // if(game.checkCards.indexOf(0) == game.checkCards.indexOf(1)) {
                 //     console.log("match")
@@ -110,18 +116,24 @@ Game.prototype.cardMatch = function() {
         $(".rightCard").addClass("inactive");
         if(game.card1 == false){
             game.card1 = true;
-            game.checkCards.push($(this).children(":first"));
+            $(this).children(":first").addClass('cool');
+            if($(this).children(":first").hasClass('cool')){
+                console.log("IT WORKED!")
+            }
         }
         else if(game.card1 = true){
             game.card2 = true;
             setTimeout(Game.prototype.cardDefault,1300);
-            game.checkCards.push($(this).children(":first"));
             // if(game.checkCards.indexOf(0) == game.checkCards.indexOf(1)){
             //     console.log("match")
             // }
             // else if(game.checkCards.indexOf(0) != game.checkCards.indexOf(1)){
             //     console.log("no match")
             // }
+            $(this).children(":first").addClass('cool');
+            if($(this).children(":first").hasClass('cool')){
+                console.log("IT WORKED!")
+            }
 
         }
         console.log('Game.Card2 is =  ' + game.card2);
