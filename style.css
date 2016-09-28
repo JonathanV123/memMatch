@@ -161,7 +161,6 @@ body{
 }
 .flipcard{
     transform: rotate3D(0,1,0,180deg);
-
 }
 .inactive{
     pointer-events:none;

@@ -71,14 +71,13 @@ Game.prototype.cardDefault = function(){
 Game.prototype.checkMatch = function(card, side, opposite){
     var self = this;
     var $card = $(card);
-
     self.amountClicked++;
     $card.toggleClass('flipcard');
-    $("." + side + "Card").addClass("inactive");
+    // $("." + side + "Card").addClass("inactive");
     console.log($(card).children(":first"));
     self.accuracy++;
     self[side + 'Card'] = true;
-    if(self[side + 'Card'] && !self[opposite + 'Card'] ) {
+    if(self[side + 'Card'] && !self[opposite + 'Card']){
         console.log('okie dokie');
         self.checkCards.push($card.children(":first"));
     }
@@ -90,22 +89,25 @@ Game.prototype.checkMatch = function(card, side, opposite){
             console.log("IT WORKED! They match");
            self.checkCards[0].parent().css("pointer-events","none").removeClass("front").removeClass("leftCard").addClass("cardInactive");
            self.checkCards[1].parent().css("pointer-events","none").removeClass("front").removeClass("rightCard").addClass("cardInactive");
+            $(".leftCard").removeClass("inactive");
+            $(".rightCard").removeClass("inactive");
         } else {
-            setTimeout(self.cardDefault.bind(self),1300);
+            $(".leftCard").addClass("inactive");
+            $(".rightCard").addClass("inactive");
+            setTimeout(self.cardDefault.bind(self),900);
         }
         self.checkCards = [];
-        $(".leftCard").removeClass("inactive");
-        $(".rightCard").removeClass("inactive")
-
     }
 };
 Game.prototype.addClickHandlers = function() {
     console.log('What is this: ', this);
     var self = this;
     $('.leftCard').on('click', function () {
+        $(".leftCard").addClass("inactive");
         self.checkMatch(this, 'left', 'right');
     });
     $('.rightCard').on('click', function () {
+        $(".rightCard").addClass("inactive");
         self.checkMatch(this, 'right', 'left');
     });
 };
