@@ -60,7 +60,7 @@ body{
     align-items:center;
     border: 3px solid wheat;
 }
-.info {
+.info{
     display:flex;
     height: 90%;
     width: 10%;
@@ -78,7 +78,6 @@ body{
     transform-style: preserve-3d;
     transition-duration: 1.25s;
 }
-
 .rightCard{
     width: 27%;
     height: 25%;
@@ -87,7 +86,6 @@ body{
     transition-duration: 1.25s;
 }
 /* RIGHT SIDE END */
-
 /* Front Side */
 .front{
     width:100%;
@@ -170,4 +168,11 @@ body{
 }
 .active{
     pointer-events:auto;
+}
+.cardInactive{
+    width: 27%;
+    height: 25%;
+    margin: 5% 1% 9% 0%;
+    transform-style: preserve-3d;
+    transition-duration: 1.25s;
 }

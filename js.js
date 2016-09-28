@@ -68,7 +68,7 @@ Game.prototype.cardDefault = function(){
     this.rightCard = false;
     console.log('Kool with a k');
 };
-Game.prototype.checkMatch = function(card, side, op){
+Game.prototype.checkMatch = function(card, side, opposite){
     var self = this;
     var $card = $(card);
 
@@ -78,23 +78,25 @@ Game.prototype.checkMatch = function(card, side, op){
     console.log($(card).children(":first"));
     self.accuracy++;
     self[side + 'Card'] = true;
-    if(self[side + 'Card'] && !self[op + 'Card'] ) {
+    if(self[side + 'Card'] && !self[opposite + 'Card'] ) {
         console.log('okie dokie');
         self.checkCards.push($card.children(":first"));
     }
     else {
         self.checkCards.push($card.children(":first"));
         console.log('check cards', self.checkCards[0].css('background-image'));
-        $card.children(":first").addClass('cool');
         console.log('card 1: ', self.checkCards[0].css('background-image'), ' Card 2: ', self.checkCards[1].css('background-image'));
         if(self.checkCards[0].css('background-image') === self.checkCards[1].css('background-image')){
             console.log("IT WORKED! They match");
-           self.checkCards[0].parent().addClass("Test");
-            self.checkCards[1].parent().addClass("Test");
+           self.checkCards[0].parent().css("pointer-events","none").removeClass("front").removeClass("leftCard").addClass("cardInactive");
+           self.checkCards[1].parent().css("pointer-events","none").removeClass("front").removeClass("rightCard").addClass("cardInactive");
         } else {
             setTimeout(self.cardDefault.bind(self),1300);
         }
         self.checkCards = [];
+        $(".leftCard").removeClass("inactive");
+        $(".rightCard").removeClass("inactive")
+
     }
 };
 Game.prototype.addClickHandlers = function() {
