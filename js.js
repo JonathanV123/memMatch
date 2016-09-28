@@ -73,7 +73,7 @@ Game.prototype.checkMatch = function(card, side, opposite){
     var $card = $(card);
     self.amountClicked++;
     $card.toggleClass('flipcard');
-    // $("." + side + "Card").addClass("inactive");
+    $("." + side + "Card").addClass("inactive");
     console.log($(card).children(":first"));
     self.accuracy++;
     self[side + 'Card'] = true;
@@ -87,8 +87,8 @@ Game.prototype.checkMatch = function(card, side, opposite){
         console.log('card 1: ', self.checkCards[0].css('background-image'), ' Card 2: ', self.checkCards[1].css('background-image'));
         if(self.checkCards[0].css('background-image') === self.checkCards[1].css('background-image')){
             console.log("IT WORKED! They match");
-           self.checkCards[0].parent().css("pointer-events","none").removeClass("front").removeClass("leftCard").addClass("cardInactive");
-           self.checkCards[1].parent().css("pointer-events","none").removeClass("front").removeClass("rightCard").addClass("cardInactive");
+           self.checkCards[0].parent().css("pointer-events","none").removeClass("front").removeClass("leftCard").removeClass("rightCard").addClass("cardInactive");
+           self.checkCards[1].parent().css("pointer-events","none").removeClass("front").removeClass("rightCard").removeClass("leftCard").addClass("cardInactive");
             $(".leftCard").removeClass("inactive");
             $(".rightCard").removeClass("inactive");
         } else {
