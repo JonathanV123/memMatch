@@ -8,6 +8,8 @@ var Game = function(){
     this.amountClicked= 0;
     this.leftCard = false;
     this.rightCard = false;
+    this.correctMatch = 0;
+    this.incorrectMatch = 0;
 // This refers to an instance of Game Class
 };
 //Creating Card CLASS that takes 1 parameter
@@ -89,11 +91,18 @@ Game.prototype.checkMatch = function(card, side, opposite){
             console.log("IT WORKED! They match");
            self.checkCards[0].parent().css("pointer-events","none").removeClass("front").removeClass("leftCard").removeClass("rightCard").addClass("cardInactive");
            self.checkCards[1].parent().css("pointer-events","none").removeClass("front").removeClass("rightCard").removeClass("leftCard").addClass("cardInactive");
+            this.correctMatch ++;
+            console.log(this.correctMatch + " "+ "correct matches");
             $(".leftCard").removeClass("inactive");
             $(".rightCard").removeClass("inactive");
         } else {
             $(".leftCard").addClass("inactive");
             $(".rightCard").addClass("inactive");
+            this.incorrectMatch ++;
+            console.log(this.incorrectMatch + " "+ "incorrect matches");
+            if(this.incorrectMatch % 2 === 0){
+                console.log('LALALALALA');
+            }
             setTimeout(self.cardDefault.bind(self),900);
         }
         self.checkCards = [];
