@@ -10,7 +10,12 @@ var Game = function(){
     this.rightCard = false;
     this.correctMatch = 0;
     this.incorrectMatch = 0;
-    this.playerHP = 0;
+    this.playerHp = 15;
+    this.testIfMatch= true;
+    this.enemiesInPlay = 0;
+    this.enemyPhase = 0;
+    this.playerTurn = false;
+    this.enemyTurn = false;
 // This refers to an instance of Game Class
 };
 //Creating Card CLASS that takes 1 parameter
@@ -79,46 +84,83 @@ Game.prototype.checkMatch = function(card, side, opposite){
     $("." + side + "Card").addClass("inactive");
     console.log($(card).children(":first"));
     self.accuracy++;
+    console.log(self.accuracy++ + 'is accuracy');
     self[side + 'Card'] = true;
     if(self[side + 'Card'] && !self[opposite + 'Card']){
-        console.log('okie dokie');
+        console.log(self.incorrectMatch +" "+" is incorrect Match Count");
+        self.incorrectMatch += 1;
         self.checkCards.push($card.children(":first"));
     }
     else {
         self.checkCards.push($card.children(":first"));
-        console.log('check cards', self.checkCards[0].css('background-image'));
-        console.log('card 1: ', self.checkCards[0].css('background-image'), ' Card 2: ', self.checkCards[1].css('background-image'));
+        // console.log('check cards', self.checkCards[0].css('background-image'));
+        // console.log('card 1: ', self.checkCards[0].css('background-image'), ' Card 2: ', self.checkCards[1].css('background-image'));
+        if(self.checkCards[0].css('background-image') === self.checkCards[1].css('background-image') && self.checkCards[1].hasClass('card-1')){
+            // console.log("Dwarven Healer Healed");
+            self.testIfMatch = true;
+            self.playerHp +=4;
+            console.log(self.playerHp);
+        }
         if(self.checkCards[0].css('background-image') === self.checkCards[1].css('background-image')){
-            console.log("IT WORKED! They match");
-           self.checkCards[0].parent().css("pointer-events","none").removeClass("front").removeClass("leftCard").removeClass("rightCard").addClass("cardInactive");
-           self.checkCards[1].parent().css("pointer-events","none").removeClass("front").removeClass("rightCard").removeClass("leftCard").addClass("cardInactive");
+            self.testIfMatch = true;
+            // console.log("IT WORKED! They match");
+            // self.checkCards[0].parent().css("pointer-events","none").removeClass("front").removeClass("leftCard").removeClass("rightCard").addClass("cardInactive");
+            // self.checkCards[1].parent().css("pointer-events","none").removeClass("front").removeClass("rightCard").removeClass("leftCard").addClass("cardInactive");
             this.correctMatch ++;
-            console.log(this.correctMatch + " "+ "correct matches");
+            // console.log(this.correctMatch + " "+ "correct matches");
             $(".leftCard").removeClass("inactive");
             $(".rightCard").removeClass("inactive");
         } else {
             $(".leftCard").addClass("inactive");
             $(".rightCard").addClass("inactive");
-            this.incorrectMatch ++;
-            console.log(this.incorrectMatch + " "+ "incorrect matches");
-            if(this.incorrectMatch % 2 === 0){
-                console.log('LALALALALA');
-            }
             setTimeout(self.cardDefault.bind(self),900);
         }
         self.checkCards = [];
     }
+    self.enemySpawn();
+    self.updateStats();
+
+};
+Game.prototype.enemySpawn = function(){
+    var self = this;
+    console.log(self.incorrectMatch);
+    if(self.leftCard == true && self.rightCard == true && self.testIfMatch == false && self.enemiesInPlay == 0){
+        self.enemiesInPlay += 1;
+        self.enemyPhase +=1;
+        $(".enemyFlightLeft").removeClass("enemyInvisible");
+        console.log(self.incorrectMatch + " " + "incorrect Match spawning enemy");
+        self.enemyCombatPhase();
+    }
+    if(self.leftCard == true && self.rightCard == true && self.testIfMatch == false && self.enemiesInPlay == 2){
+        $(".enemyFlightRight").removeClass("enemyInvisible");
+    }
+    else{
+        self.testIfMatch = false;
+    }
+};
+Game.prototype.enemyCombatPhase = function(){
+    $(".enemyFlightLeft").addClass("enemyFlightAttackFromLeft")
+    this.playerHp -=1;
+    console.log(this.playerHp + " " +"is current HP");
+};
+Game.prototype.updateStats = function(){
+    $(".hitPoints").html(this.playerHp);
+
 };
 Game.prototype.addClickHandlers = function() {
     console.log('What is this: ', this);
     var self = this;
     $('.leftCard').on('click', function () {
         $(".leftCard").addClass("inactive");
+        $(".enemyFlightLeft").removeClass("enemyFlightAttackFromLeft");
         self.checkMatch(this, 'left', 'right');
+
     });
     $('.rightCard').on('click', function () {
         $(".rightCard").addClass("inactive");
+        $(".enemyFlightLeft").removeClass("enemyFlightAttackFromLeft");
         self.checkMatch(this, 'right', 'left');
+
     });
 };
 $(document).ready(function() {

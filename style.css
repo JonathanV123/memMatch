@@ -206,7 +206,6 @@ body{
     align-items:center;
     width:33%;
     height:100%;
-    border: 1px solid red;
 }
 .heroContainer{
     display:flex;
@@ -218,6 +217,9 @@ body{
 .heroAvatar{
     width:100%;
     height:100%;
+    bottom: 4%;
+    right: -2%;
+    position:relative;
 }
 .enemyFlightLeft{
      width:100%;
@@ -225,10 +227,12 @@ body{
      top:10%;
      left:10%;
      position:relative;
-     -webkit-animation-name: flyingAttackLeft; /* Chrome, Safari, Opera */
-     -webkit-animation-duration: 4s; /* Chrome, Safari, Opera */
-     animation-name: flyingAttackLeft;
-     animation-duration: 4s;
+}
+.enemyFlightAttackFromLeft{
+    -webkit-animation-name: flyingAttackLeft; /* Chrome, Safari, Opera */
+    -webkit-animation-duration: 2s; /* Chrome, Safari, Opera */
+    animation-name: flyingAttackLeft;
+    animation-duration: 2s;
 }
 .enemyFlightRight{
     width:100%;
@@ -236,6 +240,8 @@ body{
     top:10%;
     left:10%;
     position:relative;
+}
+.enemyFlightAttackFromRight{
     -webkit-animation-name: flyingAttackRight; /* Chrome, Safari, Opera */
     -webkit-animation-duration: 4s; /* Chrome, Safari, Opera */
     animation-name: flyingAttackRight;
@@ -247,10 +253,12 @@ body{
     position:relative;
     top:10%;
     left:10%;
+    /*-webkit-transition-timing-function: linear;*/
+    /*transition-timing-function: linear;*/
     -webkit-animation-name: enemyMidLeft; /* Chrome, Safari, Opera */
     -webkit-animation-duration: 4s; /* Chrome, Safari, Opera */
     animation-name: enemyMidLeft;
-    animation-duration: 1s;
+    animation-duration: 4s;
 }
 .enemyStandingMiddle{
     width:100%;
@@ -291,15 +299,24 @@ body{
     animation-duration: 1s;
 }
 .enemyInvisible{
-    /*display:none;*/
+    visibility: hidden;
 }
 @keyframes flyingAttackLeft {
-    0%   {left:0; top:0px;}
-    25%  {left:200px; top:0px;}
-    50%  {left:200px; top:200px;}
-    70%  {left:200px; top:0px;}
-    100% {top:0px; left:0}
+    0% {
+        transform: translatex(0px) translatey(0px)
+    }
+    25% {
+        transform: translatex(150px) translatey(230px)
 
+    }
+    75% {
+        transform: translatex(150px) translatey(230px)
+
+    }
+    100% {
+        transform: translatex(0px) translatey(0px);
+
+    }
 }
 @keyframes flyingAttackRight {
     0%   {right:0; top:80px;}
@@ -310,8 +327,16 @@ body{
     0% {
         transform: translatex(0px) translatey(0px)
     }
+    25%{
+        transform: translatex(150px) translatey(190px)
+
+    }
+    75%{
+        transform: translatex(100px) translatey(50px)
+
+    }
     100% {
-        transform: translatex(150px) translatey(150px);
+        transform: translatex(0px) translatey(0px);
     }
 }
 @keyframes enemyMidRight {
