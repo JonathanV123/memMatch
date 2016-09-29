@@ -10,6 +10,7 @@ var Game = function(){
     this.rightCard = false;
     this.correctMatch = 0;
     this.incorrectMatch = 0;
+    this.playerHP = 0;
 // This refers to an instance of Game Class
 };
 //Creating Card CLASS that takes 1 parameter

@@ -18,10 +18,8 @@ body{
     flex-direction:column;
     width: 50%;
     height: 82%;
-    background-image: url("http://25.media.tumblr.com/tumblr_m4uaz0ZcHL1rnseozo1_1280.jpg");
-    background-repeat:no-repeat;
-    background-size:100% 100%;
     flex-wrap:wrap;
+    background-color:darkcyan;
 
 }
 /* LEFT SIDE START */
@@ -75,15 +73,16 @@ body{
 }
 .leftCard{
     width: 27%;
-    height: 25%;
-    margin: 5% 1% 9% 0%;
+    width: 32%;
+    height: 32%;
+    margin: 0% 1% 2% 0%;
     transform-style: preserve-3d;
     transition-duration: 1.25s;
 }
 .rightCard{
-    width: 27%;
-    height: 25%;
-    margin: 5% 1% 9% 0%;
+    width: 32%;
+    height: 32%;
+    margin: 0% 1% 2% 0%;
     transform-style: preserve-3d;
     transition-duration: 1.25s;
 }
@@ -93,53 +92,53 @@ body{
     width:100%;
     height:100%;
     position:absolute;
-    margin: 5% 1% 7% 1%;
+    margin: 0% 1% 2% 0%;
     padding:0 0 0 0;
     transform: rotate3D(0,1,0,180deg);
     backface-visibility: hidden;
 }
 .card-1{
- background-image:url(Images/1.jpg );
+ background-image:url(Images/1.png );
  border: 1px solid wheat;
  background-size: 100% 100%;
 }
 .card-2{
- background-image:url(Images/2.jpg );
+ background-image:url(Images/2.png );
  border: 1px solid wheat;
  background-size: 100% 100%;
 }
 .card-3{
- background-image:url(Images/3.jpg );
+ background-image:url(Images/3.png );
  border: 1px solid wheat;
  background-size: 100% 100%;
 }
 .card-4{
- background-image:url(Images/4.jpg );
+ background-image:url(Images/4.png );
  border: 1px solid wheat;
  background-size: 100% 100%;
 }
 .card-5{
- background-image:url(Images/5.jpg );
+ background-image:url(Images/5.png );
  border: 1px solid wheat;
  background-size: 100% 100%;
 }
 .card-6{
- background-image:url(Images/6.jpg );
+ background-image:url(Images/6.png );
  border: 1px solid wheat;
  background-size: 100% 100%;
 }
 .card-7{
- background-image:url(Images/7.jpg );
+ background-image:url(Images/7.png );
  border: 1px solid wheat;
  background-size: 100% 100%;
 }
 .card-8{
- background-image:url(Images/8.jpg );
+ background-image:url(Images/8.png );
  border: 1px solid wheat;
  background-size: 100% 100%;
 }
 .card-9{
- background-image:url(Images/9.jpg );
+ background-image:url(Images/9.png );
  background-size: 100% 100%;
  border: 1px solid wheat;
        }
@@ -149,9 +148,9 @@ body{
     height:100%;
     position:absolute;
     border: 1px solid wheat;
-    margin: 5% 1% 9% 0%;
+    margin: 0% 1% 2% 0%;
     padding:0 0 0 0;
-    background-image: url("https://i.ytimg.com/vi/ZLjKYj0NWmM/maxresdefault.jpg");
+    background-image: url("http://hurt.rebel.pl/repository/products/100/606/_28536/LOTR-CARD-BACK-PL-2013_31.jpg");
     background-repeat:no-repeat;
     background-size:100% 100%;
     backface-visibility: hidden;
@@ -171,9 +170,9 @@ body{
     pointer-events:auto;
 }
 .cardInactive{
-    width: 27%;
-    height: 25%;
-    margin: 5% 1% 9% 0%;
+    width: 32%;
+    height: 32%;
+    margin: 0% 1% 2% 0%;
     transform-style: preserve-3d;
     transition-duration: 1.25s;
 }
@@ -209,14 +208,14 @@ body{
     height:100%;
 }
 .heroAvatar{
-    width:20%;
-    height:20%;
-    background-color:mediumvioletred;
+    width:100%;
+    height:100%;
 }
 .enemyFlightLeft{
-     width:10%;
-     height:10%;
-     background-color:red;
+     width:100%;
+     height:100%;
+     top:10%;
+     left:10%;
      position:relative;
      -webkit-animation-name: flyingAttackLeft; /* Chrome, Safari, Opera */
      -webkit-animation-duration: 4s; /* Chrome, Safari, Opera */
@@ -224,9 +223,10 @@ body{
      animation-duration: 4s;
 }
 .enemyFlightRight{
-    width:10%;
-    height:10%;
-    background-color:red;
+    width:100%;
+    height:100%;
+    top:10%;
+    left:10%;
     position:relative;
     -webkit-animation-name: flyingAttackRight; /* Chrome, Safari, Opera */
     -webkit-animation-duration: 4s; /* Chrome, Safari, Opera */
@@ -234,25 +234,26 @@ body{
     animation-duration: 4s;
 }
 .enemyStandingLeft{
-    width:10%;
-    height:10%;
-    background-color:red;
+    width:100%;
+    height:100%;
     position:relative;
+    top:10%;
+    left:10%;
     -webkit-animation-name: enemyMidLeft; /* Chrome, Safari, Opera */
     -webkit-animation-duration: 4s; /* Chrome, Safari, Opera */
     animation-name: enemyMidLeft;
     animation-duration: 1s;
 }
 .enemyStandingMiddle{
-    width:10%;
-    height:10%;
-    background-color:red;
+    width:100%;
+    height:100%;
 }
 
 .enemyStandingRight{
-    width:10%;
-    height:10%;
-    background-color:red;
+    width:100%;
+    height:100%;
+    top:10%;
+    left:10%;
     position:relative;
     -webkit-animation-name: enemyMidRight; /* Chrome, Safari, Opera */
     -webkit-animation-duration: 4s; /* Chrome, Safari, Opera */
@@ -260,9 +261,10 @@ body{
     animation-duration: 1s;
 }
 .enemyStandingCloseLeft{
-    width:10%;
-    height:10%;
-    background-color:red;
+    width:100%;
+    height:100%;
+    top:10%;
+    left:10%;
     position:relative;
     -webkit-animation-name: enemyCloseLeft; /* Chrome, Safari, Opera */
     -webkit-animation-duration: 4s; /* Chrome, Safari, Opera */
@@ -270,9 +272,10 @@ body{
     animation-duration: 1s;
 }
 .enemyStandingCloseRight{
-    width:10%;
-    height:10%;
-    background-color:red;
+    width:100%;
+    height:100%;
+    top:10%;
+    left:10%;
     position:relative;
     -webkit-animation-name: enemyCloseRight; /* Chrome, Safari, Opera */
     -webkit-animation-duration: 4s; /* Chrome, Safari, Opera */
@@ -283,16 +286,17 @@ body{
     /*display:none;*/
 }
 @keyframes flyingAttackLeft {
-    0%   {background-color:red; left:0; top:80px;}
-    25%  {background-color:yellow; left:200px; top:0px;}
-    50%  {background-color:blue; left:200px; top:200px;}
-    75%  {background-color:blue; left:200px; top:225px;}
+    0%   {left:0; top:0px;}
+    25%  {left:200px; top:0px;}
+    50%  {left:200px; top:200px;}
+    70%  {left:200px; top:0px;}
+    100% {top:0px; left:0}
+
 }
 @keyframes flyingAttackRight {
-    0%   {background-color:red; right:0; top:80px;}
-    25%  {background-color:yellow; right:200px; top:0px;}
-    50%  {background-color:blue; right:200px; top:200px;}
-    75%  {background-color:blue; right:200px; top:225px;}
+    0%   {right:0; top:80px;}
+    25%  {right:200px; top:0px;}
+    50%  {right:200px; top:200px;}
 }
 @keyframes enemyMidLeft {
     0% {
