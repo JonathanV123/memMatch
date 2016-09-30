@@ -13,7 +13,7 @@ var Game = function(){
     this.playerHp = 15;
     this.testIfMatch= true;
     this.enemiesInPlay = 0;
-    this.enemyPhase = 0;
+    this.enemyPhase = false;
     this.playerTurn = false;
     this.enemyTurn = false;
 // This refers to an instance of Game Class
@@ -119,48 +119,77 @@ Game.prototype.checkMatch = function(card, side, opposite){
     }
     self.enemySpawn();
     self.updateStats();
+    self.enemyCombatPhase();
 
 };
 Game.prototype.enemySpawn = function(){
     var self = this;
     console.log(self.incorrectMatch);
-    if(self.leftCard == true && self.rightCard == true && self.testIfMatch == false && self.enemiesInPlay == 0){
-        self.enemiesInPlay += 1;
-        self.enemyPhase +=1;
+    self.enemiesInPlay +=1;
+    if(self.leftCard == true && self.rightCard == true && self.testIfMatch == false && self.enemiesInPlay === 2){
         $(".enemyFlightLeft").removeClass("enemyInvisible");
-        self.enemyCombatPhase();
         console.log(self.incorrectMatch + " " + "incorrect Match spawning enemy");
     }
-    if(self.leftCard == true && self.rightCard == true && self.testIfMatch == false && self.enemiesInPlay == 1){
+    if(self.leftCard == true && self.rightCard == true && self.testIfMatch == false && self.enemiesInPlay  === 4){
         $(".enemyFlightRight").removeClass("enemyInvisible");
+        console.log(self.incorrectMatch + " " + "incorrect Match spawning enemy");
+    }
+    if(self.leftCard == true && self.rightCard == true && self.testIfMatch == false && self.enemiesInPlay  === 6){
+        $(".enemyStandingCloseLeft").removeClass("enemyInvisible");
+        console.log(self.incorrectMatch + " " + "incorrect Match spawning enemy");
+    }
+    if(self.leftCard == true && self.rightCard == true && self.testIfMatch == false && self.enemiesInPlay  === 8){
+        $(".enemyStandingCloseRight").removeClass("enemyInvisible");
+        console.log(self.incorrectMatch + " " + "incorrect Match spawning enemy");
+    }
+    if(self.leftCard == true && self.rightCard == true && self.testIfMatch == false && self.enemiesInPlay  === 10){
+        $(".enemyStandingLeft").removeClass("enemyInvisible");
+        console.log(self.incorrectMatch + " " + "incorrect Match spawning enemy");
+    }
+    if(self.leftCard == true && self.rightCard == true && self.testIfMatch == false && self.enemiesInPlay  === 12){
+        $(".enemyStandingRight").removeClass("enemyInvisible");
+        console.log(self.incorrectMatch + " " + "incorrect Match spawning enemy");
+    }
+    if(self.leftCard == true && self.rightCard == true && self.testIfMatch == false && self.enemiesInPlay  === 14){
+        $(".enemyStandingMiddle").removeClass("enemyInvisible");
+        console.log(self.incorrectMatch + " " + "incorrect Match spawning enemy");
     }
     else{
         self.testIfMatch = false;
     }
 };
 Game.prototype.enemyCombatPhase = function(){
-    if(self.enemyPhase % 2 == 0) {
-        $(".enemyFlightLeft").addClass("enemyFlightAttackFromLeft");
-        this.playerHp -= 1;
-        console.log(this.playerHp + " " + "is current HP");
-    }
+       if(this.leftCard == true && this.rightCard == true && this.testIfMatch == false){
+           $(".enemyFlightLeft").removeClass("enemyFlightAttackFromLeft");
+           $(".enemyFlightRight").removeClass("enemyFlightAttackFromRight");
+           setTimeout(function(){
+               $(".enemyFlightLeft").addClass("enemyFlightAttackFromLeft");
+               $(".enemyFlightRight").addClass("enemyFlightAttackFromRight");
+               console.log("timeout succesfull")
+           },200);
+           this.playerHp -= 1;
+           console.log(this.playerHp + " " + "is current HP");
+       }
 };
 Game.prototype.updateStats = function(){
     $(".hitPoints").html(this.playerHp);
 
 };
+// Game.prototype.enemyAttackAnimation = function(){
+//     $(".enemyFlightLeft").addClass("enemyFlightAttackFromLeft");
+//
+// };
 Game.prototype.addClickHandlers = function() {
     console.log('What is this: ', this);
     var self = this;
     $('.leftCard').on('click', function () {
         $(".leftCard").addClass("inactive");
-        $(".enemyFlightLeft").removeClass("enemyFlightAttackFromLeft");
+        self.enemyCombatPhase();
         self.checkMatch(this, 'left', 'right');
 
     });
     $('.rightCard').on('click', function () {
         $(".rightCard").addClass("inactive");
-        $(".enemyFlightLeft").removeClass("enemyFlightAttackFromLeft");
         self.checkMatch(this, 'right', 'left');
 
     });
