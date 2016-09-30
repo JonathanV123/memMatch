@@ -256,9 +256,9 @@ body{
     left:10%;
     /*-webkit-transition-timing-function: linear;*/
     /*transition-timing-function: linear;*/
-    -webkit-animation-name: enemyMidLeft; /* Chrome, Safari, Opera */
+    -webkit-animation-name: enemyMidLeftAttack; /* Chrome, Safari, Opera */
     -webkit-animation-duration: 1s; /* Chrome, Safari, Opera */
-    animation-name: enemyMidLeft;
+    animation-name: enemyMidLeftAttack;
     animation-duration: 1s;
 }
 .enemyStandingMiddle{
@@ -272,9 +272,9 @@ body{
     top:10%;
     left:10%;
     position:relative;
-    -webkit-animation-name: enemyMidRight; /* Chrome, Safari, Opera */
+    -webkit-animation-name: enemyMidRightAttack; /* Chrome, Safari, Opera */
     -webkit-animation-duration: 1s; /* Chrome, Safari, Opera */
-    animation-name: enemyMidRight;
+    animation-name: enemyMidRightAttack;
     animation-duration: 1s;
 }
 .enemyStandingCloseLeft{
@@ -283,9 +283,9 @@ body{
     top:10%;
     left:10%;
     position:relative;
-    -webkit-animation-name: enemyCloseLeft; /* Chrome, Safari, Opera */
+    -webkit-animation-name: enemyCloseLeftAttack; /* Chrome, Safari, Opera */
     -webkit-animation-duration: 4s; /* Chrome, Safari, Opera */
-    animation-name: enemyCloseLeft;
+    animation-name: enemyCloseLeftAttack;
     animation-duration: 1s;
 }
 .enemyStandingCloseRight{
@@ -294,9 +294,9 @@ body{
     top:10%;
     left:10%;
     position:relative;
-    -webkit-animation-name: enemyCloseRight; /* Chrome, Safari, Opera */
+    -webkit-animation-name: enemyCloseRightAttack; /* Chrome, Safari, Opera */
     -webkit-animation-duration: 4s; /* Chrome, Safari, Opera */
-    animation-name: enemyCloseRight;
+    animation-name: enemyCloseRightAttack;
     animation-duration: 1s;
     z-index:1;
 }
@@ -325,7 +325,7 @@ body{
     25%  {right:200px; top:0px;}
     50%  {right:200px; top:200px;}
 }
-@keyframes enemyMidLeft {
+@keyframes enemyMidLeftAttack {
     0% {
         transform: translatex(0px) translatey(0px)
     }
@@ -333,7 +333,7 @@ body{
         transform: translatey(150px)  translatex(125px);
     }
 }
-@keyframes enemyMidRight {
+@keyframes enemyMidRightAttack {
     0% {
         transform: translatex(0px) translatey(0px)
     }
@@ -341,7 +341,7 @@ body{
         transform: translatey(150px)  translatex(-125px);
     }
 }
-@keyframes enemyCloseLeft {
+@keyframes enemyCloseLeftAttack {
     0% {
         transform: translatex(0px) translatey(0px)
     }
@@ -349,7 +349,7 @@ body{
         transform: translatey(0px)  translatex(100px);
     }
 }
-@keyframes enemyCloseRight {
+@keyframes enemyCloseRightAttack {
     0% {
         transform: translatex(0px) translatey(0px)
     }
