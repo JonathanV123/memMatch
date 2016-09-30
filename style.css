@@ -220,6 +220,7 @@ body{
     bottom: 4%;
     right: -2%;
     position:relative;
+    z-index:100;
 }
 .enemyFlightLeft{
      width:100%;
@@ -256,9 +257,9 @@ body{
     /*-webkit-transition-timing-function: linear;*/
     /*transition-timing-function: linear;*/
     -webkit-animation-name: enemyMidLeft; /* Chrome, Safari, Opera */
-    -webkit-animation-duration: 4s; /* Chrome, Safari, Opera */
+    -webkit-animation-duration: 1s; /* Chrome, Safari, Opera */
     animation-name: enemyMidLeft;
-    animation-duration: 4s;
+    animation-duration: 1s;
 }
 .enemyStandingMiddle{
     width:100%;
@@ -272,7 +273,7 @@ body{
     left:10%;
     position:relative;
     -webkit-animation-name: enemyMidRight; /* Chrome, Safari, Opera */
-    -webkit-animation-duration: 4s; /* Chrome, Safari, Opera */
+    -webkit-animation-duration: 1s; /* Chrome, Safari, Opera */
     animation-name: enemyMidRight;
     animation-duration: 1s;
 }
@@ -297,9 +298,10 @@ body{
     -webkit-animation-duration: 4s; /* Chrome, Safari, Opera */
     animation-name: enemyCloseRight;
     animation-duration: 1s;
+    z-index:1;
 }
 .enemyInvisible{
-    visibility: hidden;
+    /*visibility: hidden;*/
 }
 @keyframes flyingAttackLeft {
     0% {
@@ -327,16 +329,8 @@ body{
     0% {
         transform: translatex(0px) translatey(0px)
     }
-    25%{
-        transform: translatex(150px) translatey(190px)
-
-    }
-    75%{
-        transform: translatex(100px) translatey(50px)
-
-    }
     100% {
-        transform: translatex(0px) translatey(0px);
+        transform: translatey(150px)  translatex(125px);
     }
 }
 @keyframes enemyMidRight {
@@ -344,7 +338,7 @@ body{
         transform: translatex(0px) translatey(0px)
     }
     100% {
-        transform: translatey(150px)  translatex(-150px);
+        transform: translatey(150px)  translatex(-125px);
     }
 }
 @keyframes enemyCloseLeft {
