@@ -104,8 +104,8 @@ Game.prototype.checkMatch = function(card, side, opposite){
         if(self.checkCards[0].css('background-image') === self.checkCards[1].css('background-image')){
             self.testIfMatch = true;
             // console.log("IT WORKED! They match");
-            // self.checkCards[0].parent().css("pointer-events","none").removeClass("front").removeClass("leftCard").removeClass("rightCard").addClass("cardInactive");
-            // self.checkCards[1].parent().css("pointer-events","none").removeClass("front").removeClass("rightCard").removeClass("leftCard").addClass("cardInactive");
+            self.checkCards[0].parent().css("pointer-events","none").removeClass("front").removeClass("leftCard").removeClass("rightCard").addClass("cardInactive");
+            self.checkCards[1].parent().css("pointer-events","none").removeClass("front").removeClass("rightCard").removeClass("leftCard").addClass("cardInactive");
             this.correctMatch ++;
             // console.log(this.correctMatch + " "+ "correct matches");
             $(".leftCard").removeClass("inactive");
@@ -128,10 +128,10 @@ Game.prototype.enemySpawn = function(){
         self.enemiesInPlay += 1;
         self.enemyPhase +=1;
         $(".enemyFlightLeft").removeClass("enemyInvisible");
-        console.log(self.incorrectMatch + " " + "incorrect Match spawning enemy");
         self.enemyCombatPhase();
+        console.log(self.incorrectMatch + " " + "incorrect Match spawning enemy");
     }
-    if(self.leftCard == true && self.rightCard == true && self.testIfMatch == false && self.enemiesInPlay == 2){
+    if(self.leftCard == true && self.rightCard == true && self.testIfMatch == false && self.enemiesInPlay == 1){
         $(".enemyFlightRight").removeClass("enemyInvisible");
     }
     else{
@@ -139,9 +139,11 @@ Game.prototype.enemySpawn = function(){
     }
 };
 Game.prototype.enemyCombatPhase = function(){
-    $(".enemyFlightLeft").addClass("enemyFlightAttackFromLeft")
-    this.playerHp -=1;
-    console.log(this.playerHp + " " +"is current HP");
+    if(self.enemyPhase % 2 == 0) {
+        $(".enemyFlightLeft").addClass("enemyFlightAttackFromLeft");
+        this.playerHp -= 1;
+        console.log(this.playerHp + " " + "is current HP");
+    }
 };
 Game.prototype.updateStats = function(){
     $(".hitPoints").html(this.playerHp);

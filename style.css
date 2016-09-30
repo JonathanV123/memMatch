@@ -306,11 +306,11 @@ body{
         transform: translatex(0px) translatey(0px)
     }
     25% {
-        transform: translatex(150px) translatey(230px)
+        transform: translatex(150px) translatey(310px)
 
     }
     75% {
-        transform: translatex(150px) translatey(230px)
+        transform: translatex(150px) translatey(310px)
 
     }
     100% {
