@@ -88,7 +88,7 @@ Game.prototype.checkMatch = function(card, side, opposite){
     self[side + 'Card'] = true;
     if(self[side + 'Card'] && !self[opposite + 'Card']){
         console.log(self.incorrectMatch +" "+" is incorrect Match Count");
-        self.incorrectMatch += 1;
+        self.incorrectMatch += 2;
         self.checkCards.push($card.children(":first"));
     }
     else {
@@ -118,44 +118,43 @@ Game.prototype.checkMatch = function(card, side, opposite){
         self.checkCards = [];
     }
     self.enemySpawn();
-    self.updateStats();
     self.enemyCombatPhase();
+    self.updateStats();
 
 };
 Game.prototype.enemySpawn = function(){
     var self = this;
     console.log(self.incorrectMatch);
-    self.enemiesInPlay +=1;
-    if(self.leftCard == true && self.rightCard == true && self.testIfMatch == false && self.enemiesInPlay === 2){
+    if(self.leftCard == true && self.rightCard == true && self.testIfMatch == false && self.incorrectMatch === 2){
         $(".enemyFlightLeft").removeClass("enemyInvisible");
+        self.enemiesInPlay +=1;
         console.log(self.incorrectMatch + " " + "incorrect Match spawning enemy");
     }
-    if(self.leftCard == true && self.rightCard == true && self.testIfMatch == false && self.enemiesInPlay  === 4){
+    if(self.leftCard == true && self.rightCard == true && self.testIfMatch == false && self.incorrectMatch  === 4){
         $(".enemyFlightRight").removeClass("enemyInvisible");
+        self.enemiesInPlay +=1;
+
         console.log(self.incorrectMatch + " " + "incorrect Match spawning enemy");
     }
-    if(self.leftCard == true && self.rightCard == true && self.testIfMatch == false && self.enemiesInPlay  === 6){
+    if(self.leftCard == true && self.rightCard == true && self.testIfMatch == false && self.incorrectMatch  === 8){
         $(".enemyStandingCloseLeft").removeClass("enemyInvisible");
         console.log(self.incorrectMatch + " " + "incorrect Match spawning enemy");
     }
-    if(self.leftCard == true && self.rightCard == true && self.testIfMatch == false && self.enemiesInPlay  === 8){
+    if(self.leftCard == true && self.rightCard == true && self.testIfMatch == false && self.incorrectMatch  === 12){
         $(".enemyStandingCloseRight").removeClass("enemyInvisible");
         console.log(self.incorrectMatch + " " + "incorrect Match spawning enemy");
     }
-    if(self.leftCard == true && self.rightCard == true && self.testIfMatch == false && self.enemiesInPlay  === 10){
+    if(self.leftCard == true && self.rightCard == true && self.testIfMatch == false && self.incorrectMatch  === 16){
         $(".enemyStandingLeft").removeClass("enemyInvisible");
         console.log(self.incorrectMatch + " " + "incorrect Match spawning enemy");
     }
-    if(self.leftCard == true && self.rightCard == true && self.testIfMatch == false && self.enemiesInPlay  === 12){
+    if(self.leftCard == true && self.rightCard == true && self.testIfMatch == false && self.incorrectMatch  === 20){
         $(".enemyStandingRight").removeClass("enemyInvisible");
         console.log(self.incorrectMatch + " " + "incorrect Match spawning enemy");
     }
-    if(self.leftCard == true && self.rightCard == true && self.testIfMatch == false && self.enemiesInPlay  === 14){
+    if(self.leftCard == true && self.rightCard == true && self.testIfMatch == false && self.incorrectMatch  === 22){
         $(".enemyStandingMiddle").removeClass("enemyInvisible");
         console.log(self.incorrectMatch + " " + "incorrect Match spawning enemy");
-    }
-    else{
-        self.testIfMatch = false;
     }
 };
 Game.prototype.enemyCombatPhase = function(){
@@ -173,7 +172,7 @@ Game.prototype.enemyCombatPhase = function(){
 };
 Game.prototype.updateStats = function(){
     $(".hitPoints").html(this.playerHp);
-
+    this.testIfMatch = false;
 };
 // Game.prototype.enemyAttackAnimation = function(){
 //     $(".enemyFlightLeft").addClass("enemyFlightAttackFromLeft");
