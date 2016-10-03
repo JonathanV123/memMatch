@@ -231,9 +231,9 @@ body{
 }
 .enemyFlightAttackFromLeft{
     -webkit-animation-name: flyingAttackLeft; /* Chrome, Safari, Opera */
-    -webkit-animation-duration: 1s; /* Chrome, Safari, Opera */
+    -webkit-animation-duration: 1.5s; /* Chrome, Safari, Opera */
     animation-name: flyingAttackLeft;
-    animation-duration: 1s;
+    animation-duration: 1.5s;
 }
 .enemyFlightRight{
     width:100%;
@@ -244,9 +244,9 @@ body{
 }
 .enemyFlightAttackFromRight{
     -webkit-animation-name: flyingAttackRight; /* Chrome, Safari, Opera */
-    -webkit-animation-duration: 1s; /* Chrome, Safari, Opera */
+    -webkit-animation-duration: 1.5s; /* Chrome, Safari, Opera */
     animation-name: flyingAttackRight;
-    animation-duration: 1s;
+    animation-duration: 1.5s;
 }
 .enemyStandingLeft{
     width:100%;
@@ -257,11 +257,9 @@ body{
 }
 .enemyMidLeftAttackAnimation{
     -webkit-animation-name: enemyMidLeftAttack; /* Chrome, Safari, Opera */
-    -webkit-animation-duration: 1s; /* Chrome, Safari, Opera */
-    -webkit-transition-timing-function: linear;
-    transition-timing-function: linear;
+    -webkit-animation-duration: 1.5s; /* Chrome, Safari, Opera */
     animation-name: enemyMidLeftAttack;
-    animation-duration: 1s;
+    animation-duration: 1.5s;
 }
 .enemyStandingMiddle{
     width:100%;
@@ -277,9 +275,9 @@ body{
 }
 .enemyMidRightAttackAnimation{
     -webkit-animation-name: enemyMidRightAttack; /* Chrome, Safari, Opera */
-    -webkit-animation-duration: 1s; /* Chrome, Safari, Opera */
+    -webkit-animation-duration: 1.5s; /* Chrome, Safari, Opera */
     animation-name: enemyMidRightAttack;
-    animation-duration: 1s;
+    animation-duration: 1.5s;
 }
 .enemyStandingBotLeft{
     width:100%;
@@ -290,9 +288,9 @@ body{
 }
 .enemyBottomLeftAttackAnimation{
     -webkit-animation-name: enemyCloseLeftAttack; /* Chrome, Safari, Opera */
-    -webkit-animation-duration: 1s; /* Chrome, Safari, Opera */
+    -webkit-animation-duration: 1.5s; /* Chrome, Safari, Opera */
     animation-name: enemyCloseLeftAttack;
-    animation-duration: 1s;
+    animation-duration: 1.5s;
 }
 .enemyStandingBotRight{
     width:100%;
@@ -304,76 +302,112 @@ body{
 }
 .enemyBottomRightAttackAnimation{
     -webkit-animation-name: enemyCloseRightAttack; /* Chrome, Safari, Opera */
-    -webkit-animation-duration: 1s; /* Chrome, Safari, Opera */
+    -webkit-animation-duration: 1.5s; /* Chrome, Safari, Opera */
     animation-name: enemyCloseRightAttack;
-    animation-duration: 1s;
+    animation-duration: 1.5s;
 }
 .enemyInvisible{
     /*visibility: hidden;*/
 }
 @keyframes flyingAttackLeft {
     0% {
-        transform: translatex(0px) translatey(0px)
+        transform: rotate(0deg);
     }
     25% {
-        transform: translatex(150px) translatey(310px)
+        transform: rotate(10deg);
 
     }
     75% {
-        transform: translatex(150px) translatey(310px)
+        transform: rotate(10deg);
 
     }
     100% {
-        transform: translatex(0px) translatey(0px);
+        transform: rotate(0deg);
 
     }
 }
 @keyframes flyingAttackRight {
     0% {
-        transform: translatex(0px) translatey(0px)
+        transform: rotate(0deg);
     }
-    25% {
-        transform: translatex(-150px) translatey(310px)
+    /*25% {*/
+    /*transform: rotate(4deg);*/
 
-    }
-    75% {
-        transform: translatex(-150px) translatey(310px)
+    /*}*/
+    /*75% {*/
+    /*transform: rotate(6deg);*/
 
-    }
+    /*}*/
     100% {
-        transform: translatex(0px) translatey(0px);
+        transform: rotate(7deg);
 
     }
 }
 @keyframes enemyMidLeftAttack {
     0% {
-        transform: translatex(0px) translatey(0px)
+        transform: rotate(0deg);
     }
+    /*25% {*/
+    /*transform: rotate(4deg);*/
+
+    /*}*/
+    /*75% {*/
+    /*transform: rotate(6deg);*/
+
+    /*}*/
     100% {
-        transform: translatey(150px)  translatex(125px);
+        transform: rotate(7deg);
+
     }
 }
 @keyframes enemyMidRightAttack {
     0% {
-        transform: translatex(0px) translatey(0px)
+        transform: rotate(0deg);
     }
+    /*25% {*/
+    /*transform: rotate(4deg);*/
+
+    /*}*/
+    /*75% {*/
+    /*transform: rotate(6deg);*/
+
+    /*}*/
     100% {
-        transform: translatey(150px)  translatex(-125px);
+        transform: rotate(7deg);
+
     }
 }
 @keyframes enemyCloseLeftAttack {
     0% {
-        transform: translatex(0px) translatey(0px)
+        transform: rotate(0deg);
     }
+    /*25% {*/
+    /*transform: rotate(4deg);*/
+
+    /*}*/
+    /*75% {*/
+    /*transform: rotate(6deg);*/
+
+    /*}*/
     100% {
-        transform: translatey(0px)  translatex(100px);
+        transform: rotate(7deg);
+
     }
 }
 @keyframes enemyCloseRightAttack {
     0% {
-        transform: translatex(0px) translatey(0px)
+        transform: rotate(0deg);
     }
+    /*25% {*/
+    /*transform: rotate(4deg);*/
+
+    /*}*/
+    /*75% {*/
+    /*transform: rotate(6deg);*/
+
+    /*}*/
     100% {
-        transform: translatey(0px)  translatex(-100px);
+        transform: rotate(7deg);
+
     }
 }
