@@ -100,6 +100,8 @@ Game.prototype.checkMatch = function(card, side, opposite){
             self.testIfMatch = true;
             self.playerHp +=4;
             console.log(self.playerHp);
+            self.leftCard = false;
+            self.rightCard = false;
         }
         if(self.checkCards[0].css('background-image') === self.checkCards[1].css('background-image')){
             self.testIfMatch = true;
@@ -107,6 +109,8 @@ Game.prototype.checkMatch = function(card, side, opposite){
             self.checkCards[0].parent().css("pointer-events","none").removeClass("front").removeClass("leftCard").removeClass("rightCard").addClass("cardInactive");
             self.checkCards[1].parent().css("pointer-events","none").removeClass("front").removeClass("rightCard").removeClass("leftCard").addClass("cardInactive");
             this.correctMatch ++;
+            self.leftCard = false;
+            self.rightCard = false;
             // console.log(this.correctMatch + " "+ "correct matches");
             $(".leftCard").removeClass("inactive");
             $(".rightCard").removeClass("inactive");
@@ -133,7 +137,6 @@ Game.prototype.enemySpawn = function(){
     if(self.leftCard == true && self.rightCard == true && self.testIfMatch == false && self.incorrectMatch  === 4){
         $(".enemyFlightRight").removeClass("enemyInvisible");
         self.enemiesInPlay +=1;
-
         console.log(self.incorrectMatch + " " + "incorrect Match spawning enemy");
     }
     if(self.leftCard == true && self.rightCard == true && self.testIfMatch == false && self.incorrectMatch  === 8){
@@ -161,9 +164,18 @@ Game.prototype.enemyCombatPhase = function(){
        if(this.leftCard == true && this.rightCard == true && this.testIfMatch == false){
            $(".enemyFlightLeft").removeClass("enemyFlightAttackFromLeft");
            $(".enemyFlightRight").removeClass("enemyFlightAttackFromRight");
+           $(".enemyStandingLeft").removeClass("enemyMidLeftAttackAnimation");
+           $(".enemyStandingRight").removeClass("enemyMidRightAttackAnimation");
+           $(".enemyStandingBotRight").removeClass("enemyBottomRightAttackAnimation");
+           $(".enemyStandingBotLeft").removeClass("enemyBottomLeftAttackAnimation");
            setTimeout(function(){
-               $(".enemyFlightLeft").addClass("enemyFlightAttackFromLeft");
                $(".enemyFlightRight").addClass("enemyFlightAttackFromRight");
+               $(".enemyFlightLeft").addClass("enemyFlightAttackFromLeft");
+               $(".enemyStandingLeft").addClass("enemyMidLeftAttackAnimation");
+               $(".enemyStandingRight").addClass("enemyMidRightAttackAnimation");
+               $(".enemyStandingBotLeft").addClass("enemyBottomLeftAttackAnimation");
+               $(".enemyStandingBotRight").addClass("enemyBottomRightAttackAnimation");
+
                console.log("timeout succesfull")
            },200);
            this.playerHp -= 1;
