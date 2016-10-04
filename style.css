@@ -4,7 +4,7 @@ body{
     height:100vh;
     margin: 0;
     padding: 0;
-    background-color:black;
+
 }
 .container{
     display:flex;
@@ -13,6 +13,9 @@ body{
     height: 99vh;
     flex-direction:row;
     flex-wrap:wrap;
+    background-image: url("https://static.pexels.com/photos/1486/wood-pattern-ground-parquet-floor.jpg");
+    background-repeat:no-repeat;
+    background-size:100% 100%;
 }
 .battleground {
     display:flex;
@@ -20,7 +23,6 @@ body{
     width: 50%;
     height: 82%;
     flex-wrap:wrap;
-    background-color:black;
 
 }
 /* LEFT SIDE START */
@@ -33,7 +35,6 @@ body{
     align-content: space-between;
     flex-wrap: wrap;
     justify-content: center;
-    background-color:black;
     /*background-image: url(./images/finalsides.png);*/
     /*background-repeat:no-repeat;*/
     /*background-size:100% 100%;*/
@@ -48,7 +49,6 @@ body{
     align-content: space-between;
     flex-wrap: wrap;
     justify-content: center;
-    background-color:black;
     /*background-image: url(./images/finalsides.png);*/
     /*background-repeat:no-repeat;*/
     /*background-size:100% 100%;*/
@@ -56,13 +56,14 @@ body{
 .game-info{
     display:flex;
     height:18%;
-    width:98%;
-    margin: 0 2% 0 2%;
+    width:100%;
     flex-direction:row;
     justify-content: space-between;
     align-content:flex-end;
     align-items:center;
-    border: 3px solid goldenrod;
+    background: rgba(0, 0, 0, 0.5);
+    border-radius:10%;
+
 }
 .info{
     display:flex;
@@ -71,13 +72,25 @@ body{
     color: white;
     margin: 0 1% 0 1%;
     font-weight:bold;
-    background-color:black;
-    border: 3px solid goldenrod;
     /*background-image: url("./images/buttonsFinal.png");*/
     /*background-repeat: no-repeat;*/
     /*background-size: 100% 100%;*/
     align-items:center;
     justify-content:center;
+    background: rgba(0, 0, 0, 0.6);
+    border-radius:50%;
+}
+.horn{
+    background-image: url("https://s-media-cache-ak0.pinimg.com/originals/9f/a6/3b/9fa63bd5fff1839147b5747f5521cbe8.png");
+    background-repeat:no-repeat;
+    background-size:95% 95%;
+    background-position:center;
+}
+.armor{
+    background-image: url("http://vignette1.wikia.nocookie.net/elderscrolls/images/d/db/Steel_Plate_Cuirass.png/revision/latest?cb=20131212020909");
+    background-repeat:no-repeat;
+    background-size:85% 80%;
+    background-position:center;
 }
 .hitPoints{
     font-size:40px;
@@ -164,7 +177,6 @@ body{
     width:100%;
     height:100%;
     position:absolute;
-    border: 1px solid darkblue;
     margin: 0% 1% 2% 0%;
     padding:0 0 0 0;
     background-image: url("http://hurt.rebel.pl/repository/products/100/606/_28536/LOTR-CARD-BACK-PL-2013_31.jpg");
@@ -226,8 +238,8 @@ body{
 .heroAvatar{
     width:100%;
     height:100%;
-    bottom: 4%;
-    right: -2%;
+    top:10%;
+    left:10%;
     position:relative;
     z-index:100;
 }
@@ -327,6 +339,7 @@ body{
     font-weight:bold;
     color:red;
     opacity:0;
+    z-index:1010;
 }
 .victory{
     width:100%;
@@ -337,6 +350,8 @@ body{
     font-weight:bold;
     color:green;
     opacity:0;
+    z-index:1010;
+
 }
 .animateDefeatVictory{
     -webkit-animation-name: victoryDefeatAnimation; /* Chrome, Safari, Opera */
@@ -392,16 +407,16 @@ body{
     0% {
         transform: rotate(0deg);
     }
-    /*25% {*/
-    /*transform: rotate(4deg);*/
+    25% {
+        transform: rotate(10deg);
 
-    /*}*/
-    /*75% {*/
-    /*transform: rotate(6deg);*/
+    }
+    75% {
+        transform: rotate(10deg);
 
-    /*}*/
+    }
     100% {
-        transform: rotate(7deg);
+        transform: rotate(0deg);
 
     }
 }
@@ -409,16 +424,16 @@ body{
     0% {
         transform: rotate(0deg);
     }
-    /*25% {*/
-    /*transform: rotate(4deg);*/
+    25% {
+        transform: rotate(10deg);
 
-    /*}*/
-    /*75% {*/
-    /*transform: rotate(6deg);*/
+    }
+    75% {
+        transform: rotate(10deg);
 
-    /*}*/
+    }
     100% {
-        transform: rotate(7deg);
+        transform: rotate(0deg);
 
     }
 }
@@ -426,16 +441,16 @@ body{
     0% {
         transform: rotate(0deg);
     }
-    /*25% {*/
-    /*transform: rotate(4deg);*/
+    25% {
+        transform: rotate(10deg);
 
-    /*}*/
-    /*75% {*/
-    /*transform: rotate(6deg);*/
+    }
+    75% {
+        transform: rotate(10deg);
 
-    /*}*/
+    }
     100% {
-        transform: rotate(7deg);
+        transform: rotate(0deg);
 
     }
 }
@@ -443,16 +458,16 @@ body{
     0% {
         transform: rotate(0deg);
     }
-    /*25% {*/
-    /*transform: rotate(4deg);*/
+    25% {
+        transform: rotate(10deg);
 
-    /*}*/
-    /*75% {*/
-    /*transform: rotate(6deg);*/
+    }
+    75% {
+        transform: rotate(10deg);
 
-    /*}*/
+    }
     100% {
-        transform: rotate(7deg);
+        transform: rotate(0deg);
 
     }
 }
@@ -460,16 +475,16 @@ body{
     0% {
         transform: rotate(0deg);
     }
-    /*25% {*/
-    /*transform: rotate(4deg);*/
+    25% {
+        transform: rotate(10deg);
 
-    /*}*/
-    /*75% {*/
-    /*transform: rotate(6deg);*/
+    }
+    75% {
+        transform: rotate(10deg);
 
-    /*}*/
+    }
     100% {
-        transform: rotate(7deg);
+        transform: rotate(0deg);
 
     }
 }

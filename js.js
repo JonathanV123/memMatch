@@ -233,7 +233,7 @@ Game.prototype.updateStats = function(){
 Game.prototype.goblinLeftA = function(){
     var self = this;
     $(".enemyFlightLeft").addClass("enemyFlightAttackFromLeft");
-    self.playerHp -= 1;
+    self.playerHp -= 16;
     self.updateStats();
     this.animateHP();
     self.testIfMatch = false;
@@ -292,9 +292,14 @@ Game.prototype.animateHP = function(){
     }, 1000);
 };
 Game.prototype.victoryDefeat = function(){
+    var self = this;
     if(this.playerHp <= 0){
         $(".defeat").addClass("animateDefeatVictory");
-        console.log("you win or lose!")
+        console.log("you win or lose!");
+        setTimeout(function () {
+            game = {};
+            self.setUpGame();
+        }, 5000);
     }
     if(this.correctMatch == 10){
             $(".victory").addClass("animateDefeatVictory");
@@ -316,6 +321,6 @@ Game.prototype.addClickHandlers = function() {
     });
 };
 $(document).ready(function() {
-    game = new Game();
-    game.setUpGame();
+        game = new Game();
+        game.setUpGame();
 });
