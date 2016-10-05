@@ -10,7 +10,8 @@ var Game = function(){
     this.rightCard = false;
     this.correctMatch = 0;
     this.incorrectMatch = 0;
-    this.playerHp = 15;
+    this.playerHp = 20;
+    this.playerArmor = 10;
     this.testIfMatch= true;
     this.enemiesInPlay = 0;
     this.enemyPhase = false;
@@ -109,7 +110,7 @@ Game.prototype.checkMatch = function(card, side, opposite){
         if(self.checkCards[0].css('background-image') === self.checkCards[1].css('background-image') && self.checkCards[1].hasClass('card-1')){
             // console.log("Dwarven Healer Healed");
             self.testIfMatch = true;
-            self.playerHp +=4;
+            self.playerHp +=8;
             self.correctMatch +=1;
             console.log(self.playerHp);
             self.leftCard = false;
@@ -117,7 +118,6 @@ Game.prototype.checkMatch = function(card, side, opposite){
             self.incorrectMatch -=2;
         }
         if(self.checkCards[0].css('background-image') === self.checkCards[1].css('background-image') && self.checkCards[1].hasClass('card-3')){
-            // console.log("Dwarven Healer Healed");
             self.testIfMatch = true;
             self.correctMatch +=1;
             console.log(self.playerHp);
@@ -128,7 +128,6 @@ Game.prototype.checkMatch = function(card, side, opposite){
             self.nazgul = true;
         }
         if(self.checkCards[0].css('background-image') === self.checkCards[1].css('background-image') && self.checkCards[1].hasClass('card-2')){
-            // console.log("Dwarven Healer Healed");
             self.testIfMatch = true;
             self.correctMatch +=1;
             console.log(self.playerHp);
@@ -136,11 +135,10 @@ Game.prototype.checkMatch = function(card, side, opposite){
             self.rightCard = false;
             self.incorrectMatch -=2;
             $(".horn").addClass("hornPulseAnimation");
-            self.hornActive = true;
+            self.hornActivated = true;
         }
         if(self.checkCards[0].css('background-image') === self.checkCards[1].css('background-image')){
             self.testIfMatch = true;
-            // console.log("IT WORKED! They match");
             self.checkCards[0].parent().css("pointer-events","none").removeClass("front").removeClass("leftCard").removeClass("rightCard").addClass("cardInactive");
             self.checkCards[1].parent().css("pointer-events","none").removeClass("front").removeClass("rightCard").removeClass("leftCard").addClass("cardInactive");
             self.correctMatch +=1;
@@ -204,7 +202,7 @@ Game.prototype.enemyCombatPhase = function(){
            if(self.goblinLeft == true) {
                $(".enemyFlightLeft").removeClass("enemyFlightAttackFromLeft");
                setTimeout(function () {
-                   self.attackFunction(".enemyFlightLeft","enemyFlightAttackFromLeft",16);
+                   self.attackFunction(".enemyFlightLeft","enemyFlightAttackFromLeft",2);
                    console.log("Goblin Top Left Summoned")
                }, 500);
            }
@@ -255,107 +253,39 @@ Game.prototype.enemyCombatPhase = function(){
 };
 Game.prototype.updateStats = function(){
     $(".hitPoints").html(this.playerHp);
+    $(".armor").html(this.playerArmor);
     this.testIfMatch = false;
 };
 Game.prototype.attackFunction = function(target, classToAdd, damage){
     var self = this;
     $(target).addClass(classToAdd);
-    self.playerHp -= damage;
-    self.playerArmor -= damage;
+    if(self.playerArmor > 0){
+        self.playerArmor -= damage;
+    }
+    else{
+        self.playerHp -= damage;
+
+    }
     self.updateStats();
-    this.animateHP();
+    this.animateHpAndArmor();
     self.testIfMatch = false;
     self.victoryDefeat();
 };
-// Game.prototype.callAttackFunction = function(){
-//     var self = this;
-//     self.attackFunction(".enemyFlightLeft","enemyFlightAttackFromLeft",16);
-//     self.attackFunction(".enemyFlightRight","enemyFlightAttackFromRight",1);
-//     self.attackFunction(".enemyStandingLeft","enemyMidLeftAttackAnimation",2);
-//     self.attackFunction(".enemyStandingRight","enemyMidRightAttackAnimation",2);
-//     self.attackFunction(".enemyStandingBotLeft","enemyBottomLeftAttackAnimation",2);
-//     self.attackFunction(".enemyStandingBotRight","enemyBottomRightAttackAnimation",2);
-//     self.attackFunction(".enemyStandingBotRight","enemyBottomRightAttackAnimation",2);
-//     self.attackFunction(".enemyStandingMiddle","enemyBottomRightAttackAnimation",4);
-//
-// };
-// Game.prototype.goblinLeftAttk = function(){
-//     var self = this;
-//     $(".enemyFlightLeft").addClass("enemyFlightAttackFromLeft");
-//     self.playerHp -= 16;
-//     self.updateStats();
-//     this.animateHP();
-//     self.testIfMatch = false;
-//     self.victoryDefeat();
-// };
-// Game.prototype.goblinRightAttk = function(){
-//     var self = this;
-//     $(".enemyFlightRight").addClass("enemyFlightAttackFromRight");
-//     $(".heroAvatar").addClass("animateHitPoints");
-//     console.log("gobby summoned");
-//     this.playerHp -= 1;
-//     self.updateStats();
-//     this.animateHP();
-//     this.testIfMatch = false;
-//     self.victoryDefeat();
-// };
-// Game.prototype.hillTrollLeftAttk = function(){
-//     var self = this;
-//     $(".enemyStandingLeft").addClass("enemyMidLeftAttackAnimation");
-//     this.playerHp -= 4;
-//     self.updateStats();
-//     this.animateHP();
-//     this.testIfMatch = false;
-//     self.victoryDefeat();
-// };
-// Game.prototype.hillTrollRightAttk = function(){
-//     var self = this;
-//     $(".enemyStandingRight").addClass("enemyMidRightAttackAnimation");
-//     this.playerHp -= 4;
-//     self.updateStats();
-//     this.animateHP();
-//     this.testIfMatch = false;
-//     self.victoryDefeat();
-// };
-// Game.prototype.urukHaiAttk = function(){
-//     var self = this;
-//     $(".enemyStandingBotLeft").addClass("enemyBottomLeftAttackAnimation");
-//     this.playerHp -= 3;
-//     self.updateStats();
-//     this.animateHP();
-//     this.testIfMatch = false;
-//     self.victoryDefeat();
-// };
-// Game.prototype.nazgulAttk = function(){
-//     var self = this;
-//     $(".enemyStandingBotRight").addClass("enemyBottomRightAttackAnimation");
-//     this.playerHp -= 3;
-//     self.updateStats();
-//     this.animateHP();
-//     this.testIfMatch = false;
-//     self.victoryDefeat();
-// };
-// Game.prototype.trollAttk = function(){
-//     var self = this;
-//     $(".enemyStandingMiddle").addClass("midAttackAnimation");
-//     this.playerHp -= 3;
-//     self.updateStats();
-//     this.animateHP();
-//     this.testIfMatch = false;
-//     self.victoryDefeat();
-// };
-Game.prototype.animateHP = function(){
-    $(".hitPoints").addClass("animateHitPoints");
-    setTimeout(function () {
-        $(".hitPoints").removeClass("animateHitPoints");
-    }, 1000);
+Game.prototype.animateHpAndArmor = function(){
+    if (this.playerArmor > 0){
+        $(".armor").addClass("animateHitPoints");
+        setTimeout(function () {
+            $(".armor").removeClass("animateHitPoints");
+        }, 1000);
+    }
+    else{
+        $(".hitPoints").addClass("animateHitPoints");
+        setTimeout(function () {
+            $(".hitPoints").removeClass("animateHitPoints");
+        }, 1000);
+    }
 };
-Game.prototype.animateArmor = function(){
-    $(".armor").addClass("animateHitPoints");
-    setTimeout(function () {
-        $(".hitPoints").removeClass("animateHitPoints");
-    }, 1000);
-};
+
 Game.prototype.victoryDefeat = function(){
     var self = this;
     if(this.playerHp <= 0){
@@ -370,7 +300,6 @@ Game.prototype.victoryDefeat = function(){
             $(".victory").addClass("animateDefeatVictory");
             console.log("you win or lose!")
         }
-    
 };
 Game.prototype.addClickHandlers = function() {
     console.log('What is this: ', this);
@@ -384,8 +313,42 @@ Game.prototype.addClickHandlers = function() {
         $(".rightCard").addClass("inactive");
         self.checkMatch(this, 'right', 'left');
     });
+
     $('.horn').on('click', function () {
-    $(".rohan").addClass("chargeForward");
+        if(self.hornActivated == true){
+            $(".rohan").addClass("chargeForward");
+            $(".horn").removeClass("hornPulseAnimation");
+            if(self.hornActived = true){
+                if(self.goblinLeft == true){
+                    self.goblinLeft = false;
+                    $(".enemyFlightLeft").addClass("fadeOut");
+                }
+                if(self.goblinRight == true){
+                    self.goblinRight = false;
+                    $(".enemyFlightRight").addClass("fadeOut");
+                }
+                if(self.hillTrollLeft == true){
+                    self.hillTrollLeft = false;
+                    $(".enemyStandingLeft").addClass("fadeOut");
+                }
+                if(self.hillTrollRight == true){
+                    self.hillTrollRight = false;
+                    $(".enemyStandingMiddle").addClass("fadeOut");
+                }
+                if(self.urukHai == true){
+                    self.urukHai = false;
+                    $(".enemyStandingRight").addClass("fadeOut");
+                }
+                if(self.trollRight == true){
+                    self.trollRight = false;
+                    $(".enemyStandingBotLeft").addClass("fadeOut");
+                }
+                if(self.nazgul == true){
+                    self.nazgul = false;
+                    $(".enemyStandingBotRight").addClass("fadeOut");
+                }
+            }
+        }
     });
 };
 $(document).ready(function() {

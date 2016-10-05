@@ -101,9 +101,7 @@ body{
     justify-content: space-between;
     align-content:flex-end;
     align-items:center;
-    background: rgba(0, 0, 0, 0.5);
-    border-radius:10%;
-
+    background: rgba(0, 0, 0, 0.8);
 }
 .info{
     display:flex;
@@ -112,13 +110,11 @@ body{
     color: white;
     margin: 0 1% 0 1%;
     font-weight:bold;
-    /*background-image: url("./images/buttonsFinal.png");*/
-    /*background-repeat: no-repeat;*/
-    /*background-size: 100% 100%;*/
+    background-image: url("./images/dwarfBorder.png");
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
     align-items:center;
     justify-content:center;
-    background: rgba(0, 0, 0, 0.6);
-    border-radius:50%;
 }
 .horn{
     background-image:url(Images/horn.png );
@@ -128,6 +124,7 @@ body{
 
 }
 .armor{
+    font-size:40px;
     background-image:url(Images/armor.png );
     background-repeat:no-repeat;
     background-size:85% 80%;
@@ -508,19 +505,6 @@ body{
 /*then put it back to normal then at 70% of the duration change the */
 /*scale to 1.05.*/
 
-@keyframes fadeOutRohanCharge {
-    0% { opacity: 1; }
-    10% { opacity: 0.95; }
-    20% { opacity: 0.94; }
-    30% { opacity: 0.93; }
-    40% { opacity: 0.92; }
-    50% { opacity: 0.95; }
-    60% { opacity: 0.95; }
-    70% { opacity: 0.95; }
-    80% { opacity: 0.95; }
-    90% { opacity: 0.95; }
-    100% { opacity: 0; }
-}
 @keyframes fadeOut {
     0% { opacity: 1; }
     50% { opacity: 0.5; }
