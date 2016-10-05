@@ -382,22 +382,22 @@ body{
     visibility: hidden;
 }
 .defeat{
-    width:100%;
-    height:100%;
+    width:50%;
+    height:50%;
     position:absolute;
     text-align:center;
-    font-size:80px;
+    font-size:100px;
     font-weight:bold;
     text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
     color:red;
+    z-index:1000;
     opacity:0;
-    z-index:1010;
-    top: 0%;
-    left: 0%;
+    top: 20%;
+    left: 25%;
 }
 .victory{
-    width:100%;
-    height:100%;
+    width:50%;
+    height:50%;
     position:absolute;
     text-align:center;
     font-size:100px;
@@ -405,7 +405,9 @@ body{
     text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
     color:green;
     opacity:0;
-    z-index:1010;
+    top: 20%;
+    left: 25%;
+    z-index:1000;
 
 }
 .animateDefeatVictory{

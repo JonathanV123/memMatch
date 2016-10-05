@@ -202,7 +202,7 @@ Game.prototype.enemyCombatPhase = function(){
            if(self.goblinLeft == true) {
                $(".enemyFlightLeft").removeClass("enemyFlightAttackFromLeft");
                setTimeout(function () {
-                   self.attackFunction(".enemyFlightLeft","enemyFlightAttackFromLeft",2);
+                   self.attackFunction(".enemyFlightLeft","enemyFlightAttackFromLeft",20);
                    console.log("Goblin Top Left Summoned")
                }, 500);
            }
@@ -242,9 +242,9 @@ Game.prototype.enemyCombatPhase = function(){
                 }, 500);
             }
             if(self.nazgul == true) {
-                $(".enemyStandingBotRight").removeClass("enemyBottomRightAttackAnimation");
+                $(".enemyStandingMiddle").removeClass("enemyStandingMiddleAttackAnimation");
                 setTimeout(function () {
-                    self.attackFunction(".enemyStandingMiddle","enemyBottomRightAttackAnimation",4);
+                    self.attackFunction(".enemyStandingMiddle","enemyStandingMiddleAttackAnimation",4);
                     console.log("Nazgul Middle Summoned")
                 }, 500);
             }
@@ -264,7 +264,6 @@ Game.prototype.attackFunction = function(target, classToAdd, damage){
     }
     else{
         self.playerHp -= damage;
-
     }
     self.updateStats();
     this.animateHpAndArmor();
@@ -288,12 +287,11 @@ Game.prototype.animateHpAndArmor = function(){
 
 Game.prototype.victoryDefeat = function(){
     var self = this;
-    if(this.playerHp <= 0){
+    if(self.playerHp <= 0){
         $(".defeat").addClass("animateDefeatVictory");
         console.log("you win or lose!");
         setTimeout(function () {
-            game = {};
-            self.setUpGame();
+
         }, 5000);
     }
     if(this.correctMatch == 10){
@@ -333,19 +331,19 @@ Game.prototype.addClickHandlers = function() {
                 }
                 if(self.hillTrollRight == true){
                     self.hillTrollRight = false;
-                    $(".enemyStandingMiddle").addClass("fadeOut");
+                    $(".enemyStandingRight").addClass("fadeOut");
                 }
                 if(self.urukHai == true){
                     self.urukHai = false;
-                    $(".enemyStandingRight").addClass("fadeOut");
+                    $(".enemyStandingBotLeft").addClass("fadeOut");
                 }
                 if(self.trollRight == true){
                     self.trollRight = false;
-                    $(".enemyStandingBotLeft").addClass("fadeOut");
+                    $(".enemyStandingBotRight").addClass("fadeOut");
                 }
                 if(self.nazgul == true){
                     self.nazgul = false;
-                    $(".enemyStandingBotRight").addClass("fadeOut");
+                    $(".enemyStandingMiddle").addClass("fadeOut");
                 }
             }
         }
