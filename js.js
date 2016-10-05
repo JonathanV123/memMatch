@@ -266,7 +266,7 @@ Game.prototype.attackFunction = function(target, classToAdd, damage){
         self.playerHp -= damage;
     }
     self.updateStats();
-    this.animateHpAndArmor();
+    self.animateHpAndArmor();
     self.testIfMatch = false;
     self.victoryDefeat();
 };

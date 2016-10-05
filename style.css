@@ -469,13 +469,13 @@ body{
         transform:  translateX(750px) rotate(0deg);
     }
     80% {
-        transform: translateX(850px) rotate(10deg);
+        transform: translateX(950px) rotate(10deg);
     }
     90% {
-        transform:  translateX(1050px) rotate(0deg);
+        transform:  translateX(1350px) rotate(0deg);
     }
     95% {
-        transform: translateX(1150px)rotate(10deg);
+        transform: translateX(1600px)rotate(10deg);
     }
     100% {
         transform: translateX(1700px)rotate(0deg);
