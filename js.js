@@ -23,6 +23,7 @@ var Game = function(){
     this.urukHai = false;
     this.trollRight = false;
     this.nazgul = false;
+    this.hornActivated = false;
 
 // This refers to an instance of Game Class
 };
@@ -125,6 +126,17 @@ Game.prototype.checkMatch = function(card, side, opposite){
             self.incorrectMatch -=2;
             $(".enemyStandingMiddle").removeClass("enemyInvisible").addClass("midAttackAnimation");
             self.nazgul = true;
+        }
+        if(self.checkCards[0].css('background-image') === self.checkCards[1].css('background-image') && self.checkCards[1].hasClass('card-2')){
+            // console.log("Dwarven Healer Healed");
+            self.testIfMatch = true;
+            self.correctMatch +=1;
+            console.log(self.playerHp);
+            self.leftCard = false;
+            self.rightCard = false;
+            self.incorrectMatch -=2;
+            $(".horn").addClass("hornPulseAnimation");
+            self.hornActive = true;
         }
         if(self.checkCards[0].css('background-image') === self.checkCards[1].css('background-image')){
             self.testIfMatch = true;
@@ -349,6 +361,9 @@ Game.prototype.addClickHandlers = function() {
     $('.rightCard').on('click', function () {
         $(".rightCard").addClass("inactive");
         self.checkMatch(this, 'right', 'left');
+    });
+    $('.horn').on('click', function () {
+    $(".rohan").addClass("chargeForward");
     });
 };
 $(document).ready(function() {

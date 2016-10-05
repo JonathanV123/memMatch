@@ -10,12 +10,51 @@ body{
     display:flex;
     width: 100%;
     /*WHY DOES IT HAVE TO BE 99VH INSTEAD OF 100 to CANCEL OUT SCROLLING*/
-    height: 99vh;
+    height: 100vh;
     flex-direction:row;
     flex-wrap:wrap;
     background-image:url(Images/woodBG.jpg );
     background-repeat:no-repeat;
     background-size:100% 100%;
+}
+.rohan{
+    position:fixed;
+    width:30%;
+    height:40%;
+    overflow:hidden;
+    z-index:2000;
+}
+.chargeForward{
+    -webkit-animation-name: rohanChargeForward  ; /* Chrome, Safari, Opera */
+    -webkit-animation-duration:4s; /* Chrome, Safari, Opera */
+    animation-name: rohanChargeForward ;
+    animation-duration: 4s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+}
+.chargeOne{
+    top:2%;
+    left:0%;
+}
+.chargeTwo{
+    top:14%;
+    left:5%;
+}
+.chargeThree{
+    top:20%;
+    left:0%;
+}
+.chargeFour{
+    top:35%;
+    left:5%;
+}
+.chargeFive{
+    top:50%;
+    left:0%;
+}
+.chargeSix{
+    top:60%;
+    left:5%;
 }
 .battleground {
     display:flex;
@@ -85,6 +124,7 @@ body{
     background-repeat:no-repeat;
     background-size:95% 95%;
     background-position:center;
+
 }
 .armor{
     background-image:url(Images/armor.png );
@@ -289,7 +329,7 @@ body{
 .enemyStandingMiddle{
     width:100%;
     height:100%;
-    top:10%;
+    top:5%;
     left:10%;
     position:relative;
 }
@@ -376,6 +416,75 @@ body{
     animation-name: victoryDefeatAnimation;
     animation-duration: 6s;
 }
+.hornPulseAnimation{
+    -webkit-animation-name: hornPulsingAnimation; /* Chrome, Safari, Opera */
+    -webkit-animation-duration: 2s; /* Chrome, Safari, Opera */
+    animation-name: hornPulsingAnimation;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+
+}
+.fadeOut{
+    -webkit-animation-name: fadeOut  ; /* Chrome, Safari, Opera */
+    -webkit-animation-duration:2s; /* Chrome, Safari, Opera */
+    animation-name: fadeOut ;
+    animation-duration: 2s;
+    animation-timing-function: linear;
+    -webkit-animation-fill-mode: forwards; /* Chrome, Safari, Opera */
+    animation-fill-mode: forwards;
+}
+.fadeOutRohanCharge{
+    -webkit-animation-name: fadeOutRohanCharge  ; /* Chrome, Safari, Opera */
+    -webkit-animation-duration:2s; /* Chrome, Safari, Opera */
+    animation-name: fadeOutRohanCharge ;
+    animation-duration: 2s;
+    animation-timing-function: linear;
+    -webkit-animation-fill-mode: forwards; /* Chrome, Safari, Opera */
+    animation-fill-mode: forwards;
+}
+@keyframes rohanChargeForward{
+    0% {
+        transform: translateX(0);
+    }
+    0% {
+        transform: rotate(10deg);
+    }
+    20% {
+        transform: translateX(25%);
+    }
+    20% {
+         transform: rotate(10deg);
+    }
+    40% {
+        transform: rotate(10deg);
+    }
+    40% {
+        transform: translateX(50%);
+    }
+    60% {
+        transform: rotate(10deg);
+    }
+    60% {
+        transform: translateX(75%);
+    }
+    80% {
+        transform: rotate(10deg);
+    }
+    80% {
+        transform: translateX(100%);
+    }
+    100% {
+        transform: rotate(10deg);
+    }
+    100% {
+        transform: translateX(300%);
+    }
+    100% {
+        opacity: 0;
+    }
+
+}
 @keyframes victoryDefeatAnimation{
     from {
         opacity: 0;
@@ -383,8 +492,41 @@ body{
     }
     to {
         opacity: 1;
-        transform: scale(2, 2);
+        transform: scale(1.2, 1.2);
     }
+}
+@keyframes hornPulsingAnimation{
+    0% { transform: scale(1); }
+    30% { transform: scale(1); }
+    40% { transform: scale(1.08); }
+    50% { transform: scale(1); }
+    60% { transform: scale(1); }
+    70% { transform: scale(1.05); }
+    80% { transform: scale(1); }
+    100% { transform: scale(1); }
+}
+/* For the duration of the animation we are going to */
+/*change the scale of the button to 1.08 at 40% of the duration and*/
+/*then put it back to normal then at 70% of the duration change the */
+/*scale to 1.05.*/
+
+@keyframes fadeOutRohanCharge {
+    0% { opacity: 1; }
+    10% { opacity: 0.95; }
+    20% { opacity: 0.94; }
+    30% { opacity: 0.93; }
+    40% { opacity: 0.92; }
+    50% { opacity: 0.95; }
+    60% { opacity: 0.95; }
+    70% { opacity: 0.95; }
+    80% { opacity: 0.95; }
+    90% { opacity: 0.95; }
+    100% { opacity: 0; }
+}
+@keyframes fadeOut {
+    0% { opacity: 1; }
+    50% { opacity: 0.5; }
+    100% { opacity: 0; }
 }
 @keyframes midAttackAnimation{
     0% {
