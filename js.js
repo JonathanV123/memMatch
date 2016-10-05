@@ -202,7 +202,7 @@ Game.prototype.enemyCombatPhase = function(){
            if(self.goblinLeft == true) {
                $(".enemyFlightLeft").removeClass("enemyFlightAttackFromLeft");
                setTimeout(function () {
-                   self.attackFunction(".enemyFlightLeft","enemyFlightAttackFromLeft",20);
+                   self.attackFunction(".enemyFlightLeft","enemyFlightAttackFromLeft",1);
                    console.log("Goblin Top Left Summoned")
                }, 500);
            }

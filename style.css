@@ -13,7 +13,7 @@ body{
     height: 100vh;
     flex-direction:row;
     flex-wrap:wrap;
-    background-image:url(Images/woodBG.jpg );
+    background-image:url(Images/background.jpg);
     background-repeat:no-repeat;
     background-size:100% 100%;
 }
