@@ -204,50 +204,50 @@ Game.prototype.enemyCombatPhase = function(){
            if(self.goblinLeft == true) {
                $(".enemyFlightLeft").removeClass("enemyFlightAttackFromLeft");
                setTimeout(function () {
-                   self.goblinLeftAttk();
+                   self.attackFunction(".enemyFlightLeft","enemyFlightAttackFromLeft",16);
                    console.log("Goblin Top Left Summoned")
                }, 500);
            }
             if(self.goblinRight == true) {
                 $(".enemyFlightRight").removeClass("enemyFlightAttackFromRight");
                 setTimeout(function () {
-                    self.goblinRightAttk();
+                    self.attackFunction(".enemyFlightRight","enemyFlightAttackFromRight",1);
                     console.log("Goblin Top Right Summoned")
                 }, 500);
             }
             if(self.hillTrollLeft == true) {
                 $(".enemyStandingLeft").removeClass("enemyMidLeftAttackAnimation");
                 setTimeout(function () {
-                    self.hillTrollLeftAttk();
+                    self.attackFunction(".enemyStandingLeft","enemyMidLeftAttackAnimation",2);
                     console.log("Hill-Troll Left Summoned")
                 }, 500);
             }
             if(self.hillTrollRight == true) {
                 $(".enemyStandingRight").removeClass("enemyMidRightAttackAnimation");
                 setTimeout(function () {
-                    self.hillTrollRightAttk();
+                    self.attackFunction(".enemyStandingRight","enemyMidRightAttackAnimation",2);
                     console.log("Hill-Troll Right Summoned")
                 }, 500);
             }
             if(self.urukHai == true) {
                 $(".enemyStandingBotLeft").removeClass("enemyBottomLeftAttackAnimation");
                 setTimeout(function () {
-                    self.urukHaiAttk();
+                    self.attackFunction(".enemyStandingBotLeft","enemyBottomLeftAttackAnimation",2);
                     console.log("Uruk-Hai Bottom Left Summoned")
                 }, 500);
             }
             if(self.troll == true) {
                 $(".enemyStandingBotRight").removeClass("enemyBottomRightAttackAnimation");
                 setTimeout(function () {
-                    self.trollAttk();
+                    self.attackFunction(".enemyStandingBotRight","enemyBottomRightAttackAnimation",2);
                     console.log("Troll Bottom Right Summoned")
                 }, 500);
             }
             if(self.nazgul == true) {
                 $(".enemyStandingBotRight").removeClass("enemyBottomRightAttackAnimation");
                 setTimeout(function () {
-                    self.nazgulAttk();
-                    console.log("Troll Bottom Right Summoned")
+                    self.attackFunction(".enemyStandingMiddle","enemyBottomRightAttackAnimation",4);
+                    console.log("Nazgul Middle Summoned")
                 }, 500);
             }
            console.log(this.playerHp + " " + "is current HP");
@@ -257,71 +257,93 @@ Game.prototype.updateStats = function(){
     $(".hitPoints").html(this.playerHp);
     this.testIfMatch = false;
 };
-Game.prototype.goblinLeftAttk = function(){
+Game.prototype.attackFunction = function(target, classToAdd, damage){
     var self = this;
-    $(".enemyFlightLeft").addClass("enemyFlightAttackFromLeft");
-    self.playerHp -= 16;
+    $(target).addClass(classToAdd);
+    self.playerHp -= damage;
+    self.playerArmor -= damage;
     self.updateStats();
     this.animateHP();
     self.testIfMatch = false;
     self.victoryDefeat();
 };
-Game.prototype.goblinRightAttk = function(){
-    var self = this;
-    $(".enemyFlightRight").addClass("enemyFlightAttackFromRight");
-    $(".heroAvatar").addClass("animateHitPoints");
-    console.log("gobby summoned");
-    this.playerHp -= 1;
-    self.updateStats();
-    this.animateHP();
-    this.testIfMatch = false;
-    self.victoryDefeat();
-};
-Game.prototype.hillTrollLeftAttk = function(){
-    var self = this;
-    $(".enemyStandingLeft").addClass("enemyMidLeftAttackAnimation");
-    this.playerHp -= 4;
-    self.updateStats();
-    this.animateHP();
-    this.testIfMatch = false;
-    self.victoryDefeat();
-};
-Game.prototype.hillTrollRightAttk = function(){
-    var self = this;
-    $(".enemyStandingRight").addClass("enemyMidRightAttackAnimation");
-    this.playerHp -= 4;
-    self.updateStats();
-    this.animateHP();
-    this.testIfMatch = false;
-    self.victoryDefeat();
-};
-Game.prototype.urukHaiAttk = function(){
-    var self = this;
-    $(".enemyStandingBotLeft").addClass("enemyBottomLeftAttackAnimation");
-    this.playerHp -= 3;
-    self.updateStats();
-    this.animateHP();
-    this.testIfMatch = false;
-    self.victoryDefeat();
-};
-Game.prototype.nazgulAttk = function(){
-    var self = this;
-    $(".enemyStandingBotRight").addClass("enemyBottomRightAttackAnimation");
-    this.playerHp -= 3;
-    self.updateStats();
-    this.animateHP();
-    this.testIfMatch = false;
-    self.victoryDefeat();
-};
-Game.prototype.trollAttk = function(){
-    var self = this;
-    $(".enemyStandingMiddle").addClass("midAttackAnimation");
-    this.playerHp -= 3;
-    self.updateStats();
-    this.animateHP();
-    this.testIfMatch = false;
-    self.victoryDefeat();
-};
+// Game.prototype.callAttackFunction = function(){
+//     var self = this;
+//     self.attackFunction(".enemyFlightLeft","enemyFlightAttackFromLeft",16);
+//     self.attackFunction(".enemyFlightRight","enemyFlightAttackFromRight",1);
+//     self.attackFunction(".enemyStandingLeft","enemyMidLeftAttackAnimation",2);
+//     self.attackFunction(".enemyStandingRight","enemyMidRightAttackAnimation",2);
+//     self.attackFunction(".enemyStandingBotLeft","enemyBottomLeftAttackAnimation",2);
+//     self.attackFunction(".enemyStandingBotRight","enemyBottomRightAttackAnimation",2);
+//     self.attackFunction(".enemyStandingBotRight","enemyBottomRightAttackAnimation",2);
+//     self.attackFunction(".enemyStandingMiddle","enemyBottomRightAttackAnimation",4);
+//
+// };
+// Game.prototype.goblinLeftAttk = function(){
+//     var self = this;
+//     $(".enemyFlightLeft").addClass("enemyFlightAttackFromLeft");
+//     self.playerHp -= 16;
+//     self.updateStats();
+//     this.animateHP();
+//     self.testIfMatch = false;
+//     self.victoryDefeat();
+// };
+// Game.prototype.goblinRightAttk = function(){
+//     var self = this;
+//     $(".enemyFlightRight").addClass("enemyFlightAttackFromRight");
+//     $(".heroAvatar").addClass("animateHitPoints");
+//     console.log("gobby summoned");
+//     this.playerHp -= 1;
+//     self.updateStats();
+//     this.animateHP();
+//     this.testIfMatch = false;
+//     self.victoryDefeat();
+// };
+// Game.prototype.hillTrollLeftAttk = function(){
+//     var self = this;
+//     $(".enemyStandingLeft").addClass("enemyMidLeftAttackAnimation");
+//     this.playerHp -= 4;
+//     self.updateStats();
+//     this.animateHP();
+//     this.testIfMatch = false;
+//     self.victoryDefeat();
+// };
+// Game.prototype.hillTrollRightAttk = function(){
+//     var self = this;
+//     $(".enemyStandingRight").addClass("enemyMidRightAttackAnimation");
+//     this.playerHp -= 4;
+//     self.updateStats();
+//     this.animateHP();
+//     this.testIfMatch = false;
+//     self.victoryDefeat();
+// };
+// Game.prototype.urukHaiAttk = function(){
+//     var self = this;
+//     $(".enemyStandingBotLeft").addClass("enemyBottomLeftAttackAnimation");
+//     this.playerHp -= 3;
+//     self.updateStats();
+//     this.animateHP();
+//     this.testIfMatch = false;
+//     self.victoryDefeat();
+// };
+// Game.prototype.nazgulAttk = function(){
+//     var self = this;
+//     $(".enemyStandingBotRight").addClass("enemyBottomRightAttackAnimation");
+//     this.playerHp -= 3;
+//     self.updateStats();
+//     this.animateHP();
+//     this.testIfMatch = false;
+//     self.victoryDefeat();
+// };
+// Game.prototype.trollAttk = function(){
+//     var self = this;
+//     $(".enemyStandingMiddle").addClass("midAttackAnimation");
+//     this.playerHp -= 3;
+//     self.updateStats();
+//     this.animateHP();
+//     this.testIfMatch = false;
+//     self.victoryDefeat();
+// };
 Game.prototype.animateHP = function(){
     $(".hitPoints").addClass("animateHitPoints");
     setTimeout(function () {
