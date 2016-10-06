@@ -20,10 +20,6 @@ var Game = function(){
     this.playerHp = 20;
     this.playerArmor = 10;
     this.testIfMatch= true;
-    this.enemiesInPlay = 0;
-    this.enemyPhase = false;
-    this.playerTurn = false;
-    this.enemyTurn = false;
     this.goblinLeft = false;
     this.goblinRight = false;
     this.hillTrollLeft = false;
@@ -176,13 +172,11 @@ Game.prototype.enemySpawn = function(){
     console.log(self.incorrectMatch);
     if(self.leftCard == true && self.rightCard == true && self.testIfMatch == false && self.incorrectMatch === 2){
         $(".enemyFlightLeft").removeClass("enemyInvisible");
-        self.enemiesInPlay +=1;
         self.goblinLeft = true;
         console.log(self.incorrectMatch + " " + "incorrect Match spawning enemy");
     }
     if(self.leftCard == true && self.rightCard == true && self.testIfMatch == false && self.incorrectMatch  === 4){
         $(".enemyFlightRight").removeClass("enemyInvisible");
-        self.enemiesInPlay +=1;
         self.goblinRight = true;
         console.log(self.incorrectMatch + " " + "incorrect Match spawning enemy");
     }
