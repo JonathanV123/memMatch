@@ -35,27 +35,27 @@ body{
 }
 .chargeOne{
     top:2%;
-    left:-400px;
+    left:-800px;
 }
 .chargeTwo{
     top:14%;
-    left:-300px;
+    left:-700px;
 }
 .chargeThree{
     top:28%;
-    left:-400px;
+    left:-800px;
 }
 .chargeFour{
     top:35%;
-    left:-300px;
+    left:-700px;
 }
 .chargeFive{
     top:50%;
-    left:-400px;
+    left:-800px;
 }
 .chargeSix{
     top:60%;
-    left:-300px;
+    left:-700px;
 }
 .battleground {
     display:flex;
@@ -478,7 +478,7 @@ body{
         transform: translateX(1600px)rotate(10deg);
     }
     100% {
-        transform: translateX(1700px)rotate(0deg);
+        transform: translateX(2000px)rotate(0deg);
     }
 
 }

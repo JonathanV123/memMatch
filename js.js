@@ -116,6 +116,7 @@ Game.prototype.checkMatch = function(card, side, opposite){
             self.leftCard = false;
             self.rightCard = false;
             self.incorrectMatch -=2;
+            self.dwarfHealerCard = true;
         }
         if(self.checkCards[0].css('background-image') === self.checkCards[1].css('background-image') && self.checkCards[1].hasClass('card-3')){
             self.testIfMatch = true;
@@ -126,6 +127,7 @@ Game.prototype.checkMatch = function(card, side, opposite){
             self.incorrectMatch -=2;
             $(".enemyStandingMiddle").removeClass("enemyInvisible").addClass("midAttackAnimation");
             self.nazgul = true;
+            self.nazgulCard = true;
         }
         if(self.checkCards[0].css('background-image') === self.checkCards[1].css('background-image') && self.checkCards[1].hasClass('card-2')){
             self.testIfMatch = true;
@@ -136,6 +138,7 @@ Game.prototype.checkMatch = function(card, side, opposite){
             self.incorrectMatch -=2;
             $(".horn").addClass("hornPulseAnimation");
             self.hornActivated = true;
+            self.rohanCard = true;
         }
         if(self.checkCards[0].css('background-image') === self.checkCards[1].css('background-image')){
             self.testIfMatch = true;
@@ -159,6 +162,7 @@ Game.prototype.checkMatch = function(card, side, opposite){
     self.enemySpawn();
     self.enemyCombatPhase();
     self.updateStats();
+    self.victoryDefeat();
 };
 Game.prototype.enemySpawn = function(){
     var self = this;
@@ -290,11 +294,9 @@ Game.prototype.victoryDefeat = function(){
     if(self.playerHp <= 0){
         $(".defeat").addClass("animateDefeatVictory");
         console.log("you win or lose!");
-        setTimeout(function () {
-
-        }, 5000);
     }
-    if(this.correctMatch == 10){
+    if (self.correctMatch == 12)
+        {
             $(".victory").addClass("animateDefeatVictory");
             console.log("you win or lose!")
         }
