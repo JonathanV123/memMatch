@@ -1,4 +1,11 @@
-
+$(document).ready(function() {
+    function startNewGame(){
+       // Why does adding var in front of game break the program?
+       game = new Game();
+       game.setUpGame();
+    }
+    startNewGame();
+});
 //Class Game
 var Game = function(){
     this.leftCards = [];
@@ -351,7 +358,3 @@ Game.prototype.addClickHandlers = function() {
         }
     });
 };
-$(document).ready(function() {
-        game = new Game();
-        game.setUpGame();
-});
