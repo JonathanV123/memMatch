@@ -1,6 +1,5 @@
 $(document).ready(function() {
     function startNewGame(){
-       // Why does adding var in front of game break the program?
        game = new Game();
        game.setUpGame();
     }
@@ -28,7 +27,6 @@ var Game = function(){
     this.trollRight = false;
     this.nazgul = false;
     this.hornActivated = false;
-
 // This refers to an instance of Game Class
 };
 //Creating Card CLASS that takes 1 parameter
@@ -46,6 +44,13 @@ Game.prototype.setUpGame = function(){
   this.addClickHandlers();
   this.cardDefault();
   this.updateStats();
+  this.aboutPage();
+};
+Game.prototype.startNewGame = function (){
+
+    game  = {};
+    game = new Game();
+    game.setUpGame();
 };
 Game.prototype.createCards = function(cardCount) { //Review
     for (i = 1; i <= cardCount; i++) {
@@ -207,7 +212,7 @@ Game.prototype.enemyCombatPhase = function(){
            if(self.goblinLeft == true) {
                $(".enemyFlightLeft").removeClass("enemyFlightAttackFromLeft");
                setTimeout(function () {
-                   self.attackFunction(".enemyFlightLeft","enemyFlightAttackFromLeft",1);
+                   self.attackFunction(".enemyFlightLeft","enemyFlightAttackFromLeft",20);
                    console.log("Goblin Top Left Summoned")
                }, 500);
            }
@@ -295,12 +300,18 @@ Game.prototype.victoryDefeat = function(){
     if(self.playerHp <= 0){
         $(".defeat").addClass("animateDefeatVictory");
         console.log("you win or lose!");
+        self.startNewGame();
     }
     if (self.correctMatch == 12)
         {
             $(".victory").addClass("animateDefeatVictory");
             console.log("you win or lose!")
         }
+};
+Game.prototype.aboutPage = function(){
+    $(".about").on('click',function(){
+        $(".about").addClass("aboutPage");
+    })
 };
 Game.prototype.addClickHandlers = function() {
     console.log('What is this: ', this);
