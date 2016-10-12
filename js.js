@@ -310,7 +310,10 @@ Game.prototype.victoryDefeat = function(){
 };
 Game.prototype.aboutPage = function(){
     $(".about").on('click',function(){
-        $(".about").addClass("aboutPage");
+        $(".aboutPage").removeClass("enemyInvisible");
+    });
+    $(".exitAbout").on('click',function(){
+        $(".aboutPage").addClass("enemyInvisible");
     })
 };
 Game.prototype.addClickHandlers = function() {
