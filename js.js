@@ -45,10 +45,14 @@ Game.prototype.setUpGame = function(){
   this.cardDefault();
   this.updateStats();
   this.aboutPage();
+  this.renderEnemies();
 };
 Game.prototype.startNewGame = function (){
 
     game  = {};
+    $('.enemy').addClass('enemyInvisible');
+    $('.left_side').html('');
+    $('.right_side').html('');
     game = new Game();
     game.setUpGame();
 };
@@ -74,7 +78,7 @@ Game.prototype.shuffleCards = function(cards){
 //Defining a Method (renderCards) on the Game Class
 Game.prototype.renderCards = function() {
         // clearTimeout(this);
-        console.log('Ye!');
+        console.log('game cards rendered');
         for (var i = 0; i < game.leftCards.length; i++) {
                                                                                                 //why Plus needed here
             var CardHtmlStringLeft = '<div class="leftCard"><div class = "front card-' + game.leftCards[i].id + '"></div><div' + ' class' +
@@ -176,32 +180,32 @@ Game.prototype.enemySpawn = function(){
     var self = this;
     console.log(self.incorrectMatch);
     if(self.leftCard == true && self.rightCard == true && self.testIfMatch == false && self.incorrectMatch === 2){
-        $(".enemyFlightLeft").removeClass("enemyInvisible");
+        $(".enemy-1").removeClass("enemyInvisible");
         self.goblinLeft = true;
         console.log(self.incorrectMatch + " " + "incorrect Match spawning enemy");
     }
     if(self.leftCard == true && self.rightCard == true && self.testIfMatch == false && self.incorrectMatch  === 4){
-        $(".enemyFlightRight").removeClass("enemyInvisible");
+        $(".enemy-2").removeClass("enemyInvisible");
         self.goblinRight = true;
         console.log(self.incorrectMatch + " " + "incorrect Match spawning enemy");
     }
     if(self.leftCard == true && self.rightCard == true && self.testIfMatch == false && self.incorrectMatch  === 8){
-        $(".enemyStandingLeft").removeClass("enemyInvisible");
+        $(".enemy-3").removeClass("enemyInvisible");
         self.hillTrollLeft = true;
         console.log(self.incorrectMatch + " " + "incorrect Match spawning enemy");
     }
     if(self.leftCard == true && self.rightCard == true && self.testIfMatch == false && self.incorrectMatch  === 12){
-        $(".enemyStandingRight").removeClass("enemyInvisible");
+        $(".enemy-5").removeClass("enemyInvisible");
         self.hillTrollRight = true;
         console.log(self.incorrectMatch + " " + "incorrect Match spawning enemy");
     }
     if(self.leftCard == true && self.rightCard == true && self.testIfMatch == false && self.incorrectMatch  === 16){
-        $(".enemyStandingBotLeft").removeClass("enemyInvisible");
+        $(".enemy-6").removeClass("enemyInvisible");
         self.urukHai = true;
         console.log(self.incorrectMatch + " " + "incorrect Match spawning enemy");
     }
     if(self.leftCard == true && self.rightCard == true && self.testIfMatch == false && self.incorrectMatch  === 20){
-        $(".enemyStandingBotRight").removeClass("enemyInvisible");
+        $(".enemy-7").removeClass("enemyInvisible");
         self.troll = true;
         console.log(self.incorrectMatch + " " + "incorrect Match spawning enemy");
     }
@@ -210,51 +214,51 @@ Game.prototype.enemyCombatPhase = function(){
        var self = this;
         if(this.leftCard == true && this.rightCard == true && this.testIfMatch == false){
            if(self.goblinLeft == true) {
-               $(".enemyFlightLeft").removeClass("enemyFlightAttackFromLeft");
+               $(".enemy-1").removeClass("enemyFlightAttackFromLeft");
                setTimeout(function () {
-                   self.attackFunction(".enemyFlightLeft","enemyFlightAttackFromLeft",20);
+                   self.attackFunction(".enemy-1","enemyFlightAttackFromLeft",20);
                    console.log("Goblin Top Left Summoned")
                }, 500);
            }
             if(self.goblinRight == true) {
-                $(".enemyFlightRight").removeClass("enemyFlightAttackFromRight");
+                $(".enemy-2").removeClass("enemyFlightAttackFromRight");
                 setTimeout(function () {
-                    self.attackFunction(".enemyFlightRight","enemyFlightAttackFromRight",1);
+                    self.attackFunction(".enemy-2","enemyFlightAttackFromRight",1);
                     console.log("Goblin Top Right Summoned")
                 }, 500);
             }
             if(self.hillTrollLeft == true) {
-                $(".enemyStandingLeft").removeClass("enemyMidLeftAttackAnimation");
+                $(".enemy-3").removeClass("enemyMidLeftAttackAnimation");
                 setTimeout(function () {
-                    self.attackFunction(".enemyStandingLeft","enemyMidLeftAttackAnimation",2);
+                    self.attackFunction(".enemy-3","enemyMidLeftAttackAnimation",2);
                     console.log("Hill-Troll Left Summoned")
                 }, 500);
             }
             if(self.hillTrollRight == true) {
-                $(".enemyStandingRight").removeClass("enemyMidRightAttackAnimation");
+                $(".enemy-5").removeClass("enemyMidRightAttackAnimation");
                 setTimeout(function () {
-                    self.attackFunction(".enemyStandingRight","enemyMidRightAttackAnimation",2);
+                    self.attackFunction(".enemy-5","enemyMidRightAttackAnimation",2);
                     console.log("Hill-Troll Right Summoned")
                 }, 500);
             }
             if(self.urukHai == true) {
-                $(".enemyStandingBotLeft").removeClass("enemyBottomLeftAttackAnimation");
+                $(".enemy-6").removeClass("enemyBottomLeftAttackAnimation");
                 setTimeout(function () {
-                    self.attackFunction(".enemyStandingBotLeft","enemyBottomLeftAttackAnimation",2);
+                    self.attackFunction(".enemy-6","enemyBottomLeftAttackAnimation",2);
                     console.log("Uruk-Hai Bottom Left Summoned")
                 }, 500);
             }
             if(self.troll == true) {
-                $(".enemyStandingBotRight").removeClass("enemyBottomRightAttackAnimation");
+                $(".enemy-7").removeClass("enemyBottomRightAttackAnimation");
                 setTimeout(function () {
-                    self.attackFunction(".enemyStandingBotRight","enemyBottomRightAttackAnimation",2);
+                    self.attackFunction(".enemy-7","enemyBottomRightAttackAnimation",2);
                     console.log("Troll Bottom Right Summoned")
                 }, 500);
             }
             if(self.nazgul == true) {
-                $(".enemyStandingMiddle").removeClass("enemyStandingMiddleAttackAnimation");
+                $(".enemy-4").removeClass("enemyStandingMiddleAttackAnimation");
                 setTimeout(function () {
-                    self.attackFunction(".enemyStandingMiddle","enemyStandingMiddleAttackAnimation",4);
+                    self.attackFunction(".enemy-4","enemyStandingMiddleAttackAnimation",4);
                     console.log("Nazgul Middle Summoned")
                 }, 500);
             }
@@ -300,7 +304,7 @@ Game.prototype.victoryDefeat = function(){
     if(self.playerHp <= 0){
         $(".defeat").addClass("animateDefeatVictory");
         console.log("you win or lose!");
-        // self.startNewGame();
+        self.startNewGame();
     }
     if (self.correctMatch == 12)
         {
@@ -336,31 +340,31 @@ Game.prototype.addClickHandlers = function() {
             if(self.hornActived = true){
                 if(self.goblinLeft == true){
                     self.goblinLeft = false;
-                    $(".enemyFlightLeft").addClass("fadeOut");
+                    $(".enemy-1").addClass("fadeOut");
                 }
                 if(self.goblinRight == true){
                     self.goblinRight = false;
-                    $(".enemyFlightRight").addClass("fadeOut");
+                    $(".enemy-2").addClass("fadeOut");
                 }
                 if(self.hillTrollLeft == true){
                     self.hillTrollLeft = false;
-                    $(".enemyStandingLeft").addClass("fadeOut");
+                    $(".enemy-3").addClass("fadeOut");
                 }
                 if(self.hillTrollRight == true){
                     self.hillTrollRight = false;
-                    $(".enemyStandingRight").addClass("fadeOut");
+                    $(".enemy-5").addClass("fadeOut");
                 }
                 if(self.urukHai == true){
                     self.urukHai = false;
-                    $(".enemyStandingBotLeft").addClass("fadeOut");
+                    $(".enemy-6").addClass("fadeOut");
                 }
                 if(self.trollRight == true){
                     self.trollRight = false;
-                    $(".enemyStandingBotRight").addClass("fadeOut");
+                    $(".enemy-7").addClass("fadeOut");
                 }
                 if(self.nazgul == true){
                     self.nazgul = false;
-                    $(".enemyStandingMiddle").addClass("fadeOut");
+                    $(".enemy-4").addClass("fadeOut");
                 }
             }
         }
