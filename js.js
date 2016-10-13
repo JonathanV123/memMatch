@@ -300,7 +300,7 @@ Game.prototype.victoryDefeat = function(){
     if(self.playerHp <= 0){
         $(".defeat").addClass("animateDefeatVictory");
         console.log("you win or lose!");
-        self.startNewGame();
+        // self.startNewGame();
     }
     if (self.correctMatch == 12)
         {
