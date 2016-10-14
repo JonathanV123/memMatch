@@ -45,16 +45,6 @@ Game.prototype.setUpGame = function(){
   this.cardDefault();
   this.updateStats();
   this.aboutPage();
-  this.renderEnemies();
-};
-Game.prototype.startNewGame = function (){
-
-    game  = {};
-    $('.enemy').addClass('enemyInvisible');
-    $('.left_side').html('');
-    $('.right_side').html('');
-    game = new Game();
-    game.setUpGame();
 };
 Game.prototype.createCards = function(cardCount) { //Review
     for (i = 1; i <= cardCount; i++) {
@@ -304,12 +294,19 @@ Game.prototype.victoryDefeat = function(){
     if(self.playerHp <= 0){
         $(".defeat").addClass("animateDefeatVictory");
         console.log("you win or lose!");
-        self.startNewGame();
+        setTimeout(function () {
+            $(".restartGame").removeClass("enemyInvisible");
+            $(".playAgainButton").removeClass("enemyInvisible");
+        }, 6000);
     }
     if (self.correctMatch == 12)
         {
             $(".victory").addClass("animateDefeatVictory");
-            console.log("you win or lose!")
+            console.log("you win or lose!");
+            setTimeout(function () {
+               $(".restartGame").removeClass("enemyInvisible");
+               $(".playAgainButton").removeClass("enemyInvisible");
+            }, 6000);
         }
 };
 Game.prototype.aboutPage = function(){
@@ -368,5 +365,18 @@ Game.prototype.addClickHandlers = function() {
                 }
             }
         }
+    });
+    $(".playAgainButton").on('click',function(){
+        console.log("button clicked");
+        game  = {};
+        $('.left_side').html('');
+        $('.right_side').html('');
+        game = new Game();
+        game.setUpGame();
+        $(".victory").removeClass("animateDefeatVictory");
+        $(".defeat").removeClass("animateDefeatVictory");
+        $('.enemy').addClass('enemyInvisible');
+        $(".restartGame").addClass("enemyInvisible");
+        $(".playAgainButton").addClass("enemyInvisible");
     });
 };

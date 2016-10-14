@@ -20,6 +20,36 @@ body{
     align-items:center;
     flex-wrap:wrap;
 }
+.restartGame{
+    position:absolute;
+    width:50%;
+    height:50%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index:3000;
+    left: 50%;
+    top:5%;
+    color:white;
+    font-size:3em;
+    transform: translate(-50%, 0);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    flex-direction:column;
+    border:5px double white;
+
+}
+.playAgainButton{
+    width:25%;
+    height:25%;
+    border:2px double white;
+    color:white;
+    font-size:1em;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    z-index:5000;
+
+}
 .gameDesc{
     width: 40%;
     height: 25%;
@@ -206,6 +236,7 @@ body{
     background-repeat:no-repeat;
     background-size:95% 95%;
     background-position:center;
+    font-size:2em;
 
 }
 .armor{
@@ -527,6 +558,13 @@ body{
     animation-timing-function: linear;
     -webkit-animation-fill-mode: forwards; /* Chrome, Safari, Opera */
     animation-fill-mode: forwards;
+}
+.about{
+    font-size:2em;
+}
+.settings{
+    font-size:2em;
+
 }
 @keyframes rohanChargeForward{
     0% {
