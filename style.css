@@ -60,6 +60,30 @@ body{
     align-items:center;
     font-size:25px;
 }
+.lotrDesc {
+    width: 50%;
+    height: 80%;
+    border: 1px solid black;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size:2em;
+}
+.howToPlay{
+    position:absolute;
+    width:90%;
+    height:90%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index:101;
+    left: 50%;
+    top:5%;
+    transform: translate(-50%, 0);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    flex-wrap:wrap;
+}
 .hpPic{
     border:1px solid lightgrey;
     width: 40%;

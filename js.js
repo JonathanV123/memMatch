@@ -320,13 +320,18 @@ Game.prototype.victoryDefeat = function(){
             }, 6000);
         }
 };
-//About section tutorial
+//About section and tutorial
 Game.prototype.aboutPage = function(){
     $(".about").on('click',function(){
         $(".aboutPage").removeClass("enemyInvisible");
+    });$(".tutorial").on('click',function(){
+        $(".howToPlay").removeClass("enemyInvisible");
     });
+
     $(".exitAbout").on('click',function(){
         $(".aboutPage").addClass("enemyInvisible");
+        $(".howToPlay").addClass("enemyInvisible");
+
     })
 };
 //Add click handlers 
