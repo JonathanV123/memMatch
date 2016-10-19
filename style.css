@@ -16,6 +16,8 @@ body{
     top:5%;
     transform: translate(-50%, 0);
     display:flex;
+    display: -webkit-flex;
+    -webkit-justify-content:center;
     justify-content:center;
     align-items:center;
     flex-wrap:wrap;
@@ -146,12 +148,17 @@ body{
     font-size:40px;
 }
 .container{
-    display:flex;
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
     width: 100%;
-    /*WHY DOES IT HAVE TO BE 99VH INSTEAD OF 100 to CANCEL OUT SCROLLING*/
     height: 100vh;
+    -webkit-flex-direction:row;
     flex-direction:row;
     flex-wrap:wrap;
+    -webkit-flex-wrap:wrap;
     background-image:url(Images/background.jpg);
     background-repeat:no-repeat;
     background-size:100% 100%;
@@ -206,6 +213,9 @@ body{
 }
 /* LEFT SIDE START */
 .game-area.left_side{
+    display:flex;
+    display:-webkit-flex;
+    display:-webkit-box;
     width:25%;
     height:82%;
     margin:0;
@@ -220,6 +230,9 @@ body{
 }
 /* LEFT SIDE START */
 .game-area.right_side{
+    display:flex;
+    display:-webkit-flex;
+    display:-webkit-box;
     width:25%;
     height:82%;
     margin:0;
