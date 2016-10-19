@@ -499,10 +499,10 @@ body{
     position:relative;
 }
 .enemyMidRightAttackAnimation{
-    /*-webkit-animation-name: enemyMidRightAttack; !* Chrome, Safari, Opera *!*/
-    /*-webkit-animation-duration: 1.5s; !* Chrome, Safari, Opera *!*/
-    /*animation-name: enemyMidRightAttack;*/
-    /*animation-duration: 1.5s;*/
+    -webkit-animation-name: enemyMidRightAttack; /* Chrome, Safari, Opera */
+    -webkit-animation-duration: 1.5s; /* Chrome, Safari, Opera */
+    animation-name: enemyMidRightAttack;
+    animation-duration: 1.5s;
 }
 .enemy-6{
     width:100%;
