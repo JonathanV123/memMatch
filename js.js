@@ -5,7 +5,7 @@ $(document).ready(function() {
     }
     startNewGame();
 });
-//Class Game
+//Class Game. Contains all gameplay elements
 var Game = function(){
     this.leftCards = [];
     this.rightCards = [];
@@ -27,14 +27,13 @@ var Game = function(){
     this.trollRight = false;
     this.nazgul = false;
     this.hornActivated = false;
-// This refers to an instance of Game Class
 };
-//Creating Card CLASS that takes 1 parameter
+//Creating Card Class
 var Card = function(id) {
     //THIS refers to instance of Card Class
     this.id = id;
 };
-//Defining a Method (setUpGame) on the Game Class
+//Defining a Method SetUpGame that sets the game up...
 Game.prototype.setUpGame = function(){
     //This is an instance of game calling createCards and renderCards on THIS instance of Game
   this.createCards(9);
@@ -46,6 +45,7 @@ Game.prototype.setUpGame = function(){
   this.updateStats();
   this.aboutPage();
 };
+//Creates a certain amount of cards based on cardCount parameter
 Game.prototype.createCards = function(cardCount) { //Review
     for (i = 1; i <= cardCount; i++) {
         this.leftCards.push(
@@ -56,6 +56,7 @@ Game.prototype.createCards = function(cardCount) { //Review
         )
     }
 };
+//Shuffle the so they are randomized on game board
 Game.prototype.shuffleCards = function(cards){
     //Shuffle Cards
     for (var i = cards.length - 1; i > 0; i--) {
@@ -65,7 +66,7 @@ Game.prototype.shuffleCards = function(cards){
         cards[j] = temp;
     }
 };
-//Defining a Method (renderCards) on the Game Class
+//Render the cards by looping through and dynamically creating the HTML element then appending
 Game.prototype.renderCards = function() {
         // clearTimeout(this);
         console.log('game cards rendered');
@@ -81,6 +82,7 @@ Game.prototype.renderCards = function() {
             $(".left_side").append(leftCardElement);
         }
 };
+//Reverts card back to default state
 Game.prototype.cardDefault = function(){
     console.log("Card default called, what is this: ", this);
     $(".leftCard").removeClass("flipcard inactive");
@@ -89,6 +91,7 @@ Game.prototype.cardDefault = function(){
     this.rightCard = false;
     console.log('Kool with a k');
 };
+//Checks if card is a match. Also contains match conditions for special cards
 Game.prototype.checkMatch = function(card, side, opposite){
     var self = this;
     var $card = $(card);
@@ -110,7 +113,7 @@ Game.prototype.checkMatch = function(card, side, opposite){
         // console.log('check cards', self.checkCards[0].css('background-image'));
         // console.log('card 1: ', self.checkCards[0].css('background-image'), ' Card 2: ', self.checkCards[1].css('background-image'));
         if(self.checkCards[0].css('background-image') === self.checkCards[1].css('background-image') && self.checkCards[1].hasClass('card-1')){
-            // console.log("Dwarven Healer Healed");
+            //Dwarven Healer Card
             self.testIfMatch = true;
             self.playerHp +=8;
             self.correctMatch +=1;
@@ -120,6 +123,7 @@ Game.prototype.checkMatch = function(card, side, opposite){
             self.incorrectMatch -=2;
             self.dwarfHealerCard = true;
         }
+        //Nazgul Card
         if(self.checkCards[0].css('background-image') === self.checkCards[1].css('background-image') && self.checkCards[1].hasClass('card-3')){
             self.testIfMatch = true;
             self.correctMatch +=1;
@@ -131,6 +135,7 @@ Game.prototype.checkMatch = function(card, side, opposite){
             self.nazgul = true;
             self.nazgulCard = true;
         }
+        //Summon Rohan Card
         if(self.checkCards[0].css('background-image') === self.checkCards[1].css('background-image') && self.checkCards[1].hasClass('card-2')){
             self.testIfMatch = true;
             self.correctMatch +=1;
@@ -142,6 +147,7 @@ Game.prototype.checkMatch = function(card, side, opposite){
             self.hornActivated = true;
             self.rohanCard = true;
         }
+        //Default card match
         if(self.checkCards[0].css('background-image') === self.checkCards[1].css('background-image')){
             self.testIfMatch = true;
             self.checkCards[0].parent().css("pointer-events","none").removeClass("front").removeClass("leftCard").removeClass("rightCard").addClass("cardInactive");
@@ -150,15 +156,15 @@ Game.prototype.checkMatch = function(card, side, opposite){
             self.leftCard = false;
             self.rightCard = false;
             self.incorrectMatch -=2;
-            // console.log(this.correctMatch + " "+ "correct matches");
             $(".leftCard").removeClass("inactive");
             $(".rightCard").removeClass("inactive");
-
         } else {
+            //If no match set cards back to default after .9 seconds
             $(".leftCard").addClass("inactive");
             $(".rightCard").addClass("inactive");
             setTimeout(self.cardDefault.bind(self),900);
         }
+        //Clear checkCards
         self.checkCards = [];
     }
     self.enemySpawn();
@@ -166,6 +172,7 @@ Game.prototype.checkMatch = function(card, side, opposite){
     self.updateStats();
     self.victoryDefeat();
 };
+//Spawns enemies based on incorrect match count
 Game.prototype.enemySpawn = function(){
     var self = this;
     console.log(self.incorrectMatch);
@@ -200,6 +207,7 @@ Game.prototype.enemySpawn = function(){
         console.log(self.incorrectMatch + " " + "incorrect Match spawning enemy");
     }
 };
+//Enemy attack function that enables when an enemy boolean becomes true
 Game.prototype.enemyCombatPhase = function(){
        var self = this;
         if(this.leftCard == true && this.rightCard == true && this.testIfMatch == false){
@@ -255,11 +263,13 @@ Game.prototype.enemyCombatPhase = function(){
            console.log(this.playerHp + " " + "is current HP");
        }
 };
+//Update game stats. Hit points and Armor
 Game.prototype.updateStats = function(){
     $(".hitPoints").html(this.playerHp);
     $(".armor").html(this.playerArmor);
     this.testIfMatch = false;
 };
+//Attack function that deals damage
 Game.prototype.attackFunction = function(target, classToAdd, damage){
     var self = this;
     $(target).addClass(classToAdd);
@@ -274,6 +284,7 @@ Game.prototype.attackFunction = function(target, classToAdd, damage){
     self.testIfMatch = false;
     self.victoryDefeat();
 };
+//Animate armor and hip points when attacked
 Game.prototype.animateHpAndArmor = function(){
     if (this.playerArmor > 0){
         $(".armor").addClass("animateHitPoints");
@@ -288,7 +299,7 @@ Game.prototype.animateHpAndArmor = function(){
         }, 1000);
     }
 };
-
+//Win and Lose conditions
 Game.prototype.victoryDefeat = function(){
     var self = this;
     if(self.playerHp <= 0){
@@ -309,6 +320,7 @@ Game.prototype.victoryDefeat = function(){
             }, 6000);
         }
 };
+//About section tutorial
 Game.prototype.aboutPage = function(){
     $(".about").on('click',function(){
         $(".aboutPage").removeClass("enemyInvisible");
@@ -317,6 +329,7 @@ Game.prototype.aboutPage = function(){
         $(".aboutPage").addClass("enemyInvisible");
     })
 };
+//Add click handlers 
 Game.prototype.addClickHandlers = function() {
     console.log('What is this: ', this);
     var self = this;
@@ -366,6 +379,7 @@ Game.prototype.addClickHandlers = function() {
             }
         }
     });
+    //Restart the game
     $(".playAgainButton").on('click',function(){
         console.log("button clicked");
         game  = {};
