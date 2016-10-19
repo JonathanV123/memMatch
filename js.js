@@ -131,7 +131,7 @@ Game.prototype.checkMatch = function(card, side, opposite){
             self.leftCard = false;
             self.rightCard = false;
             self.incorrectMatch -=2;
-            $(".enemyStandingMiddle").removeClass("enemyInvisible").addClass("midAttackAnimation");
+            $(".enemy-4").removeClass("enemyInvisible").addClass("midAttackAnimation");
             self.nazgul = true;
             self.nazgulCard = true;
         }
@@ -214,7 +214,7 @@ Game.prototype.enemyCombatPhase = function(){
            if(self.goblinLeft == true) {
                $(".enemy-1").removeClass("enemyFlightAttackFromLeft");
                setTimeout(function () {
-                   self.attackFunction(".enemy-1","enemyFlightAttackFromLeft",20);
+                   self.attackFunction(".enemy-1","enemyFlightAttackFromLeft",1);
                    console.log("Goblin Top Left Summoned")
                }, 500);
            }
@@ -397,5 +397,13 @@ Game.prototype.addClickHandlers = function() {
         $('.enemy').addClass('enemyInvisible');
         $(".restartGame").addClass("enemyInvisible");
         $(".playAgainButton").addClass("enemyInvisible");
+        $(".rohan").removeClass("chargeForward");
+        $(".enemy-1").removeClass("fadeOut");
+        $(".enemy-2").removeClass("fadeOut");
+        $(".enemy-3").removeClass("fadeOut");
+        $(".enemy-5").removeClass("fadeOut");
+        $(".enemy-6").removeClass("fadeOut");
+        $(".enemy-7").removeClass("fadeOut");
+        $(".enemy-4").removeClass("fadeOut");
     });
 };
