@@ -272,14 +272,14 @@ body{
     background-size: 100% 100%;
     align-items:center;
     justify-content:center;
+    font-size:1em;
 }
 .horn{
     background-image:url(images/horn.png );
     background-repeat:no-repeat;
     background-size:95% 95%;
     background-position:center;
-    font-size:2em;
-
+    font-size:1.4em;
 }
 .armor{
     font-size:40px;
@@ -611,13 +611,7 @@ body{
     -webkit-animation-fill-mode: forwards; /* Chrome, Safari, Opera */
     animation-fill-mode: forwards;
 }
-.about{
-    font-size:2em;
-}
-.settings{
-    font-size:2em;
 
-}
 @keyframes rohanChargeForward{
     0% {
         -webkit-transform:translateX(-100px) rotate(10deg);
