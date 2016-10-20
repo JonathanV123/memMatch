@@ -385,7 +385,9 @@ body{
     margin: 5% 1% 9% 0%;
 }
 .flipcard{
-    transform: rotate3D(0,1,0,180deg);
+    -webkit-transform:rotate3D(0,1,0,180deg);
+     transform:rotate3D(0,1,0,180deg);
+
 }
 .inactive{
     pointer-events:none;
