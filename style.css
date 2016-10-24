@@ -55,14 +55,22 @@ body{
 
 }
 .gameDesc{
-    width: 40%;
-    height: 25%;
+    width: 50%;
+    height: 100%;
     border:1px solid black;
     color:white;
     display:flex;
     justify-content:center;
     align-items:center;
-    font-size:25px;
+    font-size:1em;
+}
+.howToPlayDivs{
+    color:white;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    width:100%;
+    height:32%;
 }
 .lotrDesc {
     width: 50%;
@@ -78,7 +86,7 @@ body{
     position:absolute;
     width:90%;
     height:90%;
-    background: rgba(0, 0, 0, 0.5);
+    background: rgba(0, 0, 0, 0.6);
     z-index:101;
     left: 50%;
     top:5%;
@@ -91,7 +99,7 @@ body{
 }
 .hpPic{
     border:1px solid lightgrey;
-    width: 40%;
+    width: 15%;
     height: 50%;
     background-image:url(images/hp.png);
     background-repeat:no-repeat;
@@ -99,8 +107,8 @@ body{
 }
 .armorPic{
     border:1px solid lightgrey;
-    width: 40%;
-    height: 100%;
+    width: 35%;
+    height: 55%;
     background-image:url(images/armor.png);
     background-repeat:no-repeat;
     background-size:100% 100%;
@@ -109,7 +117,7 @@ body{
     border:1px solid lightgrey;
     width:100%;
     height:100%;
-    background-image:url(images/horn.png);
+    background-image:url(images/2.png );
     background-repeat:no-repeat;
     background-size:100% 100%;
 }
@@ -123,7 +131,7 @@ body{
 }
 .nazgulPic{
     border:1px solid lightgrey;
-    width: 50%;
+    width: 80%;
     height: 100%;;
     background-image:url(images/3.png);
     background-repeat:no-repeat;
@@ -131,7 +139,7 @@ body{
 }
 .enemiesPic{
     border:1px solid lightgrey;
-    width: 50%;
+    width: 70%;
     height: 100%;
     background-image:url(images/hill-troll.png);
     background-repeat:no-repeat;
@@ -272,7 +280,10 @@ body{
     background-size: 100% 100%;
     align-items:center;
     justify-content:center;
-    font-size:1em;
+    font-size:0.8em;
+}
+.hornDesc{
+    font-size:0.8em;
 }
 .horn{
     background-image:url(images/horn.png );
