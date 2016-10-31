@@ -177,32 +177,32 @@ Game.prototype.enemySpawn = function(){
     var self = this;
     console.log(self.incorrectMatch);
     if(self.leftCard == true && self.rightCard == true && self.testIfMatch == false && self.incorrectMatch === 2){
-        $(".enemy-1").removeClass("enemyInvisible");
+        $(".enemy-1").removeClass("enemyInvisible fadeOut");
         self.goblinLeft = true;
         console.log(self.incorrectMatch + " " + "incorrect Match spawning enemy");
     }
     if(self.leftCard == true && self.rightCard == true && self.testIfMatch == false && self.incorrectMatch  === 4){
-        $(".enemy-2").removeClass("enemyInvisible");
+        $(".enemy-2").removeClass("enemyInvisible fadeOut");
         self.goblinRight = true;
         console.log(self.incorrectMatch + " " + "incorrect Match spawning enemy");
     }
     if(self.leftCard == true && self.rightCard == true && self.testIfMatch == false && self.incorrectMatch  === 8){
-        $(".enemy-3").removeClass("enemyInvisible");
+        $(".enemy-3").removeClass("enemyInvisible fadeOut");
         self.hillTrollLeft = true;
         console.log(self.incorrectMatch + " " + "incorrect Match spawning enemy");
     }
     if(self.leftCard == true && self.rightCard == true && self.testIfMatch == false && self.incorrectMatch  === 12){
-        $(".enemy-5").removeClass("enemyInvisible");
+        $(".enemy-5").removeClass("enemyInvisible fadeOut");
         self.hillTrollRight = true;
         console.log(self.incorrectMatch + " " + "incorrect Match spawning enemy");
     }
     if(self.leftCard == true && self.rightCard == true && self.testIfMatch == false && self.incorrectMatch  === 16){
-        $(".enemy-6").removeClass("enemyInvisible");
+        $(".enemy-6").removeClass("enemyInvisible fadeOut");
         self.urukHai = true;
         console.log(self.incorrectMatch + " " + "incorrect Match spawning enemy");
     }
     if(self.leftCard == true && self.rightCard == true && self.testIfMatch == false && self.incorrectMatch  === 20){
-        $(".enemy-7").removeClass("enemyInvisible");
+        $(".enemy-7").removeClass("enemyInvisible fadeOut");
         self.troll = true;
         console.log(self.incorrectMatch + " " + "incorrect Match spawning enemy");
     }

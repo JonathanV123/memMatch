@@ -6,46 +6,52 @@
     <link rel="stylesheet" type="text/css" href="style.css">
     <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
     <script src="js.js"></script>
+    <title>Lord of The Rings Memory Match</title>
 </head>
 <body>
 <div class = "container">
     <div class ="howToPlay enemyInvisible">
-        <div class ="gameDesc hpDesc">
-            <div class = "hpPic"></div>
-            Shows remaining hit points.
+        <div class = "howToPlayDivs howToPlayTop">
+            <div class ="gameDesc hpDesc">
+                <div class = "hpPic"></div>
+                Shows remaining hit points.
+            </div>
+            <div class ="gameDesc armorDesc">
+                <div class = "armorPic"></div>
+                Shows remaining armor. On enemy attack, armor will be deducted before hit points.
+            </div>
         </div>
-        <div class ="gameDesc armorDesc">
-            <div class = "armorPic"></div>
-            Shows remaining armor. On enemy attack, armor will be deducted before hit points.
+        <div class = "howToPlayDivs howToPlayMid">
+            <div class ="gameDesc hornDesc">
+                <div class = "hornPic"></div>
+                Upon matching the Summon Rohan card, player will gain access to Horn of Rohan.
+                This allows the player to clear all enemies currently on the board. To
+                use the ability, click the horn located at the bottom of your screen. (Use this ability wisely!)
+            </div>
+            <div class ="gameDesc healerDesc">
+                <div class = "healerPic"></div>
+                Upon matching the Dwarven Healer card, the player will gain 8 hit points
+            </div>
         </div>
-        <div class ="gameDesc hornDesc">
-            <div class = "hornPic"></div>
-            Upon matching the Summon Rohan card, the player will gain access to a one time use ability, Horn of Rohan.
-            This ability allows the player to clear all enemies currently on the board, preventing them from attacking.
-            After matching the cards correctly, the Horn of Rohan will begin to pulse at the bottom of the screen. To
-            use the ability, simply click on the horn. Use this ability wisely!
-        </div>
-        <div class ="gameDesc healerDesc">
-            <div class = "healerPic"></div>
-            Upon matching the Dwarven Healer card, the player will gain 8 hit points
-        </div>
-        <div class ="gameDesc enemiesDesc">
-            <div class = "enemiesPic"></div>
-            Enemy attack values are displayed on their respective cards. The value highlighted in red is amount of
-            damage the player will take from that particular card.
-        </div>
-        <div class ="gameDesc nazgulDesc">
-            <div class = "nazgulPic"></div>
-            Matching the Nazgul card will summon a Nazgul to the battlefield. This Nazgul is the strongest enemy in
-            the game with 4 attack points. Try and wait till the end of the game to correctly match this card!
+        <div class = "howToPlayDivs howToPlayBot">
+            <div class ="gameDesc enemiesDesc">
+                <div class = "enemiesPic"></div>
+                Enemy attack values are displayed on their respective cards. The value highlighted in red is amount of
+                damage the player will take from that particular card.
+            </div>
+            <div class ="gameDesc nazgulDesc">
+                <div class = "nazgulPic"></div>
+                Matching the Nazgul card will summon a Nazgul to the battlefield. This Nazgul is the strongest enemy in
+                the game with 4 attack points. Try and wait till the end of the game to correctly match this card!
+            </div>
         </div>
         <div class = "exitAbout">X</div>
     </div>
     <div class ="aboutPage enemyInvisible">
         <div class ="lotrDesc">
             This is a Lord of the Rings inspired memory match. Enemies will spawn in the middle of the screen when the
-            player matches incorrectly. Overtime, more powerful enemies will begin to spawn. Your goal is to correctly
-            match all cards before your Hit points reach 0;
+            player matches incorrectly. Overtime, stronger enemies will begin to spawn. Your goal is to correctly
+            match all cards before your hit points reach 0.
         </div>
     <div class = "exitAbout">X</div>
     </div>
@@ -119,7 +125,7 @@
 <!-- Bottom Bar -->
 <div class="game-info">
     <div class =" info about">
-        ABOUT
+        About
     </div>
     <div class = "info armor">
         <!--<div class = "armor armortext"></div>-->
@@ -131,7 +137,7 @@
     <div class="info hitPoints"></div>
 
     <div class ="info tutorial">
-        Tutorial
+        Card Info
     </div>
 </div>
 </div>
