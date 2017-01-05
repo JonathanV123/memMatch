@@ -71,7 +71,6 @@ Game.prototype.renderCards = function() {
         // clearTimeout(this);
         console.log('game cards rendered');
         for (var i = 0; i < game.leftCards.length; i++) {
-                                                                                                //why Plus needed here
             var CardHtmlStringLeft = '<div class="leftCard"><div class = "front card-' + game.leftCards[i].id + '"></div><div' + ' class' +
                 ' =' + ' "back"></div></div>';
             var CardHtmlStringRight = '<div class="rightCard"><div class = "front card-' + game.rightCards[i].id + '"></div><div' +
@@ -102,7 +101,6 @@ Game.prototype.checkMatch = function(card, side, opposite){
     self.accuracy++;
     console.log(self.accuracy++ + 'is accuracy');
     self[side + 'Card'] = true;
-
     if(self[side + 'Card'] && !self[opposite + 'Card']){
         console.log(self.incorrectMatch +" "+" is incorrect Match Count");
         self.incorrectMatch += 2;
@@ -150,8 +148,8 @@ Game.prototype.checkMatch = function(card, side, opposite){
         //Default card match
         if(self.checkCards[0].css('background-image') === self.checkCards[1].css('background-image')){
             self.testIfMatch = true;
-            self.checkCards[0].parent().css("pointer-events","none").removeClass("front").removeClass("leftCard").removeClass("rightCard").addClass("cardInactive");
-            self.checkCards[1].parent().css("pointer-events","none").removeClass("front").removeClass("rightCard").removeClass("leftCard").addClass("cardInactive");
+            self.checkCards[0].parent().css("pointer-events","none").removeClass("front leftCard rightCard").addClass("cardInactive");
+            self.checkCards[1].parent().css("pointer-events","none").removeClass("front rightCard leftCard").addClass("cardInactive");
             self.correctMatch +=1;
             self.leftCard = false;
             self.rightCard = false;
@@ -339,12 +337,15 @@ Game.prototype.addClickHandlers = function() {
     console.log('What is this: ', this);
     var self = this;
     $('.leftCard').on('click', function () {
-        $(".leftCard").addClass("inactive");
+        $(".leftCard").addClass("inactive").removeClass("activeSide");
+        $(".rightCard").addClass("activeSide");
         self.enemyCombatPhase();
         self.checkMatch(this, 'left', 'right');
     });
     $('.rightCard').on('click', function () {
-        $(".rightCard").addClass("inactive");
+        $(".rightCard").addClass("inactive").removeClass("activeSide");
+        $(".leftCard").addClass("activeSide");
+        self.enemyCombatPhase();
         self.checkMatch(this, 'right', 'left');
     });
 
