@@ -59,7 +59,6 @@ body{
 .gameDesc{
     width: 50%;
     height: 100%;
-    border:1px solid black;
     color:white;
     display:flex;
     justify-content:center;
@@ -100,20 +99,20 @@ body{
     flex-wrap:wrap;
 }
 .hpPic{
-    border:1px solid lightgrey;
     width: 15%;
     height: 50%;
     background-image:url(images/hp.png);
     background-repeat:no-repeat;
     background-size:100% 100%;
+    margin-right:2%;
 }
 .armorPic{
-    border:1px solid lightgrey;
     width: 35%;
     height: 55%;
     background-image:url(images/armor.png);
     background-repeat:no-repeat;
     background-size:100% 100%;
+    margin-right:2%;
 }
 .hornPic{
     border:1px solid lightgrey;
@@ -122,6 +121,8 @@ body{
     background-image:url(images/2.png );
     background-repeat:no-repeat;
     background-size:100% 100%;
+    margin-right:2%;
+
 }
 .healerPic{
     border:1px solid lightgrey;
@@ -130,6 +131,7 @@ body{
     background-image:url(images/1.png);
     background-repeat:no-repeat;
     background-size:100% 100%;
+    margin-right:2%;
 }
 .nazgulPic{
     border:1px solid lightgrey;
@@ -138,6 +140,7 @@ body{
     background-image:url(images/3.png);
     background-repeat:no-repeat;
     background-size:100% 100%;
+    margin-right:2%;
 }
 .enemiesPic{
     border:1px solid lightgrey;
@@ -146,6 +149,7 @@ body{
     background-image:url(images/hill-troll.png);
     background-repeat:no-repeat;
     background-size:100% 100%;
+    margin-right:2%;
 }
 .exitAbout{
     display:flex;
@@ -282,7 +286,7 @@ body{
     background-size: 100% 100%;
     align-items:center;
     justify-content:center;
-    font-size:0.8em;
+    font-size:0.6em;
 }
 .hornDesc{
     font-size:1em;

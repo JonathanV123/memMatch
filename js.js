@@ -112,6 +112,7 @@ Game.prototype.checkMatch = function(card, side, opposite){
         // console.log('card 1: ', self.checkCards[0].css('background-image'), ' Card 2: ', self.checkCards[1].css('background-image'));
         if(self.checkCards[0].css('background-image') === self.checkCards[1].css('background-image') && self.checkCards[1].hasClass('card-1')){
             //Dwarven Healer Card
+            $(".card-1").removeClass("activeSide");
             self.testIfMatch = true;
             self.playerHp +=8;
             self.correctMatch +=1;
@@ -123,6 +124,7 @@ Game.prototype.checkMatch = function(card, side, opposite){
         }
         //Nazgul Card
         if(self.checkCards[0].css('background-image') === self.checkCards[1].css('background-image') && self.checkCards[1].hasClass('card-3')){
+            $(".card-3").removeClass("activeSide");
             self.testIfMatch = true;
             self.correctMatch +=1;
             console.log(self.playerHp);
@@ -135,6 +137,7 @@ Game.prototype.checkMatch = function(card, side, opposite){
         }
         //Summon Rohan Card
         if(self.checkCards[0].css('background-image') === self.checkCards[1].css('background-image') && self.checkCards[1].hasClass('card-2')){
+            $(".card-2").removeClass("activeSide");
             self.testIfMatch = true;
             self.correctMatch +=1;
             console.log(self.playerHp);
@@ -148,8 +151,8 @@ Game.prototype.checkMatch = function(card, side, opposite){
         //Default card match
         if(self.checkCards[0].css('background-image') === self.checkCards[1].css('background-image')){
             self.testIfMatch = true;
-            self.checkCards[0].parent().css("pointer-events","none").removeClass("front leftCard rightCard").addClass("cardInactive");
-            self.checkCards[1].parent().css("pointer-events","none").removeClass("front rightCard leftCard").addClass("cardInactive");
+            self.checkCards[0].parent().css("pointer-events","none").removeClass("front leftCard rightCard activeSide").addClass("cardInactive");
+            self.checkCards[1].parent().css("pointer-events","none").removeClass("front rightCard leftCard activeSide").addClass("cardInactive");
             self.correctMatch +=1;
             self.leftCard = false;
             self.rightCard = false;
