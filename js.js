@@ -204,7 +204,7 @@ Game.prototype.enemySpawn = function(){
     }
     if(self.leftCard == true && self.rightCard == true && self.testIfMatch == false && self.incorrectMatch  === 20){
         $(".enemy-7").removeClass("enemyInvisible fadeOut");
-        self.troll = true;
+        self.trollRight = true;
         console.log(self.incorrectMatch + " " + "incorrect Match spawning enemy");
     }
 };
