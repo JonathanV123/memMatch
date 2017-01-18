@@ -86,9 +86,9 @@ Game.prototype.cardDefault = function(){
     console.log("Card default called, what is this: ", this);
     $(".leftCard").removeClass("flipcard inactive");
     $(".rightCard").removeClass("flipcard inactive");
+    $(".horn").removeClass("inactive");
     this.leftCard = false;
     this.rightCard = false;
-    console.log('Kool with a k');
 };
 //Checks if card is a match. Also contains match conditions for special cards
 Game.prototype.checkMatch = function(card, side, opposite){
@@ -108,8 +108,6 @@ Game.prototype.checkMatch = function(card, side, opposite){
     }
     else {
         self.checkCards.push($card.children(":first"));
-        // console.log('check cards', self.checkCards[0].css('background-image'));
-        // console.log('card 1: ', self.checkCards[0].css('background-image'), ' Card 2: ', self.checkCards[1].css('background-image'));
         if(self.checkCards[0].css('background-image') === self.checkCards[1].css('background-image') && self.checkCards[1].hasClass('card-1')){
             //Dwarven Healer Card
             $(".card-1").removeClass("activeSide");
@@ -146,7 +144,6 @@ Game.prototype.checkMatch = function(card, side, opposite){
             self.incorrectMatch -=2;
             $(".horn").addClass("hornPulseAnimation");
             self.hornActivated = true;
-            self.rohanCard = true;
         }
         //Default card match
         if(self.checkCards[0].css('background-image') === self.checkCards[1].css('background-image')){
@@ -305,7 +302,10 @@ Game.prototype.victoryDefeat = function(){
     var self = this;
     if(self.playerHp <= 0){
         $(".defeat").addClass("animateDefeatVictory");
-        console.log("you win or lose!");
+        $(".leftCard").addClass("inactive");
+        $(".rightCard").addClass("inactive");
+        $(".horn").addClass("inactive");
+        console.log("you lose!");
         setTimeout(function () {
             $(".restartGame").removeClass("enemyInvisible");
             $(".playAgainButton").removeClass("enemyInvisible");
@@ -314,7 +314,10 @@ Game.prototype.victoryDefeat = function(){
     if (self.correctMatch == 12)
         {
             $(".victory").addClass("animateDefeatVictory");
-            console.log("you win or lose!");
+            $(".leftCard").addClass("inactive");
+            $(".rightCard").addClass("inactive");
+            $(".horn").addClass("inactive");
+            console.log("you win!");
             setTimeout(function () {
                $(".restartGame").removeClass("enemyInvisible");
                $(".playAgainButton").removeClass("enemyInvisible");
@@ -402,12 +405,9 @@ Game.prototype.addClickHandlers = function() {
         $(".restartGame").addClass("enemyInvisible");
         $(".playAgainButton").addClass("enemyInvisible");
         $(".rohan").removeClass("chargeForward");
-        $(".enemy-1").removeClass("fadeOut");
-        $(".enemy-2").removeClass("fadeOut");
-        $(".enemy-3").removeClass("fadeOut");
-        $(".enemy-5").removeClass("fadeOut");
-        $(".enemy-6").removeClass("fadeOut");
-        $(".enemy-7").removeClass("fadeOut");
-        $(".enemy-4").removeClass("fadeOut");
+        $(".horn").removeClass("hornPulseAnimation");
+        for(i = 1; i < 8; i++){
+            $(".enemy-" + i).removeClass("fadeOut");
+        }
     });
 };
