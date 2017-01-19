@@ -1,19 +1,146 @@
 *{
     box-sizing:border-box;
 }
+@font-face{
+    font-family:'lotrFont';
+    src:url('./font/lotrFont.ttf');
+}
 body{
     width:100%;
     height:100vh;
     margin: 0;
     padding: 0;
-
+    background-color:black;
+}
+@keyframes introAnimation{
+    0%   {opacity: 0;}
+    25%  {opacity: 0.05;}
+    50%  {opacity: 0.2;}
+    75%  {opacity: 0.5;}
+    100% {opacity: 1;}
+}
+@keyframes beginAnimation{
+    0%   {opacity: 0;}
+    25%  {opacity: 0;}
+    50%  {opacity: 0;}
+    75%  {opacity: 0;}
+    100% {opacity: 1;}
+}
+.introScreen{
+    position:absolute;
+    width:100%;
+    height:100%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    flex-direction:column;
+    background-image:url(images/lotrGif.gif);
+    background-repeat:no-repeat;
+    background-size:100% 100%;
+    z-index:102;
+    font-family:'lotrFont',sans-serif;
+    animation-name: introAnimation;
+    animation-iteration-count: 1;
+    animation-timing-function: ease-out;
+    animation-duration:6s;
+}
+.soundButton{
+    position:absolute;
+    display:flex;
+    justify-content:center;
+    align-items: center;
+    width:5%;
+    height:5%;
+    color:white;
+    top:2%;
+    right:2%;
+    background-image:url(images/mute.png);
+    background-repeat:no-repeat;
+    background-size:70% 80%;
+}
+.soundButtonInGame{
+    position:fixed;
+    display:flex;
+    justify-content:center;
+    width:5%;
+    height:5%;
+    bottom:6%;
+    left:16%;
+    background-image:url(images/mute.png);
+    background-repeat:no-repeat;
+    background-size:70% 80%;
+    z-index:105;
+}
+.unMute{
+    position:absolute;
+    display:flex;
+    justify-content:center;
+    align-items: center;
+    width:5%;
+    height:5%;
+    color:white;
+    top:2%;
+    right:2%;
+    background-image:url(images/speaker.png);
+    background-repeat:no-repeat;
+    background-size:70% 85%;
+}
+.unMuteInGame{
+    position:fixed;
+    display:flex;
+    justify-content:center;
+    width:5%;
+    height:5%;
+    bottom:6%;
+    left:16%;
+    background-image:url(images/speaker.png);
+    background-repeat:no-repeat;
+    background-size:70% 80%;
+    z-index:105;
+}
+.introTitle{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size:2.5em;
+    color:RGB(161, 127, 26);
+    animation-name: fontAnimation;
+    animation-iteration-count: 1;
+    animation-timing-function: ease-out;
+    animation-duration:6s;
+}
+.exitIntroScreen{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    width:20%;
+    height:20%;
+    font-size:40px;
+    z-index:104;
+    color:white;
+    margin-top:3%;
+    animation-name: beginAnimation;
+    animation-iteration-count: 1;
+    animation-timing-function: ease-in;
+    animation-duration:6s;
+    background-image: url("./images/dwarfBorder.png");
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+@keyframes fontAnimation {
+    0%   {
+        font-size: 0.5em;
+    }
+    100% {
+        font-size: 2.5em;
+    }
 }
 .aboutPage{
     position:absolute;
     width:90%;
     height:90%;
     background: rgba(0, 0, 0, 0.5);
-    z-index:101;
+    z-index:103;
     left: 50%;
     top:5%;
     -webkit-transform: translate(-50%, 0);
@@ -42,7 +169,6 @@ body{
     align-items:center;
     flex-direction:column;
     border:5px double white;
-
 }
 .playAgainButton{
     width:25%;
@@ -54,7 +180,6 @@ body{
     justify-content:center;
     align-items:center;
     z-index:5000;
-
 }
 .gameDesc{
     width: 50%;
@@ -87,7 +212,7 @@ body{
     position:absolute;
     width:90%;
     height:90%;
-    background: rgba(0, 0, 0, 0.6);
+    background: rgba(0, 0, 0, 0.7);
     z-index:101;
     left: 50%;
     top:5%;
@@ -179,6 +304,7 @@ body{
     background-image:url(images/background.jpg);
     background-repeat:no-repeat;
     background-size:100% 100%;
+    visibility:hidden
 }
 .rohan{
     position:fixed;
@@ -276,6 +402,7 @@ body{
 }
 .info{
     display:flex;
+    font-family:'lotrFont',sans-serif;
     height: 90%;
     width: 10%;
     color: white;
@@ -633,7 +760,6 @@ body{
     0% {
         -webkit-transform:translateX(-100px) rotate(10deg);
         transform: translateX(-100px) rotate(10deg);
-
     }
     10% {
         -webkit-transform:translateX(50px) rotate(0deg);

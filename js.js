@@ -342,6 +342,32 @@ Game.prototype.aboutPage = function(){
 Game.prototype.addClickHandlers = function() {
     console.log('What is this: ', this);
     var self = this;
+    $('.soundButton').on('click',function(){
+        $('.soundButton').toggleClass("unMute");
+        var audio = document.getElementById('song');
+        console.log("audio unmuted");
+        if(audio.muted === true){
+            audio.muted = false;
+        }
+        else{
+            audio.muted = true;
+        }
+    });
+    $('.soundButtonInGame').on('click',function(){
+        $('.soundButtonInGame').toggleClass("unMuteInGame");
+        var audio = document.getElementById('song');
+        console.log("audio unmuted");
+        if(audio.muted === true){
+            audio.muted = false;
+        }
+        else{
+            audio.muted = true;
+        }
+    });
+    $('.exitIntroScreen').on('click',function(){
+        $('.container').css("visibility",'visible');
+        $('.introScreen').css("display",'none');
+    });
     $('.leftCard').on('click', function () {
         $(".leftCard").addClass("inactive").removeClass("activeSide");
         $(".rightCard").addClass("activeSide");
