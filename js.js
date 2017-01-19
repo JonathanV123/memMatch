@@ -71,21 +71,21 @@ Game.prototype.renderCards = function() {
         // clearTimeout(this);
         console.log('game cards rendered');
         for (var i = 0; i < game.leftCards.length; i++) {
-            var CardHtmlStringLeft = '<div class="leftCard"><div class = "front card-' + game.leftCards[i].id + '"></div><div' + ' class' +
+            var CardHtmlStringLeft = '<div class="gameCard leftCard"><div class = "front card-' + game.leftCards[i].id + '"></div><div' + ' class' +
                 ' =' + ' "back"></div></div>';
-            var CardHtmlStringRight = '<div class="rightCard"><div class = "front card-' + game.rightCards[i].id + '"></div><div' +
+            var CardHtmlStringRight = '<div class="gameCard rightCard"><div class = "front card-' + game.rightCards[i].id + '"></div><div' +
                 ' class' + ' =' + ' "back"></div></div>';
             var leftCardElement = $(CardHtmlStringLeft);
             var rightCardElement = $(CardHtmlStringRight);
-            $(".right_side").append(rightCardElement);
-            $(".left_side").append(leftCardElement);
+            $(".rightSide").append(rightCardElement);
+            $(".leftSide").append(leftCardElement);
         }
 };
 //Reverts card back to default state
 Game.prototype.cardDefault = function(){
     console.log("Card default called, what is this: ", this);
-    $(".leftCard").removeClass("flipcard inactive");
-    $(".rightCard").removeClass("flipcard inactive");
+    $(".leftCard").removeClass("flipCard inactive");
+    $(".rightCard").removeClass("flipCard inactive");
     $(".horn").removeClass("inactive");
     this.leftCard = false;
     this.rightCard = false;
@@ -95,7 +95,7 @@ Game.prototype.checkMatch = function(card, side, opposite){
     var self = this;
     var $card = $(card);
     self.amountClicked++;
-    $card.toggleClass('flipcard');
+    $card.toggleClass('flipCard');
     $("." + side + "Card").addClass("inactive");
     console.log($(card).children(":first"));
     self.accuracy++;
@@ -210,44 +210,44 @@ Game.prototype.enemyCombatPhase = function(){
        var self = this;
         if(this.leftCard == true && this.rightCard == true && this.testIfMatch == false){
            if(self.goblinLeft == true) {
-               $(".enemy-1").removeClass("enemyFlightAttackFromLeft");
+               $(".enemy-1").removeClass("enemyAttack");
                setTimeout(function () {
-                   self.attackFunction(".enemy-1","enemyFlightAttackFromLeft",1);
+                   self.attackFunction(".enemy-1","enemyAttack",1);
                    console.log("Goblin Top Left Summoned")
                }, 500);
            }
             if(self.goblinRight == true) {
-                $(".enemy-2").removeClass("enemyFlightAttackFromRight");
+                $(".enemy-2").removeClass("enemyAttack");
                 setTimeout(function () {
-                    self.attackFunction(".enemy-2","enemyFlightAttackFromRight",1);
+                    self.attackFunction(".enemy-2","enemyAttack",1);
                     console.log("Goblin Top Right Summoned")
                 }, 500);
             }
             if(self.hillTrollLeft == true) {
-                $(".enemy-3").removeClass("enemyMidLeftAttackAnimation");
+                $(".enemy-3").removeClass("enemyAttack");
                 setTimeout(function () {
-                    self.attackFunction(".enemy-3","enemyMidLeftAttackAnimation",2);
+                    self.attackFunction(".enemy-3","enemyAttack",2);
                     console.log("Hill-Troll Left Summoned")
                 }, 500);
             }
             if(self.hillTrollRight == true) {
-                $(".enemy-5").removeClass("enemyMidRightAttackAnimation");
+                $(".enemy-5").removeClass("enemyAttack");
                 setTimeout(function () {
-                    self.attackFunction(".enemy-5","enemyMidRightAttackAnimation",2);
+                    self.attackFunction(".enemy-5","enemyAttack",2);
                     console.log("Hill-Troll Right Summoned")
                 }, 500);
             }
             if(self.urukHai == true) {
-                $(".enemy-6").removeClass("enemyBottomLeftAttackAnimation");
+                $(".enemy-6").removeClass("enemyAttack");
                 setTimeout(function () {
-                    self.attackFunction(".enemy-6","enemyBottomLeftAttackAnimation",2);
+                    self.attackFunction(".enemy-6","enemyAttack",2);
                     console.log("Uruk-Hai Bottom Left Summoned")
                 }, 500);
             }
-            if(self.troll == true) {
-                $(".enemy-7").removeClass("enemyBottomRightAttackAnimation");
+            if(self.trollRight == true) {
+                $(".enemy-7").removeClass("enemyAttack");
                 setTimeout(function () {
-                    self.attackFunction(".enemy-7","enemyBottomRightAttackAnimation",2);
+                    self.attackFunction(".enemy-7","enemyAttack",2);
                     console.log("Troll Bottom Right Summoned")
                 }, 500);
             }
@@ -421,8 +421,8 @@ Game.prototype.addClickHandlers = function() {
     $(".playAgainButton").on('click',function(){
         console.log("button clicked");
         game  = {};
-        $('.left_side').html('');
-        $('.right_side').html('');
+        $('.leftSide').html('');
+        $('.rightSide').html('');
         game = new Game();
         game.setUpGame();
         $(".victory").removeClass("animateDefeatVictory");

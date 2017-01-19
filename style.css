@@ -157,7 +157,7 @@ body{
     width:50%;
     height:50%;
     background: rgba(0, 0, 0, 0.5);
-    z-index:3000;
+    z-index:115;
     left: 50%;
     top:5%;
     color:white;
@@ -169,6 +169,7 @@ body{
     align-items:center;
     flex-direction:column;
     border:5px double white;
+    font-family:'lotrFont',sans-serif;
 }
 .playAgainButton{
     width:25%;
@@ -179,7 +180,7 @@ body{
     display:flex;
     justify-content:center;
     align-items:center;
-    z-index:5000;
+    z-index:115;
 }
 .lotrDesc {
     width: 50%;
@@ -245,7 +246,7 @@ body{
     height:40%;
     left:-100px;
     overflow:hidden;
-    z-index:2000;
+    z-index:116;
 }
 .chargeForward{
     -webkit-animation-name: rohanChargeForward  ; /* Chrome, Safari, Opera */
@@ -287,10 +288,9 @@ body{
     width: 50%;
     height: 82%;
     flex-wrap:wrap;
-
 }
 /* LEFT SIDE START */
-.game-area.left_side{
+.gameArea{
     display:flex;
     display:-webkit-flex;
     display:-webkit-box;
@@ -302,27 +302,8 @@ body{
     align-content: space-between;
     flex-wrap: wrap;
     justify-content: center;
-    /*background-image: url(./images/finalsides.png);*/
-    /*background-repeat:no-repeat;*/
-    /*background-size:100% 100%;*/
 }
 /* LEFT SIDE START */
-.game-area.right_side{
-    display:flex;
-    display:-webkit-flex;
-    display:-webkit-box;
-    width:25%;
-    height:82%;
-    margin:0;
-    padding:0;
-    display:inline-flex;
-    align-content: space-between;
-    flex-wrap: wrap;
-    justify-content: center;
-    /*background-image: url(./images/finalsides.png);*/
-    /*background-repeat:no-repeat;*/
-    /*background-size:100% 100%;*/
-}
 .game-info{
     display:flex;
     height:18%;
@@ -357,14 +338,14 @@ body{
     font-size:1.4em;
 }
 .armor{
-    font-size:40px;
+    font-size:2.5em;
     background-image:url(images/armor.png );
     background-repeat:no-repeat;
     background-size:85% 80%;
     background-position:center;
 }
 .hitPoints{
-    font-size:40px;
+    font-size:2.5em;
     background-image:url(images/hp.png );
     background-repeat:no-repeat;
     background-size:85% 80%;
@@ -376,20 +357,10 @@ body{
     animation-name: hitPointAnimation;
     animation-duration: 2s;
 }
-.leftCard{
-    width: 27%;
+.gameCard{
     width: 32%;
     height: 32%;
-    margin: 0% 1% 2% 0%;
-    -webkit-transform-style: preserve-3d;
-    -webkit-transition-duration: 1.25s;
-    transform-style: preserve-3d;
-    transition-duration: 1.25s;
-}
-.rightCard{
-    width: 32%;
-    height: 32%;
-    margin: 0% 1% 2% 0%;
+    margin: 0 1% 2% 0;
     -webkit-transform-style: preserve-3d;
     -webkit-transition-duration: 1.25s;
     transform-style: preserve-3d;
@@ -401,7 +372,7 @@ body{
     width:100%;
     height:100%;
     position:absolute;
-    margin: 0% 1% 2% 0%;
+    margin: 0 1% 2% 0;
     padding:0 0 0 0;
     -webkit-transform: rotate3D(0,1,0,180deg);
     -webkit-backface-visibility: hidden;
@@ -466,12 +437,7 @@ body{
     -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
 }
-.block{
-    width: 27%;
-    height: 25%;
-    margin: 5% 1% 9% 0%;
-}
-.flipcard{
+.flipCard{
     -webkit-transform:rotate3D(0,1,0,180deg);
      transform:rotate3D(0,1,0,180deg);
 }
@@ -484,87 +450,43 @@ body{
 .cardInactive{
     width: 32%;
     height: 32%;
-    margin: 0% 1% 2% 0%;
+    margin: 0 1% 2% 0;
     -webkit-transform-style: preserve-3d;
     -webkit-transition-duration: 1.25s;
     transform-style: preserve-3d;
     transition-duration: 1.25s;
 }
-.enemyColumnTop{
+.enemyRow{
     display:flex;
     width:100%;
     height:33.3%;
 }
-.enemyColumnMiddle{
-    display:flex;
-    width:100%;
-    height:33.3%;
-    flex-wrap:wrap;
-}
-.enemyColumnBottom{
-    display:flex;
-    width:100%;
-    height:33.3%;
-}
-.enemyContainer{
+.characterContainer{
     display:flex;
     justify-content:center;
     align-items:center;
     width:33%;
     height:100%;
 }
-.heroContainer{
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    width:33.3%;
-    height:100%;
-}
 .heroAvatar{
     width:100%;
     height:100%;
-    top:0%;
-    left:0%;
+    top:0;
+    left:0;
     position:relative;
     z-index:100;
 }
-.enemy-1{
+.enemy{
      width:100%;
      height:100%;
      top:10%;
      left:10%;
      position:relative;
 }
-.enemyFlightAttackFromLeft{
-    -webkit-animation-name: flyingAttackLeft; /* Chrome, Safari, Opera */
+.enemyAttack{
+    -webkit-animation-name: enemyAttackAnimation; /* Chrome, Safari, Opera */
     -webkit-animation-duration: 1.5s; /* Chrome, Safari, Opera */
-    animation-name: flyingAttackLeft;
-    animation-duration: 1.5s;
-}
-.enemy-2{
-    width:100%;
-    height:100%;
-    top:10%;
-    left:10%;
-    position:relative;
-}
-.enemyFlightAttackFromRight{
-    -webkit-animation-name: flyingAttackRight; /* Chrome, Safari, Opera */
-    -webkit-animation-duration: 1.5s; /* Chrome, Safari, Opera */
-    animation-name: flyingAttackRight;
-    animation-duration: 1.5s;
-}
-.enemy-3{
-    width:100%;
-    height:100%;
-    position:relative;
-    top:10%;
-    left:10%;
-}
-.enemyMidLeftAttackAnimation{
-    -webkit-animation-name: enemyMidLeftAttack; /* Chrome, Safari, Opera */
-    -webkit-animation-duration: 1.5s; /* Chrome, Safari, Opera */
-    animation-name: enemyMidLeftAttack;
+    animation-name: enemyAttackAnimation;
     animation-duration: 1.5s;
 }
 .enemy-4{
@@ -574,57 +496,16 @@ body{
     left:10%;
     position:relative;
 }
-.enemyStandingMiddleAttackAnimation{
+.enemyStandingMiddleAttackAnimation {
     -webkit-animation-name: midAttackAnimation; /* Chrome, Safari, Opera */
     -webkit-animation-duration: 1.5s; /* Chrome, Safari, Opera */
     animation-name: midAttackAnimation;
     animation-duration: 1.5s;
 }
-
-.enemy-5{
-    width:100%;
-    height:100%;
-    top:10%;
-    left:10%;
-    position:relative;
-}
-.enemyMidRightAttackAnimation{
-    -webkit-animation-name: enemyMidRightAttack; /* Chrome, Safari, Opera */
-    -webkit-animation-duration: 1.5s; /* Chrome, Safari, Opera */
-    animation-name: enemyMidRightAttack;
-    animation-duration: 1.5s;
-}
-.enemy-6{
-    width:100%;
-    height:100%;
-    top:10%;
-    left:10%;
-    position:relative;
-}
-.enemyBottomLeftAttackAnimation{
-    -webkit-animation-name: enemyCloseLeftAttack; /* Chrome, Safari, Opera */
-    -webkit-animation-duration: 1.5s; /* Chrome, Safari, Opera */
-    animation-name: enemyCloseLeftAttack;
-    animation-duration: 1.5s;
-}
-.enemy-7{
-    width:100%;
-    height:100%;
-    top:10%;
-    left:10%;
-    position:relative;
-    z-index:1;
-}
-.enemyBottomRightAttackAnimation{
-    -webkit-animation-name: enemyCloseRightAttack; /* Chrome, Safari, Opera */
-    -webkit-animation-duration: 1.5s; /* Chrome, Safari, Opera */
-    animation-name: enemyCloseRightAttack;
-    animation-duration: 1.5s;
-}
 .enemyInvisible{
     visibility: hidden;
 }
-.defeat{
+.winDefeatNotification{
     width:50%;
     height:50%;
     position:absolute;
@@ -633,25 +514,13 @@ body{
     font-weight:bold;
     text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
     color:red;
-    z-index:1000;
+    z-index:114;
     opacity:0;
     top: 20%;
     left: 25%;
 }
 .victory{
-    width:50%;
-    height:50%;
-    position:absolute;
-    text-align:center;
-    font-size:100px;
-    font-weight:bold;
-    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
-    color:green;
-    opacity:0;
-    top: 20%;
-    left: 25%;
-    z-index:1000;
-
+    color: green;
 }
 .animateDefeatVictory{
     -webkit-animation-name: victoryDefeatAnimation; /* Chrome, Safari, Opera */
@@ -781,7 +650,6 @@ body{
 /*change the scale of the button to 1.08 at 40% of the duration and*/
 /*then put it back to normal then at 70% of the duration change the */
 /*scale to 1.05.*/
-
 @keyframes fadeOut {
     0% { opacity: 1; }
     50% { opacity: 0.5; }
@@ -820,92 +688,7 @@ body{
         transform:translate3d(4px, 0, 0);
     }
 }
-@keyframes flyingAttackLeft {
-    0% {
-        transform: rotate(0deg);
-    }
-    25% {
-        transform: rotate(10deg);
-
-    }
-    75% {
-        transform: rotate(10deg);
-
-    }
-    100% {
-        transform: rotate(0deg);
-
-    }
-}
-@keyframes flyingAttackRight {
-    0% {
-        transform: rotate(0deg);
-    }
-    25% {
-        transform: rotate(10deg);
-
-    }
-    75% {
-        transform: rotate(10deg);
-
-    }
-    100% {
-        transform: rotate(0deg);
-
-    }
-}
-@keyframes enemyMidLeftAttack {
-    0% {
-        transform: rotate(0deg);
-    }
-    25% {
-        transform: rotate(10deg);
-
-    }
-    75% {
-        transform: rotate(10deg);
-
-    }
-    100% {
-        transform: rotate(0deg);
-
-    }
-}
-@keyframes enemyMidRightAttack {
-    0% {
-        transform: rotate(0deg);
-    }
-    25% {
-        transform: rotate(10deg);
-
-    }
-    75% {
-        transform: rotate(10deg);
-
-    }
-    100% {
-        transform: rotate(0deg);
-
-    }
-}
-@keyframes enemyCloseLeftAttack {
-    0% {
-        transform: rotate(0deg);
-    }
-    25% {
-        transform: rotate(10deg);
-
-    }
-    75% {
-        transform: rotate(10deg);
-
-    }
-    100% {
-        transform: rotate(0deg);
-
-    }
-}
-@keyframes enemyCloseRightAttack {
+@keyframes enemyAttackAnimation {
     0% {
         transform: rotate(0deg);
     }
@@ -930,4 +713,18 @@ body{
 .activeSide{
     border:2px solid deeppink;
     animation:borderPulse 2s infinite;
+}
+@media only screen and (min-width : 1595px) {
+    .info{
+        font-size:1em;
+    }
+    .armor{
+        font-size:2.5em;
+    }
+    .horn{
+        font-size:2.5em;
+    }
+    .hitPoints{
+        font-size:2.5em;
+    }
 }
