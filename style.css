@@ -181,23 +181,6 @@ body{
     align-items:center;
     z-index:5000;
 }
-.gameDesc{
-    width: 50%;
-    height: 100%;
-    color:white;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    font-size:1em;
-}
-.howToPlayDivs{
-    color:white;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    width:100%;
-    height:32%;
-}
 .lotrDesc {
     width: 50%;
     height: 80%;
@@ -213,7 +196,7 @@ body{
     width:90%;
     height:90%;
     background: rgba(0, 0, 0, 0.7);
-    z-index:101;
+    z-index:106;
     left: 50%;
     top:5%;
     -webkit-transform: translate(-50%, 0);
@@ -221,60 +204,10 @@ body{
     display:flex;
     justify-content:center;
     align-items:center;
-    flex-wrap:wrap;
-}
-.hpPic{
-    width: 15%;
-    height: 50%;
-    background-image:url(images/hp.png);
+    background-image:url(images/tutorial.png);
     background-repeat:no-repeat;
     background-size:100% 100%;
-    margin-right:2%;
-}
-.armorPic{
-    width: 35%;
-    height: 55%;
-    background-image:url(images/armor.png);
-    background-repeat:no-repeat;
-    background-size:100% 100%;
-    margin-right:2%;
-}
-.hornPic{
-    border:1px solid lightgrey;
-    width:100%;
-    height:100%;
-    background-image:url(images/2.png );
-    background-repeat:no-repeat;
-    background-size:100% 100%;
-    margin-right:2%;
-
-}
-.healerPic{
-    border:1px solid lightgrey;
-    width: 30%;
-    height: 100%;
-    background-image:url(images/1.png);
-    background-repeat:no-repeat;
-    background-size:100% 100%;
-    margin-right:2%;
-}
-.nazgulPic{
-    border:1px solid lightgrey;
-    width: 80%;
-    height: 100%;;
-    background-image:url(images/3.png);
-    background-repeat:no-repeat;
-    background-size:100% 100%;
-    margin-right:2%;
-}
-.enemiesPic{
-    border:1px solid lightgrey;
-    width: 70%;
-    height: 100%;
-    background-image:url(images/hill-troll.png);
-    background-repeat:no-repeat;
-    background-size:100% 100%;
-    margin-right:2%;
+    border: 4px solid white;
 }
 .exitAbout{
     display:flex;
@@ -415,9 +348,7 @@ body{
     justify-content:center;
     font-size:0.6em;
 }
-.hornDesc{
-    font-size:1em;
-}
+
 .horn{
     background-image:url(images/horn.png );
     background-repeat:no-repeat;
