@@ -1,10 +1,11 @@
 $(document).ready(function() {
-    function startNewGame(){
-       game = new Game();
-       game.setUpGame();
-    }
     startNewGame();
 });
+function startNewGame(){
+    game = {};
+    game = new Game();
+    game.setUpGame();
+}
 //Class Game. Contains all gameplay elements
 var Game = function(){
     this.leftCards = [];
@@ -16,8 +17,8 @@ var Game = function(){
     this.rightCard = false;
     this.correctMatch = 0;
     this.incorrectMatch = 0;
-    this.playerHp = 20;
-    this.playerArmor = 10;
+    this.playerHp = 1;
+    this.playerArmor = 0;
     this.testIfMatch= true;
     this.goblinLeft = false;
     this.goblinRight = false;
@@ -27,6 +28,8 @@ var Game = function(){
     this.trollRight = false;
     this.nazgul = false;
     this.hornActivated = false;
+    this.audioPlaying = false;
+    this.audioNotPlaying = false;
 };
 //Creating Card Class
 var Card = function(id) {
@@ -94,6 +97,7 @@ Game.prototype.cardDefault = function(){
 Game.prototype.checkMatch = function(card, side, opposite){
     var self = this;
     var $card = $(card);
+    self.victoryDefeat();
     self.amountClicked++;
     $card.toggleClass('flipCard');
     $("." + side + "Card").addClass("inactive");
@@ -111,6 +115,7 @@ Game.prototype.checkMatch = function(card, side, opposite){
         if(self.checkCards[0].css('background-image') === self.checkCards[1].css('background-image') && self.checkCards[1].hasClass('card-1')){
             //Dwarven Healer Card
             $(".card-1").removeClass("activeSide");
+            self.victoryDefeat();
             self.testIfMatch = true;
             self.playerHp +=8;
             self.correctMatch +=1;
@@ -123,6 +128,7 @@ Game.prototype.checkMatch = function(card, side, opposite){
         //Nazgul Card
         if(self.checkCards[0].css('background-image') === self.checkCards[1].css('background-image') && self.checkCards[1].hasClass('card-3')){
             $(".card-3").removeClass("activeSide");
+            self.victoryDefeat();
             self.testIfMatch = true;
             self.correctMatch +=1;
             console.log(self.playerHp);
@@ -135,6 +141,7 @@ Game.prototype.checkMatch = function(card, side, opposite){
         }
         //Summon Rohan Card
         if(self.checkCards[0].css('background-image') === self.checkCards[1].css('background-image') && self.checkCards[1].hasClass('card-2')){
+            self.victoryDefeat();
             $(".card-2").removeClass("activeSide");
             self.testIfMatch = true;
             self.correctMatch +=1;
@@ -147,6 +154,7 @@ Game.prototype.checkMatch = function(card, side, opposite){
         }
         //Default card match
         if(self.checkCards[0].css('background-image') === self.checkCards[1].css('background-image')){
+            self.victoryDefeat();
             self.testIfMatch = true;
             self.checkCards[0].parent().css("pointer-events","none").removeClass("front leftCard rightCard activeSide").addClass("cardInactive");
             self.checkCards[1].parent().css("pointer-events","none").removeClass("front rightCard leftCard activeSide").addClass("cardInactive");
@@ -302,8 +310,8 @@ Game.prototype.victoryDefeat = function(){
     var self = this;
     if(self.playerHp <= 0){
         $(".defeat").addClass("animateDefeatVictory");
-        $(".leftCard").addClass("inactive");
-        $(".rightCard").addClass("inactive");
+        $(".leftSide").addClass("inactive");
+        $(".rightSide").addClass("inactive");
         $(".horn").addClass("inactive");
         console.log("you lose!");
         setTimeout(function () {
@@ -314,8 +322,8 @@ Game.prototype.victoryDefeat = function(){
     if (self.correctMatch == 12)
         {
             $(".victory").addClass("animateDefeatVictory");
-            $(".leftCard").addClass("inactive");
-            $(".rightCard").addClass("inactive");
+            $(".leftSide").addClass("inactive");
+            $(".rightSide").addClass("inactive");
             $(".horn").addClass("inactive");
             console.log("you win!");
             setTimeout(function () {
@@ -345,7 +353,7 @@ Game.prototype.addClickHandlers = function() {
     $('.soundButton').on('click',function(){
         $('.soundButton').toggleClass("unMute");
         var audio = document.getElementById('song');
-        console.log("audio unmuted");
+        console.log("audio unmuted from soundButtonClass");
         if(audio.muted === true){
             audio.muted = false;
         }
@@ -356,13 +364,14 @@ Game.prototype.addClickHandlers = function() {
     $('.soundButtonInGame').on('click',function(){
         $('.soundButtonInGame').toggleClass("unMuteInGame");
         var audio = document.getElementById('song');
-        console.log("audio unmuted");
+        console.log("audio unmuted from soundButtonInGame Class");
         if(audio.muted === true){
             audio.muted = false;
         }
         else{
             audio.muted = true;
         }
+
     });
     $('.exitIntroScreen').on('click',function(){
         $('.container').css("visibility",'visible');
@@ -419,12 +428,12 @@ Game.prototype.addClickHandlers = function() {
     });
     //Restart the game
     $(".playAgainButton").on('click',function(){
-        console.log("button clicked");
-        game  = {};
+        console.log("play again button clicked");
         $('.leftSide').html('');
         $('.rightSide').html('');
-        game = new Game();
-        game.setUpGame();
+        startNewGame();
+        $(".leftSide").removeClass("inactive");
+        $(".rightSide").removeClass("inactive");
         $(".victory").removeClass("animateDefeatVictory");
         $(".defeat").removeClass("animateDefeatVictory");
         $('.enemy').addClass('enemyInvisible');
