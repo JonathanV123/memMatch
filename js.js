@@ -1,8 +1,7 @@
 $(document).ready(function() {
-    startNewGame();
+    startGame();
 });
-function startNewGame(){
-    game = {};
+function startGame (){
     game = new Game();
     game.setUpGame();
 }
@@ -28,8 +27,6 @@ var Game = function(){
     this.trollRight = false;
     this.nazgul = false;
     this.hornActivated = false;
-    this.audioPlaying = false;
-    this.audioNotPlaying = false;
 };
 //Creating Card Class
 var Card = function(id) {
@@ -44,9 +41,19 @@ Game.prototype.setUpGame = function(){
   this.shuffleCards(this.rightCards);
   this.renderCards();
   this.addClickHandlers();
+  this.addClickHandlersToInfoBar();
   this.cardDefault();
   this.updateStats();
-  this.aboutPage();
+};
+Game.prototype.startAnotherGame = function(){
+    //This is an instance of game calling createCards and renderCards on THIS instance of Game
+    this.createCards(9);
+    this.shuffleCards(this.leftCards);
+    this.shuffleCards(this.rightCards);
+    this.renderCards();
+    this.addClickHandlers();
+    this.cardDefault();
+    this.updateStats();
 };
 //Creates a certain amount of cards based on cardCount parameter
 Game.prototype.createCards = function(cardCount) { //Review
@@ -103,7 +110,7 @@ Game.prototype.checkMatch = function(card, side, opposite){
     $("." + side + "Card").addClass("inactive");
     console.log($(card).children(":first"));
     self.accuracy++;
-    console.log(self.accuracy++ + 'is accuracy');
+    console.log(self.accuracy++ + ' is accuracy');
     self[side + 'Card'] = true;
     if(self[side + 'Card'] && !self[opposite + 'Card']){
         console.log(self.incorrectMatch +" "+" is incorrect Match Count");
@@ -332,23 +339,7 @@ Game.prototype.victoryDefeat = function(){
             }, 6000);
         }
 };
-//About section and tutorial
-Game.prototype.aboutPage = function(){
-    $(".about").on('click',function(){
-        $(".aboutPage").removeClass("enemyInvisible");
-    });$(".tutorial").on('click',function(){
-        $(".howToPlay").removeClass("enemyInvisible");
-    });
-
-    $(".exitAbout").on('click',function(){
-        $(".aboutPage").addClass("enemyInvisible");
-        $(".howToPlay").addClass("enemyInvisible");
-
-    })
-};
-//Add click handlers 
-Game.prototype.addClickHandlers = function() {
-    console.log('What is this: ', this);
+Game.prototype.addClickHandlersToInfoBar = function(){
     var self = this;
     $('.soundButton').on('click',function(){
         $('.soundButton').toggleClass("unMute");
@@ -371,25 +362,11 @@ Game.prototype.addClickHandlers = function() {
         else{
             audio.muted = true;
         }
-
     });
     $('.exitIntroScreen').on('click',function(){
         $('.container').css("visibility",'visible');
         $('.introScreen').css("display",'none');
     });
-    $('.leftCard').on('click', function () {
-        $(".leftCard").addClass("inactive").removeClass("activeSide");
-        $(".rightCard").addClass("activeSide");
-        self.enemyCombatPhase();
-        self.checkMatch(this, 'left', 'right');
-    });
-    $('.rightCard').on('click', function () {
-        $(".rightCard").addClass("inactive").removeClass("activeSide");
-        $(".leftCard").addClass("activeSide");
-        self.enemyCombatPhase();
-        self.checkMatch(this, 'right', 'left');
-    });
-
     $('.horn').on('click', function () {
         if(self.hornActivated == true){
             $(".rohan").addClass("chargeForward");
@@ -426,12 +403,40 @@ Game.prototype.addClickHandlers = function() {
             }
         }
     });
+    $(".about").on('click',function(){
+        console.log("About Opened");
+        $(".aboutPage").removeClass("enemyInvisible");
+    });$(".tutorial").on('click',function(){
+        console.log("How to play opened");
+        $(".howToPlay").removeClass("enemyInvisible");
+    });
+
+    $(".exitAbout").on('click',function(){
+        $(".aboutPage").addClass("enemyInvisible");
+        $(".howToPlay").addClass("enemyInvisible");
+    })
+};
+//Add click handlers to cards
+Game.prototype.addClickHandlers = function() {
+    console.log('What is this: ', this);
+    var self = this;
+    $('.leftCard').on('click', function () {
+        $(".leftCard").addClass("inactive").removeClass("activeSide");
+        $(".rightCard").addClass("activeSide");
+        self.enemyCombatPhase();
+        self.checkMatch(this, 'left', 'right');
+    });
+    $('.rightCard').on('click', function () {
+        $(".rightCard").addClass("inactive").removeClass("activeSide");
+        $(".leftCard").addClass("activeSide");
+        self.enemyCombatPhase();
+        self.checkMatch(this, 'right', 'left');
+    });
     //Restart the game
     $(".playAgainButton").on('click',function(){
         console.log("play again button clicked");
         $('.leftSide').html('');
         $('.rightSide').html('');
-        startNewGame();
         $(".leftSide").removeClass("inactive");
         $(".rightSide").removeClass("inactive");
         $(".victory").removeClass("animateDefeatVictory");
@@ -444,5 +449,7 @@ Game.prototype.addClickHandlers = function() {
         for(i = 1; i < 8; i++){
             $(".enemy-" + i).removeClass("fadeOut");
         }
+        game = new Game();
+        game.startAnotherGame();
     });
 };
