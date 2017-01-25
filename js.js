@@ -15,7 +15,7 @@ var Game = function(){
     this.leftCard = false;
     this.rightCard = false;
     this.correctMatch = 0;
-    this.incorrectMatch = 0;
+    this.incorrectMatchCount = 0;
     this.playerHp = 1;
     this.playerArmor = 0;
     this.testIfMatch= true;
@@ -44,16 +44,6 @@ Game.prototype.setUpGame = function(){
   this.addClickHandlersToInfoBar();
   this.cardDefault();
   this.updateStats();
-};
-Game.prototype.startAnotherGame = function(){
-    //This is an instance of game calling createCards and renderCards on THIS instance of Game
-    this.createCards(9);
-    this.shuffleCards(this.leftCards);
-    this.shuffleCards(this.rightCards);
-    this.renderCards();
-    this.addClickHandlers();
-    this.cardDefault();
-    this.updateStats();
 };
 //Creates a certain amount of cards based on cardCount parameter
 Game.prototype.createCards = function(cardCount) { //Review
@@ -113,8 +103,8 @@ Game.prototype.checkMatch = function(card, side, opposite){
     console.log(self.accuracy++ + ' is accuracy');
     self[side + 'Card'] = true;
     if(self[side + 'Card'] && !self[opposite + 'Card']){
-        console.log(self.incorrectMatch +" "+" is incorrect Match Count");
-        self.incorrectMatch += 2;
+        console.log(self.incorrectMatchCount +" "+" is incorrect Match Count");
+        self.incorrectMatchCount += 2;
         self.checkCards.push($card.children(":first"));
     }
     else {
@@ -129,7 +119,7 @@ Game.prototype.checkMatch = function(card, side, opposite){
             console.log(self.playerHp);
             self.leftCard = false;
             self.rightCard = false;
-            self.incorrectMatch -=2;
+            self.incorrectMatchCount -=2;
             self.dwarfHealerCard = true;
         }
         //Nazgul Card
@@ -141,7 +131,7 @@ Game.prototype.checkMatch = function(card, side, opposite){
             console.log(self.playerHp);
             self.leftCard = false;
             self.rightCard = false;
-            self.incorrectMatch -=2;
+            self.incorrectMatchCount -=2;
             $(".enemy-4").removeClass("enemyInvisible").addClass("midAttackAnimation");
             self.nazgul = true;
             self.nazgulCard = true;
@@ -155,7 +145,7 @@ Game.prototype.checkMatch = function(card, side, opposite){
             console.log(self.playerHp);
             self.leftCard = false;
             self.rightCard = false;
-            self.incorrectMatch -=2;
+            self.incorrectMatchCount -=2;
             $(".horn").addClass("hornPulseAnimation");
             self.hornActivated = true;
         }
@@ -168,7 +158,7 @@ Game.prototype.checkMatch = function(card, side, opposite){
             self.correctMatch +=1;
             self.leftCard = false;
             self.rightCard = false;
-            self.incorrectMatch -=2;
+            self.incorrectMatchCount -=2;
             $(".leftCard").removeClass("inactive");
             $(".rightCard").removeClass("inactive");
         } else {
@@ -188,36 +178,36 @@ Game.prototype.checkMatch = function(card, side, opposite){
 //Spawns enemies based on incorrect match count
 Game.prototype.enemySpawn = function(){
     var self = this;
-    console.log(self.incorrectMatch);
-    if(self.leftCard == true && self.rightCard == true && self.testIfMatch == false && self.incorrectMatch === 2){
+    console.log(self.incorrectMatchCount);
+    if(self.leftCard == true && self.rightCard == true && self.testIfMatch == false && self.incorrectMatchCount === 2){
         $(".enemy-1").removeClass("enemyInvisible fadeOut");
         self.goblinLeft = true;
-        console.log(self.incorrectMatch + " " + "incorrect Match spawning enemy");
+        console.log(self.incorrectMatchCount + " " + "incorrect Match spawning enemy");
     }
-    if(self.leftCard == true && self.rightCard == true && self.testIfMatch == false && self.incorrectMatch  === 4){
+    if(self.leftCard == true && self.rightCard == true && self.testIfMatch == false && self.incorrectMatchCount  === 4){
         $(".enemy-2").removeClass("enemyInvisible fadeOut");
         self.goblinRight = true;
-        console.log(self.incorrectMatch + " " + "incorrect Match spawning enemy");
+        console.log(self.incorrectMatchCount + " " + "incorrect Match spawning enemy");
     }
-    if(self.leftCard == true && self.rightCard == true && self.testIfMatch == false && self.incorrectMatch  === 8){
+    if(self.leftCard == true && self.rightCard == true && self.testIfMatch == false && self.incorrectMatchCount  === 8){
         $(".enemy-3").removeClass("enemyInvisible fadeOut");
         self.hillTrollLeft = true;
-        console.log(self.incorrectMatch + " " + "incorrect Match spawning enemy");
+        console.log(self.incorrectMatchCount + " " + "incorrect Match spawning enemy");
     }
-    if(self.leftCard == true && self.rightCard == true && self.testIfMatch == false && self.incorrectMatch  === 12){
+    if(self.leftCard == true && self.rightCard == true && self.testIfMatch == false && self.incorrectMatchCount  === 12){
         $(".enemy-5").removeClass("enemyInvisible fadeOut");
         self.hillTrollRight = true;
-        console.log(self.incorrectMatch + " " + "incorrect Match spawning enemy");
+        console.log(self.incorrectMatchCount + " " + "incorrect Match spawning enemy");
     }
-    if(self.leftCard == true && self.rightCard == true && self.testIfMatch == false && self.incorrectMatch  === 16){
+    if(self.leftCard == true && self.rightCard == true && self.testIfMatch == false && self.incorrectMatchCount  === 16){
         $(".enemy-6").removeClass("enemyInvisible fadeOut");
         self.urukHai = true;
-        console.log(self.incorrectMatch + " " + "incorrect Match spawning enemy");
+        console.log(self.incorrectMatchCount + " " + "incorrect Match spawning enemy");
     }
-    if(self.leftCard == true && self.rightCard == true && self.testIfMatch == false && self.incorrectMatch  === 20){
+    if(self.leftCard == true && self.rightCard == true && self.testIfMatch == false && self.incorrectMatchCount  === 20){
         $(".enemy-7").removeClass("enemyInvisible fadeOut");
         self.trollRight = true;
-        console.log(self.incorrectMatch + " " + "incorrect Match spawning enemy");
+        console.log(self.incorrectMatchCount + " " + "incorrect Match spawning enemy");
     }
 };
 //Enemy attack function that enables when an enemy boolean becomes true
@@ -352,7 +342,7 @@ Game.prototype.addClickHandlersToInfoBar = function(){
             audio.muted = true;
         }
     });
-    $('.soundButtonInGame').on('click',function(){
+    $('.soundButtonInGame').on('click', function(){
         $('.soundButtonInGame').toggleClass("unMuteInGame");
         var audio = document.getElementById('song');
         console.log("audio unmuted from soundButtonInGame Class");
@@ -444,12 +434,13 @@ Game.prototype.addClickHandlers = function() {
         $('.enemy').addClass('enemyInvisible');
         $(".restartGame").addClass("enemyInvisible");
         $(".playAgainButton").addClass("enemyInvisible");
-        $(".rohan").removeClass("chargeForward");
+        $(".rohan").removeClass("charghornPulseAnimationeForward");
         $(".horn").removeClass("hornPulseAnimation");
         for(i = 1; i < 8; i++){
             $(".enemy-" + i).removeClass("fadeOut");
         }
+        $("body").find("*").off();
         game = new Game();
-        game.startAnotherGame();
+        game.setUpGame();
     });
 };
