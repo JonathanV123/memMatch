@@ -27,6 +27,33 @@ var Game = function(){
     this.trollRight = false;
     this.nazgul = false;
     this.hornActivated = false;
+    this.enemies = {
+        2: {
+            className: '.enemy-1',
+            name: 'goblinLeft'
+        },
+        4: {
+            className: '.enemy-2',
+            name: 'goblinRight'
+        },
+        8: {
+            className: '.enemy-3',
+            name: "hillTrollLeft"
+        },
+        12: {
+            className: '.enemy-5',
+            name: '"hillTrollRight"'
+        },
+        16: {
+            className: '.enemy-6',
+            name: 'urukHai'
+        },
+        20: {
+            className: '.enemy-7',
+            name: 'trollRight'
+        }
+
+    };
 };
 //Creating Card Class
 var Card = function(id) {
@@ -175,39 +202,18 @@ Game.prototype.checkMatch = function(card, side, opposite){
     self.updateStats();
     self.victoryDefeat();
 };
+
+Game.prototype.activateEnemy = function(incorrectMatchCount) {
+    var enemy = this.enemies[incorrectMatchCount];
+    if (enemy){
+        $(enemy.className).removeClass("enemyInvisible fadeOut");
+        this[enemy.name] = true;
+    }
+};
 //Spawns enemies based on incorrect match count
 Game.prototype.enemySpawn = function(){
-    var self = this;
-    console.log(self.incorrectMatchCount);
-    if(self.leftCard == true && self.rightCard == true && self.testIfMatch == false && self.incorrectMatchCount === 2){
-        $(".enemy-1").removeClass("enemyInvisible fadeOut");
-        self.goblinLeft = true;
-        console.log(self.incorrectMatchCount + " " + "incorrect Match spawning enemy");
-    }
-    if(self.leftCard == true && self.rightCard == true && self.testIfMatch == false && self.incorrectMatchCount  === 4){
-        $(".enemy-2").removeClass("enemyInvisible fadeOut");
-        self.goblinRight = true;
-        console.log(self.incorrectMatchCount + " " + "incorrect Match spawning enemy");
-    }
-    if(self.leftCard == true && self.rightCard == true && self.testIfMatch == false && self.incorrectMatchCount  === 8){
-        $(".enemy-3").removeClass("enemyInvisible fadeOut");
-        self.hillTrollLeft = true;
-        console.log(self.incorrectMatchCount + " " + "incorrect Match spawning enemy");
-    }
-    if(self.leftCard == true && self.rightCard == true && self.testIfMatch == false && self.incorrectMatchCount  === 12){
-        $(".enemy-5").removeClass("enemyInvisible fadeOut");
-        self.hillTrollRight = true;
-        console.log(self.incorrectMatchCount + " " + "incorrect Match spawning enemy");
-    }
-    if(self.leftCard == true && self.rightCard == true && self.testIfMatch == false && self.incorrectMatchCount  === 16){
-        $(".enemy-6").removeClass("enemyInvisible fadeOut");
-        self.urukHai = true;
-        console.log(self.incorrectMatchCount + " " + "incorrect Match spawning enemy");
-    }
-    if(self.leftCard == true && self.rightCard == true && self.testIfMatch == false && self.incorrectMatchCount  === 20){
-        $(".enemy-7").removeClass("enemyInvisible fadeOut");
-        self.trollRight = true;
-        console.log(self.incorrectMatchCount + " " + "incorrect Match spawning enemy");
+    if (this.leftCard == true && this.rightCard == true && this.testIfMatch == false) {
+        this.activateEnemy(this.incorrectMatchCount);
     }
 };
 //Enemy attack function that enables when an enemy boolean becomes true
@@ -361,7 +367,8 @@ Game.prototype.addClickHandlersToInfoBar = function(){
         if(self.hornActivated == true){
             $(".rohan").addClass("chargeForward");
             $(".horn").removeClass("hornPulseAnimation");
-            if(self.hornActived = true){
+            if(self.hornActived = true ){
+                // this.activatedEnmies.each()delete activated enemy and add fadeout class
                 if(self.goblinLeft == true){
                     self.goblinLeft = false;
                     $(".enemy-1").addClass("fadeOut");
