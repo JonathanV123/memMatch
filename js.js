@@ -10,12 +10,13 @@ var Game = function(){
     this.leftCards = [];
     this.rightCards = [];
     this.checkCards = [];
+    this.attackSequenceArray = [];
     this.amountClicked= 0;
     this.leftCard = false;
     this.rightCard = false;
     this.correctMatch = 0;
     this.incorrectMatchCount = 0;
-    this.playerHp = 1;
+    this.playerHp = 100;
     this.playerArmor = 0;
     this.testIfMatch= true;
     this.goblinLeft = false;
@@ -30,27 +31,36 @@ var Game = function(){
     this.enemies = {
         2: {
             className: '.enemy-1',
-            name: 'goblinLeft'
+            name: 'goblinLeft',
+            attackStrength: 1
         },
         4: {
             className: '.enemy-2',
-            name: 'goblinRight'
+            name: 'goblinRight',
+            attackStrength: 1,
         },
         8: {
             className: '.enemy-3',
-            name: "hillTrollLeft"
+            name: "hillTrollLeft",
+            attackStrength: 2,
         },
         12: {
             className: '.enemy-5',
-            name: '"hillTrollRight"'
+            name: '"hillTrollRight"',
+            attackStrength: 2,
+
         },
         16: {
             className: '.enemy-6',
-            name: 'urukHai'
+            name: 'urukHai',
+            attackStrength: 2,
+
         },
         20: {
             className: '.enemy-7',
-            name: 'trollRight'
+            name: 'trollRight',
+            attackStrength: 2,
+
         }
 
     };
@@ -64,7 +74,8 @@ var Game = function(){
 
             },
             nazgulCard:{
-                activateAblity:'nazgul'
+                activateAblity:'nazgul',
+                attackStrength: 2
             },
 
     };
@@ -241,10 +252,18 @@ Game.prototype.checkMatch = function(card, side, opposite){
 };
 
 Game.prototype.activateEnemy = function(incorrectMatchCount) {
+    var self = this;
     var enemy = this.enemies[incorrectMatchCount];
     if (enemy){
         $(enemy.className).removeClass("enemyInvisible fadeOut");
         this[enemy.name] = true;
+        if(this[enemy.name] == true) {
+            $([enemy.className]).removeClass("enemyAttack");
+            setTimeout(function () {
+                self.attackFunction(enemy.className,"enemyAttack",enemy.attackStrength);
+
+            }, 500);
+        }
     }
 };
 //Spawns enemies based on incorrect match count
@@ -254,61 +273,66 @@ Game.prototype.enemySpawn = function(){
     }
 };
 //Enemy attack function that enables when an enemy boolean becomes true
-Game.prototype.enemyCombatPhase = function(){
-       var self = this;
-        if(this.leftCard == true && this.rightCard == true && this.testIfMatch == false){
-           if(self.goblinLeft == true) {
-               $(".enemy-1").removeClass("enemyAttack");
-               setTimeout(function () {
-                   self.attackFunction(".enemy-1","enemyAttack",1);
-                   console.log("Goblin Top Left Summoned")
-               }, 500);
-           }
-            if(self.goblinRight == true) {
-                $(".enemy-2").removeClass("enemyAttack");
-                setTimeout(function () {
-                    self.attackFunction(".enemy-2","enemyAttack",1);
-                    console.log("Goblin Top Right Summoned")
-                }, 500);
-            }
-            if(self.hillTrollLeft == true) {
-                $(".enemy-3").removeClass("enemyAttack");
-                setTimeout(function () {
-                    self.attackFunction(".enemy-3","enemyAttack",2);
-                    console.log("Hill-Troll Left Summoned")
-                }, 500);
-            }
-            if(self.hillTrollRight == true) {
-                $(".enemy-5").removeClass("enemyAttack");
-                setTimeout(function () {
-                    self.attackFunction(".enemy-5","enemyAttack",2);
-                    console.log("Hill-Troll Right Summoned")
-                }, 500);
-            }
-            if(self.urukHai == true) {
-                $(".enemy-6").removeClass("enemyAttack");
-                setTimeout(function () {
-                    self.attackFunction(".enemy-6","enemyAttack",2);
-                    console.log("Uruk-Hai Bottom Left Summoned")
-                }, 500);
-            }
-            if(self.trollRight == true) {
-                $(".enemy-7").removeClass("enemyAttack");
-                setTimeout(function () {
-                    self.attackFunction(".enemy-7","enemyAttack",2);
-                    console.log("Troll Bottom Right Summoned")
-                }, 500);
-            }
-            if(self.nazgul == true) {
-                $(".enemy-4").removeClass("enemyStandingMiddleAttackAnimation");
-                setTimeout(function () {
-                    self.attackFunction(".enemy-4","enemyStandingMiddleAttackAnimation",4);
-                    console.log("Nazgul Middle Summoned")
-                }, 500);
-            }
-           console.log(this.playerHp + " " + "is current HP");
-       }
-};
+Game.prototype.enemyCombatPhase = function() {
+    for (var i in this.enemies) {
+        if (this.enemies.name === true) {
+            this.attackFunction(this.enemies.name, "enemyAttack", this.enemies.attackStrength)
+        }
+    }
+}
+    // var self = this;
+       //  if(this.leftCard == true && this.rightCard == true && this.testIfMatch == false){
+       //     if(self.goblinLeft == true) {
+       //         $(".enemy-1").removeClass("enemyAttack");
+       //         setTimeout(function () {
+       //             self.attackFunction(".enemy-1","enemyAttack",1);
+       //             console.log("Goblin Top Left Summoned")
+       //         }, 500);
+       //     }
+       //      if(self.goblinRight == true) {
+       //          $(".enemy-2").removeClass("enemyAttack");
+       //          setTimeout(function () {
+       //              self.attackFunction(".enemy-2","enemyAttack",1);
+       //              console.log("Goblin Top Right Summoned")
+       //          }, 500);
+       //      }
+       //      if(self.hillTrollLeft == true) {
+       //          $(".enemy-3").removeClass("enemyAttack");
+       //          setTimeout(function () {
+       //              self.attackFunction(".enemy-3","enemyAttack",2);
+       //              console.log("Hill-Troll Left Summoned")
+       //          }, 500);
+       //      }
+       //      if(self.hillTrollRight == true) {
+       //          $(".enemy-5").removeClass("enemyAttack");
+       //          setTimeout(function () {
+       //              self.attackFunction(".enemy-5","enemyAttack",2);
+       //              console.log("Hill-Troll Right Summoned")
+       //          }, 500);
+       //      }
+       //      if(self.urukHai == true) {
+       //          $(".enemy-6").removeClass("enemyAttack");
+       //          setTimeout(function () {
+       //              self.attackFunction(".enemy-6","enemyAttack",2);
+       //              console.log("Uruk-Hai Bottom Left Summoned")
+       //          }, 500);
+       //      }
+       //      if(self.trollRight == true) {
+       //          $(".enemy-7").removeClass("enemyAttack");
+       //          setTimeout(function () {
+       //              self.attackFunction(".enemy-7","enemyAttack",2);
+       //              console.log("Troll Bottom Right Summoned")
+       //          }, 500);
+       //      }
+       //      if(self.nazgul == true) {
+       //          $(".enemy-4").removeClass("enemyStandingMiddleAttackAnimation");
+       //          setTimeout(function () {
+       //              self.attackFunction(".enemy-4","enemyStandingMiddleAttackAnimation",4);
+       //              console.log("Nazgul Middle Summoned")
+       //          }, 500);
+       //      }
+       //     console.log(this.playerHp + " " + "is current HP");
+       // }
 //Update game stats. Hit points and Armor
 Game.prototype.updateStats = function(){
     $(".hitPoints").html(this.playerHp);
