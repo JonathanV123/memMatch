@@ -10,7 +10,6 @@ var Game = function(){
     this.leftCards = [];
     this.rightCards = [];
     this.checkCards = [];
-    this.accuracy = 0;
     this.amountClicked= 0;
     this.leftCard = false;
     this.rightCard = false;
@@ -27,6 +26,7 @@ var Game = function(){
     this.trollRight = false;
     this.nazgul = false;
     this.hornActivated = false;
+    this.healerActivated = false;
     this.enemies = {
         2: {
             className: '.enemy-1',
@@ -54,6 +54,41 @@ var Game = function(){
         }
 
     };
+    this.specialCards = {
+            dwarfCard:{
+                activateAblity:'healerActivated'
+
+            },
+            hornCard:{
+                activateAblity:'hornActivated'
+
+            },
+            nazgulCard:{
+                activateAblity:'nazgul'
+            },
+
+    };
+        this.normalCards = {
+            boromir:{
+                className:'card-4',
+            },
+            eomer:{
+                className:'card-5',
+            },
+            frodo:{
+                className:'card-6',
+            },
+            gandalf:{
+                className:'card-7',
+            },
+            sarumon:{
+                className:'card-8',
+            },
+            treeBeard:{
+                className:'card-9',
+            },
+
+        }
 };
 //Creating Card Class
 var Card = function(id) {
@@ -68,6 +103,7 @@ Game.prototype.setUpGame = function(){
   this.shuffleCards(this.rightCards);
   this.renderCards();
   this.addClickHandlers();
+  this.addDataToHtml();
   this.addClickHandlersToInfoBar();
   this.cardDefault();
   this.updateStats();
@@ -98,10 +134,21 @@ Game.prototype.renderCard = function(card, boardSide) {
     var cardHtml = '<div class="gameCard ' + boardSide + 'Card"><div class = "front card-' + card.id + '"></div><div' + ' class' +
         ' =' + ' "back"></div></div>';
     var cardElement = $(cardHtml);
-
     $("." + boardSide + "Side").append(cardElement);
     card.domElement = cardElement;
-}
+};
+Game.prototype.addDataToHtml = function(){
+    $(".card-1").attr("data-specialCard","dwarfCard");
+    $(".card-2").attr("data-specialCard","hornCard");
+    $(".card-3").attr("data-specialCard","nazgulCard");
+    $(".card-4").attr("data-specialCard","4");
+    $(".card-5").attr("data-specialCard","5");
+    $(".card-6").attr("data-specialCard","6");
+    $(".card-7").attr("data-specialCard","7");
+    $(".card-8").attr("data-specialCard","8");
+    $(".card-9").attr("data-specialCard","9");
+
+};
 //Render the cards by looping through and dynamically creating the HTML element then appending
 Game.prototype.renderCards = function() {
     var game = this;
@@ -126,14 +173,21 @@ Game.prototype.cardDefault = function(){
 };
 
 Game.prototype.handleCardMatch = function() {
-    self.leftCard = false;
-    self.rightCard = false;
-    self.incorrectMatchCount -=2;
-    self.testIfMatch = true;
-    self.correctMatch +=1;
+    this.leftCard = false;
+    this.rightCard = false;
+    this.incorrectMatchCount -=2;
+    this.testIfMatch = true;
+    this.correctMatch +=1;
 
 };
+Game.prototype.specialCardActivation = function(cardName){
+    var activateSpecialCard = this.specialCards[cardName];
+    if(activateSpecialCard){
+        this[activateSpecialCard.activateAblity] = true;
+    }
+};
 Game.prototype.isMatch = function(side, opposite) {
+    console.log(this[side + 'Card'] && this[opposite + 'Card']);
     return this[side + 'Card'] && !this[opposite + 'Card'];
 };
 //Checks if card is a match. Also contains match conditions for special cards
@@ -144,41 +198,27 @@ Game.prototype.checkMatch = function(card, side, opposite){
     $card.toggleClass('flipCard');
     $("." + side + "Card").addClass("inactive");
     console.log($(card).children(":first"));
-    self.accuracy++;
-    console.log(self.accuracy++ + ' is accuracy');
     self[side + 'Card'] = true;
-    if(this.isMatch(side, opposite)){
+    if(self.isMatch(side, opposite)){
         console.log(self.incorrectMatchCount +" "+" is incorrect Match Count");
-        self.incorrectMatchCount += 2;
         self.checkCards.push($card.children(":first"));
     }
     else {
         self.checkCards.push($card.children(":first"));
-        if(self.checkCards[0].css('background-image') === self.checkCards[1].css('background-image') && self.checkCards[1].hasClass('card-1')){
-            //Dwarven Healer Card
-            $(".card-1").removeClass("activeSide");
-            self.playerHp +=8;
-            self.handleCardMatch();
-            self.dwarfHealerCard = true;
-        }
-        //Nazgul Card
-        if(self.checkCards[0].css('background-image') === self.checkCards[1].css('background-image') && self.checkCards[1].hasClass('card-3')){
-            $(".card-3").removeClass("activeSide");
-            console.log(self.playerHp);
-            self.handleCardMatch();
-            $(".enemy-4").removeClass("enemyInvisible").addClass("midAttackAnimation");
-            self.nazgul = true;
-        }
-        //Summon Rohan Card
-        if(self.checkCards[0].css('background-image') === self.checkCards[1].css('background-image') && self.checkCards[1].hasClass('card-2')){
-            $(".card-2").removeClass("activeSide");
-            console.log(self.playerHp);
-            self.handleCardMatch();
-            $(".horn").addClass("hornPulseAnimation");
-            self.hornActivated = true;
-        }
-        //Default card match
-        if(self.checkCards[0].css('background-image') === self.checkCards[1].css('background-image')){
+        if(self.checkCards[0][0].dataset.specialcard === self.checkCards[1][0].dataset.specialcard){
+            self.specialCardActivation(self.checkCards[0][0].dataset.specialcard);
+            if(self.healerActivated === true){
+                self.playerHp +=8;
+                $(".card-1").removeClass("activeSide");
+            }
+            if(self.hornActivated === true){
+                $(".card-2").removeClass("activeSide");
+                $(".horn").addClass("hornPulseAnimation");
+            }
+            if(self.nazgul === true){
+                $(".card-3").removeClass("activeSide");
+                $(".enemy-4").removeClass("enemyInvisible").addClass("midAttackAnimation");
+            }
             self.checkCards[0].parent().css("pointer-events","none").removeClass("front leftCard rightCard activeSide").addClass("cardInactive");
             self.checkCards[1].parent().css("pointer-events","none").removeClass("front rightCard leftCard activeSide").addClass("cardInactive");
             self.handleCardMatch();
@@ -188,6 +228,7 @@ Game.prototype.checkMatch = function(card, side, opposite){
             //If no match set cards back to default after .9 seconds
             $(".leftCard").addClass("inactive");
             $(".rightCard").addClass("inactive");
+            self.incorrectMatchCount += 2;
             setTimeout(self.cardDefault.bind(self),900);
         }
         //Clear checkCards
