@@ -10,7 +10,6 @@ var Game = function(){
     this.leftCards = [];
     this.rightCards = [];
     this.checkCards = [];
-    this.attackSequenceArray = [];
     this.amountClicked= 0;
     this.leftCard = false;
     this.rightCard = false;
@@ -32,37 +31,39 @@ var Game = function(){
         2: {
             className: '.enemy-1',
             name: 'goblinLeft',
-            attackStrength: 1
+            attackStrength: 1,
+            inPlay: false
         },
         4: {
             className: '.enemy-2',
             name: 'goblinRight',
             attackStrength: 1,
+            inPlay: false
         },
         8: {
             className: '.enemy-3',
             name: "hillTrollLeft",
             attackStrength: 2,
+            inPlay: false
         },
         12: {
             className: '.enemy-5',
             name: '"hillTrollRight"',
             attackStrength: 2,
-
+            inPlay: false
         },
         16: {
             className: '.enemy-6',
             name: 'urukHai',
             attackStrength: 2,
-
+            inPlay: false
         },
         20: {
             className: '.enemy-7',
             name: 'trollRight',
             attackStrength: 2,
-
+            inPlay: false
         }
-
     };
     this.specialCards = {
             dwarfCard:{
@@ -186,7 +187,6 @@ Game.prototype.cardDefault = function(){
 Game.prototype.handleCardMatch = function() {
     this.leftCard = false;
     this.rightCard = false;
-    this.incorrectMatchCount -=2;
     this.testIfMatch = true;
     this.correctMatch +=1;
 
@@ -246,7 +246,7 @@ Game.prototype.checkMatch = function(card, side, opposite){
         self.checkCards = [];
     }
     self.enemySpawn();
-    self.enemyCombatPhase();
+    self.enemyCombatPhase(this.incorrectMatchCount);
     self.updateStats();
     self.victoryDefeat();
 };
@@ -257,11 +257,11 @@ Game.prototype.activateEnemy = function(incorrectMatchCount) {
     if (enemy){
         $(enemy.className).removeClass("enemyInvisible fadeOut");
         this[enemy.name] = true;
+        this.enemies[incorrectMatchCount].inPlay = true;
         if(this[enemy.name] == true) {
             $([enemy.className]).removeClass("enemyAttack");
             setTimeout(function () {
                 self.attackFunction(enemy.className,"enemyAttack",enemy.attackStrength);
-
             }, 500);
         }
     }
@@ -273,13 +273,14 @@ Game.prototype.enemySpawn = function(){
     }
 };
 //Enemy attack function that enables when an enemy boolean becomes true
-Game.prototype.enemyCombatPhase = function() {
-    for (var i in this.enemies) {
-        if (this.enemies.name === true) {
-            this.attackFunction(this.enemies.name, "enemyAttack", this.enemies.attackStrength)
+Game.prototype.enemyCombatPhase = function(incorrectMatchCount) {
+    var self = this;
+    for(key in self.enemies){
+        if(self.enemies[incorrectMatchCount].inPlay === true){
+            console.log("is true")
         }
     }
-}
+};
     // var self = this;
        //  if(this.leftCard == true && this.rightCard == true && this.testIfMatch == false){
        //     if(self.goblinLeft == true) {
@@ -481,13 +482,11 @@ Game.prototype.addClickHandlers = function() {
     $('.leftCard').on('click', function () {
         $(".leftCard").addClass("inactive").removeClass("activeSide");
         $(".rightCard").addClass("activeSide");
-        self.enemyCombatPhase();
         self.checkMatch(this, 'left', 'right');
     });
     $('.rightCard').on('click', function () {
         $(".rightCard").addClass("inactive").removeClass("activeSide");
         $(".leftCard").addClass("activeSide");
-        self.enemyCombatPhase();
         self.checkMatch(this, 'right', 'left');
     });
     //Restart the game
