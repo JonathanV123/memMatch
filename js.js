@@ -15,8 +15,8 @@ var Game = function(){
     this.rightCard = false;
     this.correctMatch = 0;
     this.incorrectMatchCount = 0;
-    this.playerHp = 100;
-    this.playerArmor = 10;
+    this.playerHp = 1;
+    this.playerArmor = 0;
     this.testIfMatch= true;
     this.hornActivated = false;
     this.healerActivated = false;
@@ -270,6 +270,9 @@ Game.prototype.attack = function(enemyCardClass, damage){
         }
         else{
             self.playerHp -= damage;
+            if(self.playerHp < 0){
+                self.playerHp = 0;
+            }
         }
         self.updateStats();
         self.animateHpAndArmor();

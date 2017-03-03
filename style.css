@@ -171,13 +171,17 @@ body{
     justify-content:center;
     align-items:center;
     flex-direction:column;
-    border:5px double white;
+    border:5px double grey;
     font-family:'lotrFont',sans-serif;
+    background-image:url(images/ringNewGame.jpg);
+    background-repeat:no-repeat;
+    background-size:100% 100%;
 }
 .playAgainButton{
     width:25%;
     height:25%;
     border:2px double white;
+    background: rgba(0, 0, 0, 0.5);
     color:white;
     font-size:0.7em;
     display:flex;
