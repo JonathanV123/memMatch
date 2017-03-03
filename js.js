@@ -18,56 +18,42 @@ var Game = function(){
     this.playerHp = 100;
     this.playerArmor = 10;
     this.testIfMatch= true;
-    this.goblinLeft = false;
-    this.goblinRight = false;
-    this.hillTrollLeft = false;
-    this.hillTrollRight = false;
-    this.urukHai = false;
-    this.trollRight = false;
-    this.nazgul = false;
     this.hornActivated = false;
     this.healerActivated = false;
     this.attackClass = "enemyAttack";
     this.enemies = {
         2: {
             className: '.enemy-1',
-            name: 'goblinLeft',
             attackStrength: 11,
             inPlay: false
         },
         4: {
             className: '.enemy-2',
-            name: 'goblinRight',
             attackStrength: 1,
             inPlay: false
         },
         8: {
             className: '.enemy-3',
-            name: "hillTrollLeft",
             attackStrength: 2,
             inPlay: false
         },
         12: {
             className: '.enemy-5',
-            name: "hillTrollRight",
             attackStrength: 2,
             inPlay: false
         },
         16: {
             className: '.enemy-6',
-            name: 'urukHai',
             attackStrength: 2,
             inPlay: false
         },
         20: {
             className: '.enemy-7',
-            name: 'trollRight',
             attackStrength: 2,
             inPlay: false
         },
         nazgulEnemy:{
             className: '.enemy-4',
-            name: 'nazgul',
             attackStrength: 4,
             inPlay: false
         },
@@ -86,27 +72,6 @@ var Game = function(){
             },
 
     };
-        this.normalCards = {
-            boromir:{
-                className:'card-4',
-            },
-            eomer:{
-                className:'card-5',
-            },
-            frodo:{
-                className:'card-6',
-            },
-            gandalf:{
-                className:'card-7',
-            },
-            sarumon:{
-                className:'card-8',
-            },
-            treeBeard:{
-                className:'card-9',
-            },
-
-        }
 };
 //Creating Card Class
 var Card = function(id) {
@@ -255,7 +220,7 @@ Game.prototype.checkMatch = function(card, side, opposite){
     }
     self.enemySpawn();
     self.updateStats();
-    self.victoryDefeat();
+    self.victoryDefeatConditions();
 };
 
 Game.prototype.activateEnemy = function(incorrectMatchCount) {
@@ -263,7 +228,6 @@ Game.prototype.activateEnemy = function(incorrectMatchCount) {
     var enemy = this.enemies[incorrectMatchCount];
     if (enemy){
         $(enemy.className).removeClass("enemyInvisible fadeOut");
-        this[enemy.name] = true;
         this.enemies[incorrectMatchCount].inPlay = true;
     }
 };
@@ -310,7 +274,7 @@ Game.prototype.attack = function(enemyCardClass, damage){
         self.updateStats();
         self.animateHpAndArmor();
         self.testIfMatch = false;
-        self.victoryDefeat();
+        self.victoryDefeatConditions();
     }, 500);
 
 };
@@ -330,7 +294,7 @@ Game.prototype.animateHpAndArmor = function(){
     }
 };
 //Win and Lose conditions
-Game.prototype.victoryDefeat = function(){
+Game.prototype.victoryDefeatConditions = function(){
     var self = this;
     if(self.playerHp <= 0){
         $(".defeat").addClass("animateDefeatVictory");
@@ -385,40 +349,16 @@ Game.prototype.addClickHandlersToInfoBar = function(){
         $('.introScreen').css("display",'none');
     });
     $('.horn').on('click', function () {
-        if(self.hornActivated == true){
+        if(self.hornActivated === true){
             $(".rohan").addClass("chargeForward");
             $(".horn").removeClass("hornPulseAnimation");
-            if(self.hornActived = true ){
-                // this.activatedEnmies.each()delete activated enemy and add fadeout class
-                if(self.enemies.goblinLeft.inPlay == true){
-                    self.enemies.goblinLeft.inPlay = false;
-                    $(".enemy-1").addClass("fadeOut");
+                for(var key in self.enemies){
+                    var theCurrentEnemy = self.enemies[key];
+                    if(theCurrentEnemy.inPlay === true){
+                        $(theCurrentEnemy.className).addClass("fadeOut");
+                        theCurrentEnemy.inPlay = false;
+                    }
                 }
-                if(self.goblinRight == true){
-                    self.goblinRight = false;
-                    $(".enemy-2").addClass("fadeOut");
-                }
-                if(self.hillTrollLeft == true){
-                    self.hillTrollLeft = false;
-                    $(".enemy-3").addClass("fadeOut");
-                }
-                if(self.hillTrollRight == true){
-                    self.hillTrollRight = false;
-                    $(".enemy-5").addClass("fadeOut");
-                }
-                if(self.urukHai == true){
-                    self.urukHai = false;
-                    $(".enemy-6").addClass("fadeOut");
-                }
-                if(self.trollRight == true){
-                    self.trollRight = false;
-                    $(".enemy-7").addClass("fadeOut");
-                }
-                if(self.nazgul == true){
-                    self.nazgul = false;
-                    $(".enemy-4").addClass("fadeOut");
-                }
-            }
         }
     });
     $(".about").on('click',function(){
