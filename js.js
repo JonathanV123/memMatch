@@ -16,7 +16,7 @@ var Game = function(){
     this.correctMatch = 0;
     this.incorrectMatchCount = 0;
     this.playerHp = 100;
-    this.playerArmor = 0;
+    this.playerArmor = 10;
     this.testIfMatch= true;
     this.goblinLeft = false;
     this.goblinRight = false;
@@ -32,7 +32,7 @@ var Game = function(){
         2: {
             className: '.enemy-1',
             name: 'goblinLeft',
-            attackStrength: 1,
+            attackStrength: 11,
             inPlay: false
         },
         4: {
@@ -83,7 +83,6 @@ var Game = function(){
             },
             nazgulCard:{
                 activateAblity:'nazgul',
-                attackStrength: 4
             },
 
     };
@@ -286,15 +285,6 @@ Game.prototype.enemyCombatPhase = function() {
         }
     }
 };
-       //      if(self.nazgul == true) {
-       //          $(".enemy-4").removeClass("enemyStandingMiddleAttackAnimation");
-       //          setTimeout(function () {
-       //              self.attack(".enemy-4","enemyStandingMiddleAttackAnimation",4);
-       //              console.log("Nazgul Middle Summoned")
-       //          }, 500);
-       //      }
-       //     console.log(this.playerHp + " " + "is current HP");
-       // }
 //Update game stats. Hit points and Armor
 Game.prototype.updateStats = function(){
     $(".hitPoints").html(this.playerHp);
@@ -307,10 +297,12 @@ Game.prototype.attack = function(enemyCardClass, damage){
     setTimeout(function () {
         $(enemyCardClass).addClass(self.attackClass);
         console.log("attacking for " + damage);
-        // TODO: pull reducing aror into function that won't let it go negative
-        // also this means player won't take damage if they takemore damage than they have armor
         if(self.playerArmor > 0){
             self.playerArmor -= damage;
+        }
+        if(self.playerArmor < 0){
+            self.playerHp = self.playerArmor += self.playerHp;
+            self.playerArmor =  0;
         }
         else{
             self.playerHp -= damage;
