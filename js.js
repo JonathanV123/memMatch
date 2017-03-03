@@ -49,7 +49,7 @@ var Game = function(){
         },
         12: {
             className: '.enemy-5',
-            name: '"hillTrollRight"',
+            name: "hillTrollRight",
             attackStrength: 2,
             inPlay: false
         },
@@ -64,7 +64,13 @@ var Game = function(){
             name: 'trollRight',
             attackStrength: 2,
             inPlay: false
-        }
+        },
+        nazgulEnemy:{
+            className: '.enemy-4',
+            name: 'nazgul',
+            attackStrength: 4,
+            inPlay: false
+        },
     };
     this.specialCards = {
             dwarfCard:{
@@ -77,7 +83,7 @@ var Game = function(){
             },
             nazgulCard:{
                 activateAblity:'nazgul',
-                attackStrength: 2
+                attackStrength: 4
             },
 
     };
@@ -230,6 +236,7 @@ Game.prototype.checkMatch = function(card, side, opposite){
             if(self.nazgul === true){
                 $(".card-3").removeClass("activeSide");
                 $(".enemy-4").removeClass("enemyInvisible").addClass("midAttackAnimation");
+                self.enemies.nazgulEnemy.inPlay = true;
             }
             self.checkCards[0].parent().css("pointer-events","none").removeClass("front leftCard rightCard activeSide").addClass("cardInactive");
             self.checkCards[1].parent().css("pointer-events","none").removeClass("front rightCard leftCard activeSide").addClass("cardInactive");
@@ -298,7 +305,7 @@ Game.prototype.updateStats = function(){
 Game.prototype.attack = function(enemyCardClass, damage){
     var self = this;
     setTimeout(function () {
-        $(enemyCardClass).addClass(this.attackClass);
+        $(enemyCardClass).addClass(self.attackClass);
         console.log("attacking for " + damage);
         // TODO: pull reducing aror into function that won't let it go negative
         // also this means player won't take damage if they takemore damage than they have armor
@@ -391,8 +398,8 @@ Game.prototype.addClickHandlersToInfoBar = function(){
             $(".horn").removeClass("hornPulseAnimation");
             if(self.hornActived = true ){
                 // this.activatedEnmies.each()delete activated enemy and add fadeout class
-                if(self.goblinLeft == true){
-                    self.goblinLeft = false;
+                if(self.enemies.goblinLeft.inPlay == true){
+                    self.enemies.goblinLeft.inPlay = false;
                     $(".enemy-1").addClass("fadeOut");
                 }
                 if(self.goblinRight == true){
