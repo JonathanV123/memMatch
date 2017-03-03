@@ -27,6 +27,7 @@ var Game = function(){
     this.nazgul = false;
     this.hornActivated = false;
     this.healerActivated = false;
+    this.attackClass = "enemyAttack";
     this.enemies = {
         2: {
             className: '.enemy-1',
@@ -239,6 +240,7 @@ Game.prototype.checkMatch = function(card, side, opposite){
             //If no match set cards back to default after .9 seconds
             $(".leftCard").addClass("inactive");
             $(".rightCard").addClass("inactive");
+            self.enemyCombatPhase();
             self.incorrectMatchCount += 2;
             setTimeout(self.cardDefault.bind(self),900);
         }
@@ -246,7 +248,6 @@ Game.prototype.checkMatch = function(card, side, opposite){
         self.checkCards = [];
     }
     self.enemySpawn();
-    self.enemyCombatPhase(this.incorrectMatchCount);
     self.updateStats();
     self.victoryDefeat();
 };
@@ -258,12 +259,6 @@ Game.prototype.activateEnemy = function(incorrectMatchCount) {
         $(enemy.className).removeClass("enemyInvisible fadeOut");
         this[enemy.name] = true;
         this.enemies[incorrectMatchCount].inPlay = true;
-        if(this[enemy.name] == true) {
-            $([enemy.className]).removeClass("enemyAttack");
-            setTimeout(function () {
-                self.attackFunction(enemy.className,"enemyAttack",enemy.attackStrength);
-            }, 500);
-        }
     }
 };
 //Spawns enemies based on incorrect match count
@@ -273,62 +268,21 @@ Game.prototype.enemySpawn = function(){
     }
 };
 //Enemy attack function that enables when an enemy boolean becomes true
-Game.prototype.enemyCombatPhase = function(incorrectMatchCount) {
+Game.prototype.enemyCombatPhase = function() {
     var self = this;
-    for(key in self.enemies){
-        if(self.enemies[incorrectMatchCount].inPlay === true){
-            console.log("is true")
+    for(var key in this.enemies){
+        var currentEnemy = this.enemies[key];
+        if(currentEnemy.inPlay === true){
+            $(currentEnemy.className).removeClass("enemyAttack");
+            console.log("okkkdkdkdakdkdkakdd");
+                     self.attack(currentEnemy.className,currentEnemy.attackStrength);
         }
     }
 };
-    // var self = this;
-       //  if(this.leftCard == true && this.rightCard == true && this.testIfMatch == false){
-       //     if(self.goblinLeft == true) {
-       //         $(".enemy-1").removeClass("enemyAttack");
-       //         setTimeout(function () {
-       //             self.attackFunction(".enemy-1","enemyAttack",1);
-       //             console.log("Goblin Top Left Summoned")
-       //         }, 500);
-       //     }
-       //      if(self.goblinRight == true) {
-       //          $(".enemy-2").removeClass("enemyAttack");
-       //          setTimeout(function () {
-       //              self.attackFunction(".enemy-2","enemyAttack",1);
-       //              console.log("Goblin Top Right Summoned")
-       //          }, 500);
-       //      }
-       //      if(self.hillTrollLeft == true) {
-       //          $(".enemy-3").removeClass("enemyAttack");
-       //          setTimeout(function () {
-       //              self.attackFunction(".enemy-3","enemyAttack",2);
-       //              console.log("Hill-Troll Left Summoned")
-       //          }, 500);
-       //      }
-       //      if(self.hillTrollRight == true) {
-       //          $(".enemy-5").removeClass("enemyAttack");
-       //          setTimeout(function () {
-       //              self.attackFunction(".enemy-5","enemyAttack",2);
-       //              console.log("Hill-Troll Right Summoned")
-       //          }, 500);
-       //      }
-       //      if(self.urukHai == true) {
-       //          $(".enemy-6").removeClass("enemyAttack");
-       //          setTimeout(function () {
-       //              self.attackFunction(".enemy-6","enemyAttack",2);
-       //              console.log("Uruk-Hai Bottom Left Summoned")
-       //          }, 500);
-       //      }
-       //      if(self.trollRight == true) {
-       //          $(".enemy-7").removeClass("enemyAttack");
-       //          setTimeout(function () {
-       //              self.attackFunction(".enemy-7","enemyAttack",2);
-       //              console.log("Troll Bottom Right Summoned")
-       //          }, 500);
-       //      }
        //      if(self.nazgul == true) {
        //          $(".enemy-4").removeClass("enemyStandingMiddleAttackAnimation");
        //          setTimeout(function () {
-       //              self.attackFunction(".enemy-4","enemyStandingMiddleAttackAnimation",4);
+       //              self.attack(".enemy-4","enemyStandingMiddleAttackAnimation",4);
        //              console.log("Nazgul Middle Summoned")
        //          }, 500);
        //      }
@@ -341,19 +295,25 @@ Game.prototype.updateStats = function(){
     this.testIfMatch = false;
 };
 //Attack function that deals damage
-Game.prototype.attackFunction = function(target, classToAdd, damage){
+Game.prototype.attack = function(enemyCardClass, damage){
     var self = this;
-    $(target).addClass(classToAdd);
-    if(self.playerArmor > 0){
-        self.playerArmor -= damage;
-    }
-    else{
-        self.playerHp -= damage;
-    }
-    self.updateStats();
-    self.animateHpAndArmor();
-    self.testIfMatch = false;
-    self.victoryDefeat();
+    setTimeout(function () {
+        $(enemyCardClass).addClass(this.attackClass);
+        console.log("attacking for " + damage);
+        // TODO: pull reducing aror into function that won't let it go negative
+        // also this means player won't take damage if they takemore damage than they have armor
+        if(self.playerArmor > 0){
+            self.playerArmor -= damage;
+        }
+        else{
+            self.playerHp -= damage;
+        }
+        self.updateStats();
+        self.animateHpAndArmor();
+        self.testIfMatch = false;
+        self.victoryDefeat();
+    }, 500);
+
 };
 //Animate armor and hip points when attacked
 Game.prototype.animateHpAndArmor = function(){
