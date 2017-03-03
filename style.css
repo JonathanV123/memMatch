@@ -502,13 +502,13 @@ body{
     left:10%;
     position:relative;
 }
-.enemyStandingMiddleAttackAnimation {
-    -webkit-animation-name: midAttackAnimation; /* Chrome, Safari, Opera */
+.fadeIn {
+    -webkit-animation-name: fadeIn; /* Chrome, Safari, Opera */
     -webkit-animation-duration: 1.5s; /* Chrome, Safari, Opera */
-    animation-name: midAttackAnimation;
+    animation-name: fadeIn;
     animation-duration: 1.5s;
 }
-.enemyInvisible{
+.invisible{
     visibility: hidden;
 }
 .winDefeatNotification{
@@ -661,16 +661,10 @@ body{
     50% { opacity: 0.5; }
     100% { opacity: 0; }
 }
-@keyframes midAttackAnimation{
-    0% {
-        -webkit-transform: translateY(5vh);
-        transform: translateY(5vh);
-    }
-
-    100% {
-        -webkit-transform: translateY(0vh);
-        transform: translateY(0vh);
-    }
+@keyframes fadeIn{
+    0% { opacity: 0; }
+    50% { opacity: 0.5; }
+    100% { opacity: 1; }
 }
 
 @keyframes hitPointAnimation {
@@ -746,5 +740,14 @@ body{
     }
     .hitPoints{
         font-size:2.5em;
+    }
+}
+@media only screen and (min-width: 300px) and (max-width: 650px) {
+    .howToPlay {
+        width: 5%;
+        height:10%;
+    }
+    .container{
+        position:fixed;
     }
 }

@@ -199,7 +199,7 @@ Game.prototype.checkMatch = function(card, side, opposite){
             }
             if(self.nazgul === true){
                 $(".card-3").removeClass("activeSide");
-                $(".enemy-4").removeClass("enemyInvisible").addClass("midAttackAnimation");
+                $(".enemy-4").removeClass("invisible").addClass("midAttackAnimation");
                 self.enemies.nazgulEnemy.inPlay = true;
             }
             self.checkCards[0].parent().css("pointer-events","none").removeClass("front leftCard rightCard activeSide").addClass("cardInactive");
@@ -227,7 +227,7 @@ Game.prototype.activateEnemy = function(incorrectMatchCount) {
     var self = this;
     var enemy = this.enemies[incorrectMatchCount];
     if (enemy){
-        $(enemy.className).removeClass("enemyInvisible fadeOut");
+        $(enemy.className).removeClass("invisible fadeOut").addClass("fadeIn");
         this.enemies[incorrectMatchCount].inPlay = true;
     }
 };
@@ -243,7 +243,7 @@ Game.prototype.enemyCombatPhase = function() {
     for(var key in this.enemies){
         var currentEnemy = this.enemies[key];
         if(currentEnemy.inPlay === true){
-            $(currentEnemy.className).removeClass("enemyAttack");
+            $(currentEnemy.className).removeClass("enemyAttack fadeIn");
             console.log("okkkdkdkdakdkdkakdd");
                      self.attack(currentEnemy.className,currentEnemy.attackStrength);
         }
@@ -303,8 +303,8 @@ Game.prototype.victoryDefeatConditions = function(){
         $(".horn").addClass("inactive");
         console.log("you lose!");
         setTimeout(function () {
-            $(".restartGame").removeClass("enemyInvisible");
-            $(".playAgainButton").removeClass("enemyInvisible");
+            $(".restartGame").removeClass("invisible");
+            $(".playAgainButton").removeClass("invisible");
         }, 6000);
     }
     if (self.correctMatch == 12)
@@ -315,8 +315,8 @@ Game.prototype.victoryDefeatConditions = function(){
             $(".horn").addClass("inactive");
             console.log("you win!");
             setTimeout(function () {
-               $(".restartGame").removeClass("enemyInvisible");
-               $(".playAgainButton").removeClass("enemyInvisible");
+               $(".restartGame").removeClass("invisible");
+               $(".playAgainButton").removeClass("invisible");
             }, 6000);
         }
 };
@@ -363,15 +363,15 @@ Game.prototype.addClickHandlersToInfoBar = function(){
     });
     $(".about").on('click',function(){
         console.log("About Opened");
-        $(".aboutPage").removeClass("enemyInvisible");
+        $(".aboutPage").removeClass("invisible");
     });$(".tutorial").on('click',function(){
         console.log("How to play opened");
-        $(".howToPlay").removeClass("enemyInvisible");
+        $(".howToPlay").removeClass("invisible");
     });
 
     $(".exitAbout").on('click',function(){
-        $(".aboutPage").addClass("enemyInvisible");
-        $(".howToPlay").addClass("enemyInvisible");
+        $(".aboutPage").addClass("invisible");
+        $(".howToPlay").addClass("invisible");
     })
 };
 //Add click handlers to cards
@@ -397,13 +397,13 @@ Game.prototype.addClickHandlers = function() {
         $(".rightSide").removeClass("inactive");
         $(".victory").removeClass("animateDefeatVictory");
         $(".defeat").removeClass("animateDefeatVictory");
-        $('.enemy').addClass('enemyInvisible');
-        $(".restartGame").addClass("enemyInvisible");
-        $(".playAgainButton").addClass("enemyInvisible");
+        $('.enemy').addClass('invisible');
+        $(".restartGame").addClass("invisible");
+        $(".playAgainButton").addClass("invisible");
         $(".rohan").removeClass("charghornPulseAnimationeForward");
         $(".horn").removeClass("hornPulseAnimation");
         for(i = 1; i < 8; i++){
-            $(".enemy-" + i).removeClass("fadeOut");
+            $(".enemy-" + i).removeClass("fadeOut fadeIn");
         }
         $("body").find("*").off();
         game = new Game();
