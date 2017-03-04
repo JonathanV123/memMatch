@@ -155,6 +155,9 @@ body{
     align-items:center;
     flex-wrap:wrap;
 }
+.about{
+    cursor:pointer;
+}
 .restartGame{
     position:absolute;
     width:50%;
@@ -216,6 +219,9 @@ body{
     background-repeat:no-repeat;
     background-size:100% 100%;
     border: 4px solid white;
+}
+.tutorial{
+    cursor:pointer;
 }
 .exitAbout{
     display:flex;
@@ -336,7 +342,6 @@ body{
     align-items:center;
     justify-content:center;
     font-size:0.5em;
-    cursor:pointer;
 }
 
 .horn{
@@ -345,6 +350,7 @@ body{
     background-size:95% 95%;
     background-position:center;
     font-size:1.4em;
+    cursor:pointer;
 }
 .armor{
     font-size:2.5em;
@@ -352,6 +358,7 @@ body{
     background-repeat:no-repeat;
     background-size:85% 80%;
     background-position:center;
+    cursor:default;
 }
 .hitPoints{
     font-size:2.5em;
@@ -359,6 +366,7 @@ body{
     background-repeat:no-repeat;
     background-size:85% 80%;
     background-position:center;
+    cursor:default;
 }
 .animateHitPoints{
     -webkit-animation-name: hitPointAnimation; /* Chrome, Safari, Opera */
