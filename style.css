@@ -817,4 +817,23 @@ body{
     .container{
         position:fixed;
     }
+    .info{
+        font-size: 0.4em;
+        line-height: 10px;
+        word-spacing: 12.2em;
+        text-align:center;
+    }
+    .horn{
+        font-size:0.7em;
+    }
+    .lotrDesc{
+        font-size:0.7em;
+    }
+    .armor{
+        font-size:1.9em;
+    }
+    .hitPoints{
+        font-size:1.9em;
+
+    }
 }
