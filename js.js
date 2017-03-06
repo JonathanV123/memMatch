@@ -325,7 +325,7 @@ Game.prototype.victoryDefeatConditions = function(){
             $(".playAgainButton").removeClass("invisible");
         }, 6000);
     }
-    if (self.correctMatch == 12)
+    if (self.correctMatch === 9)
         {
             $(".victory").removeClass("displayNoneClass").addClass("animateDefeatVictory");
             $(".leftSide").addClass("inactive");
