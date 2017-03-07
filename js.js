@@ -25,7 +25,7 @@ var Game = function(){
     this.enemies = {
         2: {
             className: '.enemy-1',
-            attackStrength: 11,
+            attackStrength: 1,
             inPlay: false
         },
         4: {
