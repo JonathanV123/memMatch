@@ -748,8 +748,17 @@ body{
   .hitPoints{
     font-size:2.5em;
   }
+  .introTitle{
+    font-size:2em;
+  }
 }
 @media only screen and (min-width: 300px) and (max-width: 650px) {
+  .exitIntroScreen{
+    font-size:1.2em;
+  }
+  .introTitle{
+    font-size:1.5em;
+  }
   .howToPlay {
     display: none;
   }
@@ -766,6 +775,7 @@ body{
     justify-content: center;
     align-items: center;
     border: 4px solid white;
+
   }
   .exitMobileCardInfo {
     width: 15%;
