@@ -15,8 +15,8 @@ var Game = function(){
     this.rightCard = false;
     this.correctMatch = 0;
     this.incorrectMatchCount = 0;
-    this.playerHp = 20;
-    this.playerArmor = 10;
+    this.playerHp = 1;
+    this.playerArmor = 0;
     this.testIfMatch= true;
     this.hornActivated = false;
     this.healerActivated = false;
@@ -426,6 +426,7 @@ Game.prototype.addClickHandlers = function() {
         $('.rightSide').html('');
         $(".leftSide").removeClass("inactive");
         $(".rightSide").removeClass("inactive");
+        $(".rohan").removeClass("chargeForward");
         $(".victory").addClass("displayNoneClass").removeClass("animateDefeatVictory");
         $(".defeat").addClass("displayNoneClass").removeClass("animateDefeatVictory");
         $('.enemy').addClass('invisible');
