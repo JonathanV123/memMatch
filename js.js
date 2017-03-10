@@ -207,6 +207,7 @@ Game.prototype.checkMatch = function(card, side, opposite){
             if(self.healerActivated === true){
                 self.playerHp +=8;
                 $(".card-1").removeClass("activeSide");
+                self.healerActivated = false;
             }
             if(self.hornActivated === true){
                 $(".card-2").removeClass("activeSide");
@@ -277,17 +278,16 @@ Game.prototype.attack = function(enemyCardClass, damage){
         $(enemyCardClass).addClass(self.attackClass);
         console.log("attacking for " + damage);
         if(self.playerArmor > 0){
-            self.playerArmor -= damage;
+            console.log(damage);
+            self.playerArmor -=damage ;
         }
-        if(self.playerArmor < 0){
+        if(self.playerArmor <= 0){
             self.playerHp = self.playerArmor += self.playerHp;
             self.playerArmor =  0;
-        }
-        else{
             self.playerHp -= damage;
-            if(self.playerHp < 0){
+        }
+        if(self.playerHp < 0){
                 self.playerHp = 0;
-            }
         }
         self.updateStats();
         self.animateHpAndArmor();
