@@ -3,60 +3,53 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" type="text/css" href="./sass/style.css">
     <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
     <script src="js.js"></script>
+    <meta name="viewport" content="width=device-width">
     <title>Lord of The Rings Memory Match</title>
 </head>
 <body>
+<div class = "restartGame invisible">Play Again?
+    <div class = "playAgainButton invisible">Play</div>
+</div>
+<div class = "winDefeatNotification displayNoneClass defeat">Defeat</div>
+<div class = "winDefeatNotification displayNoneClass victory">Victory</div>
+<div class ="introScreen">
+    <div class = "introTitle">
+        The Lord of The Rings Memory Match
+    </div>
+    <div class = "exitIntroScreen">
+        Start
+    </div>
+    <div class = "soundButton">
+    </div>
+    <audio id="song" autoplay="autoplay" muted="muted">
+        <source src="./music/lotrBattle.mp3" type="audio/mpeg">
+    </audio>
+</div>
 <div class = "container">
-    <div class ="howToPlay enemyInvisible">
-        <div class = "howToPlayDivs howToPlayTop">
-            <div class ="gameDesc hpDesc">
-                <div class = "hpPic"></div>
-                Shows remaining hit points.
-            </div>
-            <div class ="gameDesc armorDesc">
-                <div class = "armorPic"></div>
-                Shows remaining armor. On enemy attack, armor will be deducted before hit points.
-            </div>
-        </div>
-        <div class = "howToPlayDivs howToPlayMid">
-            <div class ="gameDesc hornDesc">
-                <div class = "hornPic"></div>
-                Upon matching the Summon Rohan card, player will gain access to Horn of Rohan.
-                This allows the player to clear all enemies currently on the board. To
-                use the ability, click the horn located at the bottom of your screen. (Use this ability wisely!)
-            </div>
-            <div class ="gameDesc healerDesc">
-                <div class = "healerPic"></div>
-                Upon matching the Dwarven Healer card, the player will gain 8 hit points
-            </div>
-        </div>
-        <div class = "howToPlayDivs howToPlayBot">
-            <div class ="gameDesc enemiesDesc">
-                <div class = "enemiesPic"></div>
-                Enemy attack values are displayed on their respective cards. The value highlighted in red is amount of
-                damage the player will take from that particular card.
-            </div>
-            <div class ="gameDesc nazgulDesc">
-                <div class = "nazgulPic"></div>
-                Matching the Nazgul card will summon a Nazgul to the battlefield. This Nazgul is the strongest enemy in
-                the game with 4 attack points. Try and wait till the end of the game to correctly match this card!
-            </div>
-        </div>
-        <div class = "exitAbout">X</div>
+    <div class = "soundButtonInGame">
     </div>
-    <div class ="aboutPage enemyInvisible">
-        <div class ="lotrDesc">
-            This is a Lord of the Rings inspired memory match. Enemies will spawn in the middle of the screen when the
+    <div class ="howToPlay invisible">
+        <div class = "exitButton">X</div>
+    </div>
+    <div class = "howToPlayMobile invisible">
+        <div class = "exitMobileCardInfo">X</div>
+        <img class="imageSlides" src="images/enemyInfo.png">
+        <img class="imageSlides" src="images/nazgulInfo.png">
+        <img class="imageSlides" src="images/dwarfHealerInfo.png">
+        <img class="imageSlides" src="images/rohanInfoFinal.png">
+        <button class="imageSlidesButton displayLeft">&#10094;</button>
+        <button class="imageSlidesButton displayRight">&#10095;</button>
+    </div>
+    <div class ="aboutPage invisible">
+        <div class ="lotrDesc">Enemies will spawn in the middle of the screen when the
             player matches incorrectly. Overtime, stronger enemies will begin to spawn. Your goal is to correctly
-            match all cards before your hit points reach 0.
+            match all cards before your hit points reach 0. You cannot match a card on its same side. All card matches are
+            one card left side, one card right side.
         </div>
-    <div class = "exitAbout">X</div>
-    </div>
-    <div class = "restartGame enemyInvisible">Play Again?
-    <div class = "playAgainButton enemyInvisible">Play</div>
+    <div class = "exitButton">X</div>
     </div>
     <img class="rohan chargeOne" src="images/horseCharge.png" style="width:25%;height:25%;">
     <img class="rohan chargeTwo" src="images/horseCharge.png" style="width:25%;height:25%;">
@@ -65,85 +58,81 @@
     <img class="rohan chargeFive" src="images/horseCharge.png" style="width:25%;height:25%;">
     <img class="rohan chargeSix" src="images/horseCharge.png" style="width:25%;height:25%;">
     <!-- Left Area Game -->
-    <div class = "game-area left_side">
+    <div class = "gameArea leftSide">
     </div>
     <div class="battleground">
-        <div class = "enemyColumnTop">
-            <div class = "enemyContainer">
-                <div class = "enemy enemy-1  enemyInvisible ">
+        <div class = "enemyRow">
+            <div class = "characterContainer">
+                <div class = "enemy enemy-1  invisible ">
                     <img src="images/goblin.png" style="width:70%;height:90%;">
                 </div>
             </div>
-            <div class = "enemyContainer ">
-                <div class = "defeat">Defeat</div>
-                <div class = "victory">Victory</div>
+            <div class = "characterContainer ">
+
             </div>
-            <div class = "enemyContainer">
-                <div class = " enemy enemy-2  enemyInvisible ">
+            <div class = "characterContainer">
+                <div class = " enemy enemy-2  invisible ">
                     <img src="images/goblin.png" style="width:70%;height:90%;">
                 </div>
             </div>
         </div>
-        <div class = "enemyColumnMiddle">
-            <div class = "enemyContainer">
-                <div class = "enemy enemy-3  enemyInvisible">
+        <div class = "enemyRow">
+            <div class = "characterContainer">
+                <div class = "enemy enemy-3  invisible">
                     <img src="images/hill-troll.png" style="width:70%;height:90%;">
                 </div>
             </div>
-            <div class = "enemyContainer">
-                <div class = "enemy enemy-4  enemyInvisible">
+            <div class = "characterContainer">
+                <div class = "enemy enemy-4  invisible">
                     <img src="images/nazgul.png" style="width:70%;height:90%;">
                 </div>
             </div>
-            <div class = "enemyContainer">
-                <div class = "enemy enemy-5  enemyInvisible ">
+            <div class = "characterContainer">
+                <div class = "enemy enemy-5  invisible ">
                     <img src="images/hill-troll.png" style="width:70%;height:90%;">
                 </div>
             </div>
         </div>
-        <div class = "enemyColumnBottom">
-            <div class = "enemyContainer">
-                <div class = "enemy enemy-6  enemyInvisible ">
+        <div class = "enemyRow">
+            <div class = "characterContainer">
+                <div class = "enemy enemy-6  invisible ">
                     <img src="images/uruk.png" style="width:70%;height:90%;">
                 </div>
             </div>
-            <div class = "heroContainer">
+            <div class = "characterContainer">
                 <div class = "heroAvatar">
                     <img src="images/hero.png" style="width:90%;height:100%;">
                 </div>
             </div>
-            <div class = "enemyContainer">
-                <div class = "enemy enemy-7  enemyInvisible ">
+            <div class = "characterContainer">
+                <div class = "enemy enemy-7  invisible ">
                     <img src="images/troll.png" style="width:70%;height:90%;">
                 </div>
             </div>
         </div>
     </div>
-<!-- Right Area Game -->
-<div class = "game-area right_side">
-  </div>
-<!-- Bottom Bar -->
-<div class="game-info">
-    <div class =" info about">
-        About
-    </div>
-    <div class = "info armor">
-        <!--<div class = "armor armortext"></div>-->
-        <div class = "armor armorAmount"></div>
-    </div>
-    <div class="info horn">
-        Horn of Rohan
-    </div>
-    <div class="info hitPoints"></div>
+    <!-- Right Area Game -->
+    <div class = "gameArea rightSide">
+      </div>
+    <!-- Bottom Bar -->
+    <div class="game-info">
+        <div class =" info about">
+            How To Play
+        </div>
+        <div class = "info armor">
+            <!--<div class = "armor armortext"></div>-->
+            <div class = "armor"></div>
+        </div>
+        <div class="info horn">
+            Horn of Rohan
+        </div>
+        <div class="info hitPoints"></div>
 
-    <div class ="info tutorial">
-        Card Info
+        <div class ="info tutorial">
+            Unique Card Info
+        </div>
     </div>
 </div>
-</div>
-</div>
-</div>
-
 </body>
 </html>
 
