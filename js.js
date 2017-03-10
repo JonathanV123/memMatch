@@ -280,8 +280,7 @@ Game.prototype.attack = function(enemyCardClass, damage){
         if(self.playerArmor > 0){
             console.log(damage);
             self.playerArmor -=damage ;
-        }
-        if(self.playerArmor <= 0){
+        }else{
             self.playerHp = self.playerArmor += self.playerHp;
             self.playerArmor =  0;
             self.playerHp -= damage;
