@@ -15,8 +15,8 @@ var Game = function(){
     this.rightCard = false;
     this.correctMatch = 0;
     this.incorrectMatchCount = 0;
-    this.playerHp = 20;
-    this.playerArmor = 10;
+    this.playerHp = 2;
+    this.playerArmor = 0;
     this.testIfMatch= true;
     this.hornActivated = false;
     this.healerActivated = false;
@@ -367,6 +367,7 @@ Game.prototype.addClickHandlersToInfoBar = function(){
     });
     $('.horn').on('click', function () {
         if(self.hornActivated === true){
+            self.hornActivated = false;
             $(".rohan").addClass("chargeForward");
             $(".horn").removeClass("hornPulseAnimation");
                 for(var key in self.enemies){
