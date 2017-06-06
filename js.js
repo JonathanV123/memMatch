@@ -413,7 +413,6 @@ Game.prototype.addClickHandlers = function () {
         $('.enemy').addClass('invisible');
         $(".restartGame").addClass("invisible");
         $(".playAgainButton").addClass("invisible");
-        $(".rohan").removeClass("charghornPulseAnimationeForward");
         $(".horn").removeClass("hornPulseAnimation");
         for (i = 1; i < 8; i++) {
             $(".enemy-" + i).removeClass("fadeOut fadeIn");

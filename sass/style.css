@@ -3,7 +3,7 @@
 
 @font-face {
   src: url("../font/lotrFont.ttf");
-  font-family: 'lotrFont','sans-serif'; }
+  font-family: 'lotrFont', 'sans-serif'; }
 body {
   width: 100%;
   height: 100vh;
@@ -52,7 +52,7 @@ body {
   background-repeat: no-repeat;
   background-size: 100% 100%;
   z-index: 102;
-  font-family: 'lotrFont',sans-serif;
+  font-family: 'lotrFont', sans-serif;
   -webkit-animation-name: introAnimation;
   -moz-animation-name: introAnimation;
   animation-name: introAnimation;
@@ -127,7 +127,9 @@ body {
   background-size: 70% 70%; }
 
 .imageSlidesButton {
-  z-index: 117; }
+  z-index: 117;
+  height: 20%;
+  width: 15%; }
 
 .unMuteInGame {
   position: fixed;
@@ -228,10 +230,11 @@ body {
   background-repeat: no-repeat;
   background-size: 100% 100%;
   flex-wrap: wrap;
-  border: 3px solid white; }
+  border: 3px solid blanchedalmond; }
 
 .about {
-  cursor: pointer; }
+  cursor: pointer;
+  text-align: center; }
 
 .restartGame {
   position: absolute;
@@ -256,7 +259,7 @@ body {
   color: white;
   font-size: 3em;
   border: 5px double grey;
-  font-family: 'lotrFont',sans-serif;
+  font-family: 'lotrFont', sans-serif;
   background-image: url(../images/ringNewGame.jpg);
   background-repeat: no-repeat;
   background-size: 100% 100%; }
@@ -317,7 +320,7 @@ body {
   background-repeat: no-repeat;
   background-size: 100% 100%;
   background-image: url(../images/tutorial.png);
-  border: 4px solid white; }
+  border: 4px solid blanchedalmond; }
 
 .howToPlayMobile {
   display: none; }
@@ -340,7 +343,8 @@ body {
   display: none; }
 
 .tutorial {
-  cursor: pointer; }
+  cursor: pointer;
+  text-align: center; }
 
 .exitButton {
   display: -webkit-box;
@@ -357,10 +361,12 @@ body {
   height: 55px;
   top: 0;
   right: 0;
-  background-color: white;
-  color: black;
+  background-color: black;
+  color: blanchedalmond;
   font-size: 40px;
-  cursor: pointer; }
+  cursor: pointer;
+  border-left: 2px solid blanchedalmond;
+  border-bottom: 2px solid blanchedalmond; }
 
 .exitMobileCardInfo {
   display: -webkit-box;
@@ -377,10 +383,12 @@ body {
   height: 55px;
   top: 0;
   right: 0;
-  background-color: white;
-  color: black;
+  background-color: black;
+  color: blanchedalmond;
   font-size: 40px;
   cursor: pointer;
+  border-left: 2px solid blanchedalmond;
+  border-bottom: 2px solid blanchedalmond;
   width: 15%;
   height: 15%; }
 
@@ -503,7 +511,7 @@ body {
   justify-content: center;
   -webkit-align-items: center;
   align-items: center;
-  font-family: 'lotrFont',sans-serif;
+  font-family: 'lotrFont', sans-serif;
   height: 90%;
   width: 10%;
   color: white;
@@ -512,7 +520,8 @@ body {
   background-image: url("../images/dwarfBorder.png");
   background-repeat: no-repeat;
   background-size: 100% 100%;
-  font-size: 0.5em; }
+  font-size: 0.9em;
+  text-align: center; }
 
 .horn {
   background-image: url(../images/horn.png);
@@ -937,18 +946,24 @@ body {
   border: 2px solid deeppink;
   animation: borderPulse 2s infinite; }
 
-@media only screen and (min-width: 1595px) {
+@media only screen and (max-width: 1395px) {
   .info {
-    font-size: 0.9em; }
+    font-size: 1em; }
 
   .armor {
     font-size: 2.5em; }
 
   .hitPoints {
-    font-size: 2.5em; } }
-@media only screen and (max-width: 851px) {
+    font-size: 2.5em; }
+
+  .tutorial {
+    font-size: 0.7em; }
+
+  .about {
+    font-size: 0.7em; } }
+@media only screen and (max-width: 1175px) {
   .info {
-    font-size: 0.4em; }
+    font-size: 0.6em; }
 
   .horn {
     font-size: 1em; }
@@ -964,6 +979,36 @@ body {
 
   .introTitle {
     font-size: 2em; } }
+@media only screen and (max-width: 929px) {
+  .info {
+    font-size: 0.6em; }
+
+  .horn {
+    font-size: 1em; }
+
+  .lotrDesc {
+    font-size: 1em; }
+
+  .armor {
+    font-size: 1.9em; }
+
+  .hitPoints {
+    font-size: 1.9em; }
+
+  .introTitle {
+    font-size: 2em; }
+
+  .tutorial {
+    line-height: 12px;
+    word-spacing: 12.2em;
+    text-align: center;
+    font-size: 0.7em; }
+
+  .about {
+    line-height: 12px;
+    word-spacing: 12.2em;
+    text-align: center;
+    font-size: 0.7em; } }
 @media only screen and (min-width: 300px) and (max-width: 650px) {
   .exitIntroScreen {
     font-size: 1.2em; }
@@ -1008,16 +1053,25 @@ body {
     text-align: center; }
 
   .horn {
-    font-size: 0.7em; }
+    font-size: 0.9em;
+    line-height: 12px; }
 
   .lotrDesc {
     font-size: 0.7em; }
 
   .armor {
-    font-size: 1.9em; }
+    font-size: 1.6em; }
 
   .hitPoints {
-    font-size: 1.9em; } }
+    font-size: 1.6em; }
+
+  .tutorial {
+    line-height: 10px;
+    font-size: 0.5em; }
+
+  .about {
+    line-height: 10px;
+    font-size: 0.5em; } }
 @media only screen and (min-width: 475px) {
   .flipScreenPage {
     display: none; } }
