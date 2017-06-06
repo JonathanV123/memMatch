@@ -70,10 +70,12 @@ body {
   height: 55px;
   top: 0;
   right: 0;
-  background-color: goldenrod;
-  color: white;
+  background-color: black;
+  color: blanchedalmond;
   font-size: 40px;
   cursor: pointer;
+  border-left: 2px solid blanchedalmond;
+  border-bottom: 2px solid blanchedalmond;
 }
 
 @mixin infoBarFontBackgroundPosition($fontVal) {
@@ -225,7 +227,7 @@ body {
   background-image: url("../images/bgLotr.jpg");
   @include backgroundImage(100%, 100%);
   flex-wrap: wrap;
-  border: 3px solid goldenrod;
+  border: 3px solid blanchedalmond;
 }
 
 .about {
@@ -288,7 +290,7 @@ body {
   @include flexBoxCenter();
   @include backgroundImage(100%, 100%);
   background-image: url(../images/tutorial.png);
-  border: 4px solid goldenRod;
+  border: 4px solid blanchedalmond;
 }
 
 .howToPlayMobile {
