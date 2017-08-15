@@ -128,8 +128,12 @@ body {
 
 .imageSlidesButton {
   z-index: 117;
+  border: 3px solid black;
   height: 20%;
-  width: 15%; }
+  width: 15%;
+  background-color: blanchedalmond;
+  color: black;
+  font-weight: bold; }
 
 .unMuteInGame {
   position: fixed;
@@ -209,8 +213,8 @@ body {
 
 .aboutPage {
   position: absolute;
-  width: 85%;
-  height: 75%;
+  width: 55%;
+  height: 70%;
   background: rgba(0, 0, 0, 0.5);
   z-index: 103;
   left: 50%;
@@ -287,6 +291,7 @@ body {
   width: 50%;
   height: 80%;
   color: white;
+  text-align: center;
   display: -webkit-box;
   display: -moz-box;
   display: -ms-flexbox;
@@ -328,7 +333,8 @@ body {
 .imageSlides {
   position: absolute;
   width: 70%;
-  height: 100%; }
+  height: 100%;
+  border: 3px solid; }
 
 .displayLeft {
   position: absolute;
@@ -1036,7 +1042,7 @@ body {
     justify-content: center;
     align-items: center;
     border: 4px solid white;
-    background-color: black; }
+    background-color: #443812; }
 
   .exitMobileCardInfo {
     width: 15%;
