@@ -229,9 +229,9 @@ Game.prototype.checkIfCardsMatch = function(cardsToCheck){
         $(".rightCard").addClass("inactive");
         this.enemyCombatPhase();
         this.incorrectMatchCount += 2;
-        this.checkCards = [];
         setTimeout(this.cardDefault, 900);
     }
+    this.checkCards = [];
 };
 //Activate enemy when incorrectMatchCount reaches enemy value
 Game.prototype.activateEnemy = function (incorrectMatchCount) {
