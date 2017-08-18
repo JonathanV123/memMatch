@@ -82,7 +82,8 @@ Game.prototype.setUpGame = function () {
     this.createCards(9);
     this.shuffleCards(this.leftCards);
     this.shuffleCards(this.rightCards);
-    this.renderCards();
+    this.renderCards(this.leftCards);
+    this.renderCards(this.rightCards);
     this.addClickHandlers();
     this.addDataToHtml();
     this.addClickHandlersToInfoBar();
@@ -149,14 +150,14 @@ Game.prototype.addDataToHtml = function () {
 
 };
 //Render the cards by looping through and dynamically creating the HTML element then appending
-Game.prototype.renderCards = function () {
+Game.prototype.renderCards = function (cards) {
     var game = this;
-
-    this.leftCards.forEach(function (card) {
-        game.renderCard(card, 'left')
-    });
-    this.rightCards.forEach(function (card) {
-        game.renderCard(card, 'right')
+    cards.forEach(function (card) {
+        if(cards === game.leftCards){
+            game.renderCard(card, 'left')
+        } else {
+            game.renderCard(card, 'right')
+        }
     });
 };
 //Reverts card back to default state
@@ -180,16 +181,16 @@ Game.prototype.specialCardActivation = function (cardName) {
     if (activateSpecialCard) {
         this[activateSpecialCard.activateAblity] = true;
     }
-    if (this.healerActivated === true) {
+    if (this.healerActivated) {
         this.playerHp += 8;
         $(".card-1").removeClass("activeSide");
         this.healerActivated = false;
     }
-    if (this.hornActivated === true) {
+    if (this.hornActivated) {
         $(".card-2").removeClass("activeSide");
         $(".horn").addClass("hornPulseAnimation");
     }
-    if (this.nazgul === true) {
+    if (this.nazgul) {
         $(".card-3").removeClass("activeSide");
         $(".enemy-4").removeClass("invisible").addClass("midAttackAnimation");
         this.enemies.nazgulEnemy.inPlay = true;
@@ -216,10 +217,10 @@ Game.prototype.checkMatch = function (card, side, opposite) {
     self.victoryDefeatConditions();
 };
 Game.prototype.checkIfCardsMatch = function(cardsToCheck){
+    //If cards match
     if (cardsToCheck[0][0].dataset.card === cardsToCheck[1][0].dataset.card) {
         this.specialCardActivation(cardsToCheck[0][0].dataset.card);
-        cardsToCheck[0].parent().css("pointer-events", "none").removeClass("front leftCard rightCard activeSide").addClass("cardInactive");
-        cardsToCheck[1].parent().css("pointer-events", "none").removeClass("front rightCard leftCard activeSide").addClass("cardInactive");
+        this.cardMatchCompleteDisableCards(cardsToCheck);
         this.handleCardMatch();
         $(".leftCard").removeClass("inactive");
         $(".rightCard").removeClass("inactive");
@@ -232,6 +233,11 @@ Game.prototype.checkIfCardsMatch = function(cardsToCheck){
         setTimeout(this.cardDefault, 900);
     }
     this.checkCards = [];
+};
+Game.prototype.cardMatchCompleteDisableCards = function(cards){
+    cards.forEach(function(card){
+        card.parent().css("pointer-events", "none").removeClass("front leftCard rightCard activeSide").addClass("cardInactive");
+    })
 };
 //Activate enemy when incorrectMatchCount reaches enemy value
 Game.prototype.activateEnemy = function (incorrectMatchCount) {
