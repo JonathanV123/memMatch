@@ -17,45 +17,49 @@ var Game = function () {
     this.playerHp = 20;
     this.playerArmor = 10;
     this.testIfMatch = true;
-    // this.hornActivated = false;
-    // this.healerActivated = false;
-    this.attackClass = "enemyAttack";
     this.slideIndex = 1;
     this.enemies = {
         2: {
             className: '.enemy-1',
             attackStrength: 1,
-            inPlay: false
+            inPlay: false,
+            attackAnimationClassName: 'goblinTopLeft'
         },
         4: {
             className: '.enemy-2',
             attackStrength: 1,
-            inPlay: false
+            inPlay: false,
+            attackAnimationClassName: 'goblinTopRight'
         },
         8: {
             className: '.enemy-3',
             attackStrength: 2,
-            inPlay: false
+            inPlay: false,
+            attackAnimationClassName: 'trollMiddleLeft'
         },
         12: {
             className: '.enemy-5',
             attackStrength: 2,
-            inPlay: false
+            inPlay: false,
+            attackAnimationClassName: 'trollMiddleRight'
         },
         16: {
             className: '.enemy-6',
             attackStrength: 2,
-            inPlay: false
+            inPlay: false,
+            attackAnimationClassName: 'urukBottomLeft'
         },
         20: {
             className: '.enemy-7',
             attackStrength: 2,
-            inPlay: false
+            inPlay: false,
+            attackAnimationClassName: 'trollBottomRight'
         },
         nazgulEnemy: {
             className: '.enemy-4',
             attackStrength: 4,
-            inPlay: false
+            inPlay: false,
+            attackAnimationClassName: 'nazgul'
         },
     };
     this.specialCards = {
@@ -153,7 +157,7 @@ Game.prototype.addDataToHtml = function () {
 Game.prototype.renderCards = function (cards) {
     var game = this;
     cards.forEach(function (card) {
-        if(cards === game.leftCards){
+        if (cards === game.leftCards) {
             game.renderCard(card, 'left')
         } else {
             game.renderCard(card, 'right')
@@ -162,9 +166,9 @@ Game.prototype.renderCards = function (cards) {
 };
 //Reverts card back to default state
 Game.prototype.cardDefault = function () {
-    $(".leftCard").removeClass("flipCard inactive");
-    $(".rightCard").removeClass("flipCard inactive");
-    $(".horn").removeClass("inactive");
+    $(".leftCard").removeClass("flipCard unclickable");
+    $(".rightCard").removeClass("flipCard unclickable");
+    $(".horn").removeClass("unclickable");
     this.leftCard = false;
     this.rightCard = false;
 };
@@ -192,7 +196,7 @@ Game.prototype.specialCardActivation = function (cardName) {
     }
     if (this.nazgul) {
         $(".card-3").removeClass("activeSide");
-        $(".enemy-4").removeClass("invisible").addClass("midAttackAnimation");
+        $(".enemy-4").removeClass("invisible");
         this.enemies.nazgulEnemy.inPlay = true;
     }
 };
@@ -216,26 +220,25 @@ Game.prototype.checkMatch = function (card, side, opposite) {
     self.updateStats();
     self.victoryDefeatConditions();
 };
-Game.prototype.checkIfCardsMatch = function(cardsToCheck){
+Game.prototype.checkIfCardsMatch = function (cardsToCheck) {
+    var self = this;
     //If cards match
     if (cardsToCheck[0][0].dataset.card === cardsToCheck[1][0].dataset.card) {
         this.specialCardActivation(cardsToCheck[0][0].dataset.card);
         this.cardMatchCompleteDisableCards(cardsToCheck);
         this.handleCardMatch();
-        $(".leftCard").removeClass("inactive");
-        $(".rightCard").removeClass("inactive");
+        $(".leftCard").removeClass("unclickable");
+        $(".rightCard").removeClass("unclickable");
     } else {
         //If no match set cards back to default
-        $(".leftCard").addClass("inactive");
-        $(".rightCard").addClass("inactive");
         this.enemyCombatPhase();
         this.incorrectMatchCount += 2;
-        setTimeout(this.cardDefault, 900);
+        setTimeout(self.cardDefault.bind(self), 900);
     }
     this.checkCards = [];
 };
-Game.prototype.cardMatchCompleteDisableCards = function(cards){
-    cards.forEach(function(card){
+Game.prototype.cardMatchCompleteDisableCards = function (cards) {
+    cards.forEach(function (card) {
         card.parent().css("pointer-events", "none").removeClass("front leftCard rightCard activeSide").addClass("cardInactive");
     })
 };
@@ -243,7 +246,7 @@ Game.prototype.cardMatchCompleteDisableCards = function(cards){
 Game.prototype.activateEnemy = function (incorrectMatchCount) {
     var enemy = this.enemies[incorrectMatchCount];
     if (enemy) {
-        $(enemy.className).removeClass("invisible fadeOut").addClass("fadeIn");
+        $(enemy.className).removeClass("invisible fadeOut");
         this.enemies[incorrectMatchCount].inPlay = true;
     }
 };
@@ -259,8 +262,7 @@ Game.prototype.enemyCombatPhase = function () {
     for (var key in this.enemies) {
         var currentEnemy = this.enemies[key];
         if (currentEnemy.inPlay === true) {
-            $(currentEnemy.className).removeClass("enemyAttack fadeIn");
-            self.attack(currentEnemy.className, currentEnemy.attackStrength);
+            self.attack(currentEnemy.className, currentEnemy.attackStrength, currentEnemy.attackAnimationClassName);
         }
     }
 };
@@ -271,10 +273,11 @@ Game.prototype.updateStats = function () {
     this.testIfMatch = false;
 };
 //Attack function that deals damage
-Game.prototype.attack = function (enemyCardClass, damage) {
+Game.prototype.attack = function (enemyCardClass, damage, animationClassName) {
     var self = this;
+    $(enemyCardClass).removeClass(animationClassName);
     setTimeout(function () {
-        $(enemyCardClass).addClass(self.attackClass);
+        $(enemyCardClass).addClass(animationClassName);
         if (self.playerArmor > 0) {
             self.playerArmor -= damage;
         } else {
@@ -311,9 +314,9 @@ Game.prototype.victoryDefeatConditions = function () {
     var self = this;
     if (self.playerHp <= 0) {
         $(".defeat").removeClass("displayNoneClass").addClass("animateDefeatVictory");
-        $(".leftSide").addClass("inactive");
-        $(".rightSide").addClass("inactive");
-        $(".horn").addClass("inactive");
+        $(".leftSide").addClass("unclickable");
+        $(".rightSide").addClass("unclickable");
+        $(".horn").addClass("unclickable");
         setTimeout(function () {
             $(".restartGame").removeClass("invisible");
             $(".playAgainButton").removeClass("invisible");
@@ -321,9 +324,9 @@ Game.prototype.victoryDefeatConditions = function () {
     }
     if (self.correctMatch === 9) {
         $(".victory").removeClass("displayNoneClass").addClass("animateDefeatVictory");
-        $(".leftSide").addClass("inactive");
-        $(".rightSide").addClass("inactive");
-        $(".horn").addClass("inactive");
+        $(".leftSide").addClass("unclickable");
+        $(".rightSide").addClass("unclickable");
+        $(".horn").addClass("unclickable");
         setTimeout(function () {
             $(".restartGame").removeClass("invisible");
             $(".playAgainButton").removeClass("invisible");
@@ -387,12 +390,12 @@ Game.prototype.addClickHandlersToInfoBar = function () {
 Game.prototype.addClickHandlers = function () {
     var self = this;
     $('.leftCard').on('click', function () {
-        $(".leftCard").addClass("inactive").removeClass("activeSide");
+        $(".leftCard").addClass("unclickable").removeClass("activeSide");
         $(".rightCard").addClass("activeSide");
         self.checkMatch(this, 'left', 'right');
     });
     $('.rightCard').on('click', function () {
-        $(".rightCard").addClass("inactive").removeClass("activeSide");
+        $(".rightCard").addClass("unclickable").removeClass("activeSide");
         $(".leftCard").addClass("activeSide");
         self.checkMatch(this, 'right', 'left');
     });
@@ -409,8 +412,8 @@ Game.prototype.addClickHandlers = function () {
     $(".playAgainButton").on('click', function () {
         $('.leftSide').html('');
         $('.rightSide').html('');
-        $(".leftSide").removeClass("inactive");
-        $(".rightSide").removeClass("inactive");
+        $(".leftSide").removeClass("unclickable");
+        $(".rightSide").removeClass("unclickable");
         $(".rohan").removeClass("chargeForward");
         $(".victory").addClass("displayNoneClass").removeClass("animateDefeatVictory");
         $(".defeat").addClass("displayNoneClass").removeClass("animateDefeatVictory");
