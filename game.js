@@ -10,7 +10,6 @@ var Game = function () {
     this.leftCards = [];
     this.rightCards = [];
     this.checkCards = [];
-    this.amountClicked = 0;
     this.leftCard = false;
     this.rightCard = false;
     this.correctMatch = 0;
@@ -135,25 +134,24 @@ Game.prototype.renderCard = function (card, boardSide) {
         ' =' + ' "back"></div></div>';
     var cardElement = $(cardHtml);
     $("." + boardSide + "Side").append(cardElement);
-    card.domElement = cardElement;
 };
+
 Game.prototype.addDataToHtml = function () {
-    $(".card-1").attr("data-specialCard", "dwarfCard");
-    $(".card-2").attr("data-specialCard", "hornCard");
-    $(".card-3").attr("data-specialCard", "nazgulCard");
-    $(".card-4").attr("data-specialCard", "4");
-    $(".card-5").attr("data-specialCard", "5");
-    $(".card-6").attr("data-specialCard", "6");
-    $(".card-7").attr("data-specialCard", "7");
-    $(".card-8").attr("data-specialCard", "8");
-    $(".card-9").attr("data-specialCard", "9");
+    $(".card-1").attr("data-card", "dwarfCard");
+    $(".card-2").attr("data-card", "hornCard");
+    $(".card-3").attr("data-card", "nazgulCard");
+    $(".card-4").attr("data-card", "4");
+    $(".card-5").attr("data-card", "5");
+    $(".card-6").attr("data-card", "6");
+    $(".card-7").attr("data-card", "7");
+    $(".card-8").attr("data-card", "8");
+    $(".card-9").attr("data-card", "9");
 
 };
 //Render the cards by looping through and dynamically creating the HTML element then appending
 Game.prototype.renderCards = function () {
     var game = this;
-    // clearTimeout(this);
-    // this can be cleaned up with bind
+
     this.leftCards.forEach(function (card) {
         game.renderCard(card, 'left')
     });
@@ -190,17 +188,16 @@ Game.prototype.isMatch = function (side, opposite) {
 Game.prototype.checkMatch = function (card, side, opposite) {
     var self = this;
     var $card = $(card);
-    self.amountClicked++;
     $card.toggleClass('flipCard');
-    $("." + side + "Card").addClass("inactive");
+    // $("." + side + "Card").addClass("inactive");
     self[side + 'Card'] = true;
     if (self.isMatch(side, opposite)) {
         self.checkCards.push($card.children(":first"));
     }
     else {
         self.checkCards.push($card.children(":first"));
-        if (self.checkCards[0][0].dataset.specialcard === self.checkCards[1][0].dataset.specialcard) {
-            self.specialCardActivation(self.checkCards[0][0].dataset.specialcard);
+        if (self.checkCards[0][0].dataset.card === self.checkCards[1][0].dataset.card) {
+            self.specialCardActivation(self.checkCards[0][0].dataset.card);
             if (self.healerActivated === true) {
                 self.playerHp += 8;
                 $(".card-1").removeClass("activeSide");
@@ -398,7 +395,7 @@ Game.prototype.addClickHandlers = function () {
     $('.displayRight').on('click', function () {
         self.nextImage(+1);
     });
-    $('.exitMobileCardInfo').on('click', function () {
+    $('.exitButton, .mobileCardInfo').on('click', function () {
         $('.howToPlayMobile').addClass("invisible dislayNoneClass");
     });
     //Restart the game
