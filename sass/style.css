@@ -643,7 +643,7 @@ body {
   -webkit-transform: rotate3D(0, 1, 0, 180deg);
   transform: rotate3D(0, 1, 0, 180deg); }
 
-.inactive {
+.unclickable {
   pointer-events: none; }
 
 .active {
@@ -695,14 +695,6 @@ body {
   left: 10%;
   position: relative; }
 
-.enemyAttack {
-  -webkit-animation-name: enemyAttackAnimation;
-  -webkit-animation-duration: 1.5s;
-  -moz-animation-name: enemyAttackAnimation;
-  -moz-animation-duration: 1.5s;
-  animation-name: enemyAttackAnimation;
-  animation-duration: 1.5s; }
-
 .enemy-4 {
   width: 100%;
   height: 100%;
@@ -737,6 +729,167 @@ body {
 
 .victory {
   color: green; }
+
+@keyframes goblinTopLeft {
+  0% {
+    top: 10%;
+    left: 10%; }
+  25% {
+    top: 160%;
+    left: 70%; }
+  50% {
+    top: 160%;
+    left: 70%; }
+  100% {
+    top: 10%;
+    left: 10%; } }
+@keyframes goblinTopRight {
+  0% {
+    top: 10%;
+    left: 10%; }
+  25% {
+    top: 160%;
+    left: -55%; }
+  50% {
+    top: 160%;
+    left: -55%; }
+  100% {
+    bottom: 10%;
+    right: 10%; } }
+@keyframes trollMiddleLeft {
+  0% {
+    top: 10%;
+    left: 10%; }
+  25% {
+    top: 65%;
+    left: 75%; }
+  50% {
+    top: 65%;
+    left: 75%; }
+  100% {
+    top: 10%;
+    left: 10%; } }
+@keyframes nazgul {
+  0% {
+    top: 5%;
+    left: 10%; }
+  25% {
+    top: 55%;
+    left: 10%; }
+  50% {
+    top: 55%;
+    left: 10%; }
+  100% {
+    top: 5%;
+    left: 10%; } }
+@keyframes trollMiddleRight {
+  0% {
+    top: 10%;
+    left: 10%; }
+  25% {
+    top: 65%;
+    left: -55%; }
+  50% {
+    top: 65%;
+    left: -55%; }
+  100% {
+    top: 10%;
+    left: 10%; } }
+@keyframes urukBottomLeft {
+  0% {
+    top: 10%;
+    left: 10%; }
+  25% {
+    top: 10%;
+    left: 75%; }
+  50% {
+    top: 10%;
+    left: 75%; }
+  100% {
+    top: 10%;
+    left: 10%; } }
+@keyframes trollBottomRight {
+  0% {
+    top: 10%;
+    left: 10%; }
+  25% {
+    top: 10%;
+    left: -50%; }
+  50% {
+    top: 10%;
+    left: -50%; }
+  100% {
+    top: 10%;
+    left: 10%; } }
+.goblinTopLeft {
+  -webkit-animation-name: goblinTopLeft;
+  -webkit-animation-duration: 1.5s;
+  -moz-animation-name: goblinTopLeft;
+  -moz-animation-duration: 1.5s;
+  animation-name: goblinTopLeft;
+  animation-duration: 1.5s;
+  -webkit-transition-timing-function: ease-out;
+  transition-timing-function: ease-out; }
+
+.goblinTopRight {
+  -webkit-animation-name: goblinTopRight;
+  -webkit-animation-duration: 1.5s;
+  -moz-animation-name: goblinTopRight;
+  -moz-animation-duration: 1.5s;
+  animation-name: goblinTopRight;
+  animation-duration: 1.5s;
+  -webkit-transition-timing-function: ease-out;
+  transition-timing-function: ease-out; }
+
+.trollMiddleLeft {
+  -webkit-animation-name: trollMiddleLeft;
+  -webkit-animation-duration: 1.5s;
+  -moz-animation-name: trollMiddleLeft;
+  -moz-animation-duration: 1.5s;
+  animation-name: trollMiddleLeft;
+  animation-duration: 1.5s;
+  -webkit-transition-timing-function: ease-out;
+  transition-timing-function: ease-out; }
+
+.trollMiddleRight {
+  -webkit-animation-name: trollMiddleRight;
+  -webkit-animation-duration: 1.5s;
+  -moz-animation-name: trollMiddleRight;
+  -moz-animation-duration: 1.5s;
+  animation-name: trollMiddleRight;
+  animation-duration: 1.5s;
+  -webkit-transition-timing-function: ease-out;
+  transition-timing-function: ease-out; }
+
+.urukBottomLeft {
+  -webkit-animation-name: urukBottomLeft;
+  -webkit-animation-duration: 1.5s;
+  -moz-animation-name: urukBottomLeft;
+  -moz-animation-duration: 1.5s;
+  animation-name: urukBottomLeft;
+  animation-duration: 1.5s;
+  -webkit-transition-timing-function: ease-out;
+  transition-timing-function: ease-out; }
+
+.nazgul {
+  -webkit-animation-name: nazgul;
+  -webkit-animation-duration: 1.5s;
+  -moz-animation-name: nazgul;
+  -moz-animation-duration: 1.5s;
+  animation-name: nazgul;
+  animation-duration: 1.5s;
+  -webkit-transition-timing-function: ease-out;
+  transition-timing-function: ease-out; }
+
+.trollBottomRight {
+  -webkit-animation-name: trollBottomRight;
+  -webkit-animation-duration: 1.5s;
+  -moz-animation-name: trollBottomRight;
+  -moz-animation-duration: 1.5s;
+  animation-name: trollBottomRight;
+  animation-duration: 1.5s;
+  -webkit-transition-timing-function: ease-out;
+  transition-timing-function: ease-out; }
 
 .animateDefeatVictory {
   -webkit-animation-name: fadeIn;

@@ -579,7 +579,7 @@ body {
   transform: rotate3D(0, 1, 0, 180deg);
 }
 
-.inactive {
+.unclickable {
   pointer-events: none;
 }
 
@@ -627,10 +627,6 @@ body {
   position: relative;
 }
 
-.enemyAttack {
-  @include animationNameDurationOnly(enemyAttackAnimation, 1.5s)
-}
-
 .enemy-4 {
   width: 100%;
   height: 100%;
@@ -666,6 +662,173 @@ body {
   color: green;
 }
 
+@keyframes goblinTopLeft {
+  0%{
+    top: 10%;
+    left: 10%;
+  }
+  25%{
+    top: 160%;
+    left: 70%
+  }
+  50%{
+    top: 160%;
+    left: 70%
+  }
+  100%{
+    top: 10%;
+    left: 10%;
+  }
+}
+@keyframes goblinTopRight {
+  0%{
+    top: 10%;
+    left: 10%;
+  }
+  25%{
+    top: 160%;
+    left: -55%;
+  }
+  50%{
+    top: 160%;
+    left: -55%;
+  }
+  100%{
+    bottom: 10%;
+    right: 10%;
+  }
+}
+@keyframes trollMiddleLeft {
+  0%{
+    top: 10%;
+    left: 10%;
+  }
+  25%{
+    top: 65%;
+    left: 75%;
+  }
+  50%{
+    top: 65%;
+    left: 75%;
+  }
+  100%{
+    top: 10%;
+    left: 10%;
+  }
+}
+@keyframes nazgul {
+  0%{
+    top: 5%;
+    left: 10%;
+  }
+  25%{
+    top: 55%;
+    left: 10%;
+  }
+  50%{
+    top: 55%;
+    left: 10%;
+  }
+  100%{
+    top: 5%;
+    left: 10%;
+  }
+}
+@keyframes trollMiddleRight {
+  0%{
+    top: 10%;
+    left: 10%;
+  }
+  25%{
+    top: 65%;
+    left: -55%;
+  }
+  50%{
+    top: 65%;
+    left: -55%;
+  }
+  100%{
+    top: 10%;
+    left: 10%;
+  }
+}
+@keyframes urukBottomLeft {
+  0%{
+    top: 10%;
+    left: 10%;
+  }
+  25%{
+    top: 10%;
+    left: 75%;
+  }
+  50%{
+    top: 10%;
+    left: 75%;
+  }
+  100%{
+    top: 10%;
+    left: 10%;
+  }
+}
+@keyframes trollBottomRight {
+  0%{
+    top: 10%;
+    left: 10%;
+  }
+  25%{
+    top: 10%;
+    left: -50%;
+  }
+  50%{
+    top: 10%;
+    left: -50%;
+  }
+  100%{
+    top: 10%;
+    left: 10%;
+  }
+}
+//enemyAttack
+.goblinTopLeft {
+  @include animationNameDurationOnly(goblinTopLeft, 1.5s);
+  -webkit-transition-timing-function: ease-out;
+  transition-timing-function: ease-out;
+}
+.goblinTopRight {
+  @include animationNameDurationOnly(goblinTopRight, 1.5s);
+  -webkit-transition-timing-function: ease-out;
+  transition-timing-function: ease-out;
+
+}
+.trollMiddleLeft {
+  @include animationNameDurationOnly(trollMiddleLeft, 1.5s);
+  -webkit-transition-timing-function: ease-out;
+  transition-timing-function: ease-out;
+
+}
+.trollMiddleRight {
+  @include animationNameDurationOnly(trollMiddleRight, 1.5s);
+  -webkit-transition-timing-function: ease-out;
+  transition-timing-function: ease-out;
+
+}
+.urukBottomLeft {
+  @include animationNameDurationOnly(urukBottomLeft, 1.5s);
+  -webkit-transition-timing-function: ease-out;
+  transition-timing-function: ease-out;
+}
+.nazgul {
+  @include animationNameDurationOnly(nazgul, 1.5s);
+  -webkit-transition-timing-function: ease-out;
+  transition-timing-function: ease-out;
+
+}
+.trollBottomRight {
+  @include animationNameDurationOnly(trollBottomRight, 1.5s);
+  -webkit-transition-timing-function: ease-out;
+  transition-timing-function: ease-out;
+
+}
 .animateDefeatVictory {
   @include animationNameDurationOnly(fadeIn, 6s);
 }
