@@ -137,7 +137,7 @@ body {
   color: white;
   top: 2%;
   right: 2%;
-  background-image: url(../images/mute.png);
+  background-image: url(../images/mute.jpg);
   @include backgroundImage(70%, 80%);
   cursor: pointer;
 }
@@ -151,7 +151,7 @@ body {
   height: 5%;
   bottom: 6%;
   left: 16%;
-  background-image: url(../images/mute.png);
+  background-image: url(../images/mute.jpg);
   @include backgroundImage(70%, 80%);
   z-index: 105;
   cursor: pointer;
@@ -166,7 +166,7 @@ body {
   color: white;
   top: 2%;
   right: 2%;
-  background-image: url(../images/speaker.png);
+  background-image: url(../images/speaker.jpg);
   @include backgroundImage(70%, 85%);
 }
 
@@ -189,7 +189,7 @@ body {
   height: 5%;
   bottom: 6%;
   left: 16%;
-  background-image: url(../images/speaker.png);
+  background-image: url(../images/speaker.jpg);
   @include backgroundImage(70%, 80%);
   z-index: 105;
 }
@@ -294,7 +294,7 @@ body {
   @include display();
   @include flexBoxCenter();
   @include backgroundImage(100%, 100%);
-  background-image: url(../images/tutorial.png);
+  background-image: url(../images/tutorial.jpg);
   border: 4px solid blanchedalmond;
 }
 
@@ -517,47 +517,47 @@ body {
 }
 
 .card-1 {
-  background-image: url(../images/1.png);
+  background-image: url(../images/1.jpg);
   @include cardBGSizeAndBorderColor();
 }
 
 .card-2 {
-  background-image: url(../images/2.png);
+  background-image: url(../images/2.jpg);
   @include cardBGSizeAndBorderColor();
 }
 
 .card-3 {
-  background-image: url(../images/3.png);
+  background-image: url(../images/3.jpg);
   @include cardBGSizeAndBorderColor();
 }
 
 .card-4 {
-  background-image: url(../images/4.png);
+  background-image: url(../images/4.jpg);
   @include cardBGSizeAndBorderColor();
 }
 
 .card-5 {
-  background-image: url(../images/5.png);
+  background-image: url(../images/5.jpg);
   @include cardBGSizeAndBorderColor();
 }
 
 .card-6 {
-  background-image: url(../images/6.png);
+  background-image: url(../images/6.jpg);
   @include cardBGSizeAndBorderColor();
 }
 
 .card-7 {
-  background-image: url(../images/7.png);
+  background-image: url(../images/7.jpg);
   @include cardBGSizeAndBorderColor();
 }
 
 .card-8 {
-  background-image: url(../images/8.png);
+  background-image: url(../images/8.jpg);
   @include cardBGSizeAndBorderColor();
 }
 
 .card-9 {
-  background-image: url(../images/9.png);
+  background-image: url(../images/9.jpg);
   @include cardBGSizeAndBorderColor();
 }
 
@@ -1159,7 +1159,7 @@ body {
     font-size: 1em;
   }
   .lotrDesc {
-    font-size: 1em;
+    font-size: 0.9em;
   }
   .armor {
     font-size: 1.9em;

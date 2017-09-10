@@ -82,7 +82,7 @@ body {
   color: white;
   top: 2%;
   right: 2%;
-  background-image: url(../images/mute.png);
+  background-image: url(../images/mute.jpg);
   background-repeat: no-repeat;
   background-size: 70% 70%;
   cursor: pointer; }
@@ -100,7 +100,7 @@ body {
   height: 5%;
   bottom: 6%;
   left: 16%;
-  background-image: url(../images/mute.png);
+  background-image: url(../images/mute.jpg);
   background-repeat: no-repeat;
   background-size: 70% 70%;
   z-index: 105;
@@ -122,7 +122,7 @@ body {
   color: white;
   top: 2%;
   right: 2%;
-  background-image: url(../images/speaker.png);
+  background-image: url(../images/speaker.jpg);
   background-repeat: no-repeat;
   background-size: 70% 70%; }
 
@@ -148,7 +148,7 @@ body {
   height: 5%;
   bottom: 6%;
   left: 16%;
-  background-image: url(../images/speaker.png);
+  background-image: url(../images/speaker.jpg);
   background-repeat: no-repeat;
   background-size: 70% 70%;
   z-index: 105; }
@@ -324,7 +324,7 @@ body {
   align-items: center;
   background-repeat: no-repeat;
   background-size: 100% 100%;
-  background-image: url(../images/tutorial.png);
+  background-image: url(../images/tutorial.jpg);
   border: 4px solid blanchedalmond; }
 
 .howToPlayMobile {
@@ -582,47 +582,47 @@ body {
   backface-visibility: hidden; }
 
 .card-1 {
-  background-image: url(../images/1.png);
+  background-image: url(../images/1.jpg);
   background-size: 100% 100%;
   border: 1px solid darkblue; }
 
 .card-2 {
-  background-image: url(../images/2.png);
+  background-image: url(../images/2.jpg);
   background-size: 100% 100%;
   border: 1px solid darkblue; }
 
 .card-3 {
-  background-image: url(../images/3.png);
+  background-image: url(../images/3.jpg);
   background-size: 100% 100%;
   border: 1px solid darkblue; }
 
 .card-4 {
-  background-image: url(../images/4.png);
+  background-image: url(../images/4.jpg);
   background-size: 100% 100%;
   border: 1px solid darkblue; }
 
 .card-5 {
-  background-image: url(../images/5.png);
+  background-image: url(../images/5.jpg);
   background-size: 100% 100%;
   border: 1px solid darkblue; }
 
 .card-6 {
-  background-image: url(../images/6.png);
+  background-image: url(../images/6.jpg);
   background-size: 100% 100%;
   border: 1px solid darkblue; }
 
 .card-7 {
-  background-image: url(../images/7.png);
+  background-image: url(../images/7.jpg);
   background-size: 100% 100%;
   border: 1px solid darkblue; }
 
 .card-8 {
-  background-image: url(../images/8.png);
+  background-image: url(../images/8.jpg);
   background-size: 100% 100%;
   border: 1px solid darkblue; }
 
 .card-9 {
-  background-image: url(../images/9.png);
+  background-image: url(../images/9.jpg);
   background-size: 100% 100%;
   border: 1px solid darkblue; }
 
@@ -1144,7 +1144,7 @@ body {
     font-size: 1em; }
 
   .lotrDesc {
-    font-size: 1em; }
+    font-size: 0.9em; }
 
   .armor {
     font-size: 1.9em; }
