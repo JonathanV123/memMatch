@@ -1230,5 +1230,8 @@ body {
 @media only screen and (min-width: 475px) {
   .flipScreenPage {
     display: none; } }
+@media only screen and (min-height: 270px) {
+  .lotrDesc {
+    font-size: 0.8em; } }
 
 /*# sourceMappingURL=style.css.map */

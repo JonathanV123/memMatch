@@ -1254,3 +1254,9 @@ body {
     display: none;
   }
 }
+
+@media only screen and (min-height: 270px) {
+  .lotrDesc {
+    font-size: 0.8em;
+  }
+}
