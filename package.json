@@ -1,0 +1,24 @@
+{
+  "name": "memory_match",
+  "version": "1.0.0",
+  "description": "Jonathan Voxland's game",
+  "main": "game.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack src/js/game.js dist/bundle.js",
+    "build:prod": "webpack src/js/game.js dist/bundle.js -p"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JonathanV123/memMatch.git"
+  },
+  "author": "Jonathan",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JonathanV123/memMatch/issues"
+  },
+  "homepage": "https://github.com/JonathanV123/memMatch#readme",
+  "devDependencies": {
+    "webpack": "^3.5.6"
+  }
+}
