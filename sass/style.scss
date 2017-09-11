@@ -197,7 +197,9 @@ body {
 .introTitle {
   @include display();
   @include flexBoxCenter();
-  font-size: 2.5em;
+  font-size: 3em;
+  font-weight: bold;
+  text-align: center;
   color: RGB(161, 127, 26);
   @include animationNameIterationTimingDuration(fontAnimation)
 }
@@ -207,6 +209,7 @@ body {
   @include flexBoxCenter();
   width: 20%;
   height: 20%;
+  font-weight: bold;
   font-size: 40px;
   z-index: 104;
   color: white;
@@ -294,7 +297,7 @@ body {
   @include display();
   @include flexBoxCenter();
   @include backgroundImage(100%, 100%);
-  background-image: url(../images/tutorial.png);
+  background-image: url(../images/tutorial.jpg);
   border: 4px solid blanchedalmond;
 }
 
@@ -517,47 +520,47 @@ body {
 }
 
 .card-1 {
-  background-image: url(../images/1.png);
+  background-image: url(../images/1.jpg);
   @include cardBGSizeAndBorderColor();
 }
 
 .card-2 {
-  background-image: url(../images/2.png);
+  background-image: url(../images/2.jpg);
   @include cardBGSizeAndBorderColor();
 }
 
 .card-3 {
-  background-image: url(../images/3.png);
+  background-image: url(../images/3.jpg);
   @include cardBGSizeAndBorderColor();
 }
 
 .card-4 {
-  background-image: url(../images/4.png);
+  background-image: url(../images/4.jpg);
   @include cardBGSizeAndBorderColor();
 }
 
 .card-5 {
-  background-image: url(../images/5.png);
+  background-image: url(../images/5.jpg);
   @include cardBGSizeAndBorderColor();
 }
 
 .card-6 {
-  background-image: url(../images/6.png);
+  background-image: url(../images/6.jpg);
   @include cardBGSizeAndBorderColor();
 }
 
 .card-7 {
-  background-image: url(../images/7.png);
+  background-image: url(../images/7.jpg);
   @include cardBGSizeAndBorderColor();
 }
 
 .card-8 {
-  background-image: url(../images/8.png);
+  background-image: url(../images/8.jpg);
   @include cardBGSizeAndBorderColor();
 }
 
 .card-9 {
-  background-image: url(../images/9.png);
+  background-image: url(../images/9.jpg);
   @include cardBGSizeAndBorderColor();
 }
 
@@ -1147,7 +1150,7 @@ body {
     font-size: 2.5em;
   }
   .introTitle {
-    font-size: 2em;
+    font-size: 2.6em;
   }
 }
 
@@ -1159,7 +1162,7 @@ body {
     font-size: 1em;
   }
   .lotrDesc {
-    font-size: 1em;
+    font-size: 0.9em;
   }
   .armor {
     font-size: 1.9em;
@@ -1168,7 +1171,7 @@ body {
     font-size: 1.9em;
   }
   .introTitle {
-    font-size: 2em;
+    font-size: 2.4em;
   }
   .tutorial {
     line-height: 12px;
@@ -1249,5 +1252,11 @@ body {
 @media only screen and (min-width: 475px) {
   .flipScreenPage {
     display: none;
+  }
+}
+
+@media only screen and (min-height: 270px) {
+  .lotrDesc {
+    font-size: 0.8em;
   }
 }
