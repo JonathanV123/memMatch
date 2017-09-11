@@ -166,7 +166,7 @@ body {
   color: white;
   top: 2%;
   right: 2%;
-  background-image: url(../images/speaker.jpg);
+  background-image: url(../images/speaker.png);
   @include backgroundImage(70%, 85%);
 }
 
@@ -189,7 +189,7 @@ body {
   height: 5%;
   bottom: 6%;
   left: 16%;
-  background-image: url(../images/speaker.jpg);
+  background-image: url(../images/speaker.png);
   @include backgroundImage(70%, 80%);
   z-index: 105;
 }
@@ -197,7 +197,9 @@ body {
 .introTitle {
   @include display();
   @include flexBoxCenter();
-  font-size: 2.5em;
+  font-size: 3em;
+  font-weight: bold;
+  text-align: center;
   color: RGB(161, 127, 26);
   @include animationNameIterationTimingDuration(fontAnimation)
 }
@@ -207,6 +209,7 @@ body {
   @include flexBoxCenter();
   width: 20%;
   height: 20%;
+  font-weight: bold;
   font-size: 40px;
   z-index: 104;
   color: white;
@@ -1147,7 +1150,7 @@ body {
     font-size: 2.5em;
   }
   .introTitle {
-    font-size: 2em;
+    font-size: 2.6em;
   }
 }
 
@@ -1168,7 +1171,7 @@ body {
     font-size: 1.9em;
   }
   .introTitle {
-    font-size: 2em;
+    font-size: 2.4em;
   }
   .tutorial {
     line-height: 12px;
