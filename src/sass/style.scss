@@ -132,11 +132,11 @@ body {
   position: absolute;
   @include display();
   @include flexBoxCenter();
-  width: 5%;
-  height: 5%;
+  width: 45px;
+  height: 30px;
   color: white;
   top: 2%;
-  right: 2%;
+  right: 1%;
   background-image: url(../../assets/images/mute.png);
   @include backgroundImage(70%, 80%);
   cursor: pointer;
@@ -161,11 +161,11 @@ body {
   position: absolute;
   @include display();
   @include flexBoxCenter();
-  width: 5%;
-  height: 5%;
+  width: 45px;
+  height: 30px;
   color: white;
   top: 2%;
-  right: 2%;
+  right: 1%;
   background-image: url(../../assets/images/speaker.png);
   @include backgroundImage(70%, 85%);
 }
@@ -197,11 +197,6 @@ body {
 .introTitle {
   @include display();
   @include flexBoxCenter();
-  font-size: 3em;
-  font-weight: bold;
-  text-align: center;
-  color: RGB(161, 127, 26);
-  @include animationNameIterationTimingDuration(fontAnimation)
 }
 
 .exitIntroScreen {
@@ -209,10 +204,7 @@ body {
   @include flexBoxCenter();
   width: 20%;
   height: 20%;
-  font-weight: bold;
-  font-size: 40px;
   z-index: 104;
-  color: white;
   margin-top: 3%;
   @include animationNameIterationTimingDuration(beginAnimtion);
   background-image: url("../../assets/images/dwarfBorder.png");
@@ -1089,15 +1081,6 @@ body {
   }
 }
 
-@keyframes fontAnimation {
-  0% {
-    font-size: 0.5em;
-  }
-  100% {
-    font-size: 2.5em;
-  }
-}
-
 @keyframes borderPulse {
   0% {
     border-color: rgba(232, 48, 51, 1);
@@ -1149,9 +1132,6 @@ body {
   .hitPoints {
     font-size: 2.5em;
   }
-  .introTitle {
-    font-size: 2.6em;
-  }
 }
 
 @media only screen and (max-width: 929px) {
@@ -1170,9 +1150,6 @@ body {
   .hitPoints {
     font-size: 1.9em;
   }
-  .introTitle {
-    font-size: 2.4em;
-  }
   .tutorial {
     line-height: 12px;
     word-spacing: 12.2em;
@@ -1188,12 +1165,6 @@ body {
 }
 
 @media only screen and (min-width: 300px) and (max-width: 650px) {
-  .exitIntroScreen {
-    font-size: 1.2em;
-  }
-  .introTitle {
-    font-size: 1.5em;
-  }
   .exitButton {
     width: 50px;
     height: 45px;
