@@ -77,11 +77,11 @@ body {
   justify-content: center;
   -webkit-align-items: center;
   align-items: center;
-  width: 5%;
-  height: 5%;
+  width: 45px;
+  height: 30px;
   color: white;
   top: 2%;
-  right: 2%;
+  right: 1%;
   background-image: url(../../assets/images/mute.png);
   background-repeat: no-repeat;
   background-size: 70% 70%;
@@ -117,11 +117,11 @@ body {
   justify-content: center;
   -webkit-align-items: center;
   align-items: center;
-  width: 5%;
-  height: 5%;
+  width: 45px;
+  height: 30px;
   color: white;
   top: 2%;
-  right: 2%;
+  right: 1%;
   background-image: url(../../assets/images/speaker.png);
   background-repeat: no-repeat;
   background-size: 70% 70%; }
@@ -162,23 +162,7 @@ body {
   -webkit-justify-content: center;
   justify-content: center;
   -webkit-align-items: center;
-  align-items: center;
-  font-size: 3em;
-  font-weight: bold;
-  text-align: center;
-  color: RGB(161, 127, 26);
-  -webkit-animation-name: fontAnimation;
-  -moz-animation-name: fontAnimation;
-  animation-name: fontAnimation;
-  -webkit-animation-iteration-count: 1;
-  -moz-animation-iteration-count: 1;
-  animation-iteration-count: 1;
-  -webkit-animation-timing-function: ease-out;
-  -moz-animation-timing-function: ease-out;
-  animation-timing-function: ease-out;
-  -webkit-animation-duration: 6s;
-  -moz-animation-duration: 6s;
-  animation-duration: 6s; }
+  align-items: center; }
 
 .exitIntroScreen {
   display: -webkit-box;
@@ -192,10 +176,7 @@ body {
   align-items: center;
   width: 20%;
   height: 20%;
-  font-weight: bold;
-  font-size: 40px;
   z-index: 104;
-  color: white;
   margin-top: 3%;
   -webkit-animation-name: beginAnimtion;
   -moz-animation-name: beginAnimtion;
@@ -1090,11 +1071,6 @@ body {
     opacity: 0; }
   100% {
     opacity: 1; } }
-@keyframes fontAnimation {
-  0% {
-    font-size: 0.5em; }
-  100% {
-    font-size: 2.5em; } }
 @keyframes borderPulse {
   0% {
     border-color: #e83033; }
@@ -1135,10 +1111,7 @@ body {
     font-size: 2.5em; }
 
   .hitPoints {
-    font-size: 2.5em; }
-
-  .introTitle {
-    font-size: 2.6em; } }
+    font-size: 2.5em; } }
 @media only screen and (max-width: 929px) {
   .info {
     font-size: 0.6em; }
@@ -1155,9 +1128,6 @@ body {
   .hitPoints {
     font-size: 1.9em; }
 
-  .introTitle {
-    font-size: 2.4em; }
-
   .tutorial {
     line-height: 12px;
     word-spacing: 12.2em;
@@ -1170,12 +1140,6 @@ body {
     text-align: center;
     font-size: 0.7em; } }
 @media only screen and (min-width: 300px) and (max-width: 650px) {
-  .exitIntroScreen {
-    font-size: 1.2em; }
-
-  .introTitle {
-    font-size: 1.5em; }
-
   .exitButton {
     width: 50px;
     height: 45px; }
