@@ -89,6 +89,7 @@ var Game = function () {
     this.playerArmor = 10;
     this.testIfMatch = true;
     this.slideIndex = 1;
+    // Enemy information
     this.enemies = {
         2: {
             className: '.enemy-1',
@@ -133,6 +134,7 @@ var Game = function () {
             attackAnimationClassName: 'nazgul'
         },
     };
+    // Special card information
     this.specialCards = {
         dwarfCard: {
             activateAblity: 'healerActivated'
@@ -148,11 +150,11 @@ var Game = function () {
 
     };
 };
-//Creating Card Class
+// Card class for all cards
 var Card = function (id) {
     this.id = id;
 };
-//Defining a Method SetUpGame that sets the game up...
+//Defining set the game up
 Game.prototype.setUpGame = function () {
     this.createCards(9);
     this.shuffleCards(this.leftCards);
@@ -166,9 +168,11 @@ Game.prototype.setUpGame = function () {
     this.updateStats();
     this.showImgDivs(this.slideIndex);
 };
+// Shows the next image on tutorial slide
 Game.prototype.nextImage = function (num) {
     this.showImgDivs(this.slideIndex += num);
-}
+};
+// Show the elements containing tutorial image information
 Game.prototype.showImgDivs = function (num) {
     var i;
     var x = document.getElementsByClassName("imageSlides");
@@ -243,7 +247,7 @@ Game.prototype.cardDefault = function () {
     this.leftCard = false;
     this.rightCard = false;
 };
-
+// If there is a match increase correct match count and flag match as true
 Game.prototype.handleCardMatch = function () {
     this.leftCard = false;
     this.rightCard = false;
@@ -251,6 +255,7 @@ Game.prototype.handleCardMatch = function () {
     this.correctMatch += 1;
 
 };
+// Special card abilities
 Game.prototype.specialCardActivation = function (cardName) {
     var activateSpecialCard = this.specialCards[cardName];
     if (activateSpecialCard) {
@@ -406,6 +411,7 @@ Game.prototype.victoryDefeatConditions = function () {
 };
 Game.prototype.addClickHandlersToInfoBar = function () {
     var self = this;
+    // Sound button landing page click handler
     $('.soundButton').on('click', function () {
         $('.soundButton').toggleClass("unMute");
         var audio = document.getElementById('song');
@@ -416,6 +422,7 @@ Game.prototype.addClickHandlersToInfoBar = function () {
             audio.muted = true;
         }
     });
+    // Sound button in game click handler
     $('.soundButtonInGame').on('click', function () {
         $('.soundButtonInGame').toggleClass("unMuteInGame");
         var audio = document.getElementById('song');
@@ -426,10 +433,12 @@ Game.prototype.addClickHandlersToInfoBar = function () {
             audio.muted = true;
         }
     });
+    // Click handler for exiting landing page
     $('.exitIntroScreen').on('click', function () {
         $('.container').css("visibility", 'visible');
         $('.introScreen').css("display", 'none');
     });
+    // Click handler for the horn button
     $('.horn').on('click', function () {
         if (self.hornActivated === true) {
             self.hornActivated = false;
@@ -444,20 +453,23 @@ Game.prototype.addClickHandlersToInfoBar = function () {
             }
         }
     });
+    // Click handler to open about page
     $(".about").on('click', function () {
         $(".aboutPage").removeClass("invisible");
     });
+    // Click handler to open tutorial page
     $(".tutorial").on('click', function () {
         $(".howToPlay").removeClass("invisible");
         $(".howToPlayMobile").removeClass("invisible displayNoneClass");
 
     });
+    // Click handler for exit button
     $(".exitButton").on('click', function () {
         $(".aboutPage").addClass("invisible");
         $(".howToPlay").addClass("invisible");
     })
 };
-//Add click handlers to cards
+//Add click handlers to cards, tutorial page, and play again popup.
 Game.prototype.addClickHandlers = function () {
     var self = this;
     $('.leftCard').on('click', function () {
