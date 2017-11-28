@@ -41,7 +41,7 @@
     <audio id="song" autoplay="autoplay" muted="muted">
         <source src="./music/lotrBattle.mp3" type="audio/mpeg">
     </audio>
-</div>
+</div><!-- introScreen -->
 <div class="container">
     <div class="soundButtonInGame">
     </div>
@@ -58,11 +58,11 @@
         <button class="imageSlidesButton displayRight">Next</button>
     </div>
     <div class="aboutPage invisible">
-        <div class="lotrDesc">Enemies will spawn in the middle of the screen when the
+        <p class="lotrDesc">Enemies will spawn in the middle of the screen when the
             player matches incorrectly. Overtime, stronger enemies will begin to spawn. Your goal is to correctly
             match all cards before your hit points reach 0. You cannot match a card on its same side; all card matches
             are one card left side, one card right side.
-        </div>
+        </p>
         <div class="exitButton">&#10006</div>
     </div>
     <img class="rohan chargeOne" alt="horse charge" src="assets/images/horseCharge.png" style="width:25%;height:25%;">
@@ -71,7 +71,6 @@
     <img class="rohan chargeFour" alt="horse charge" src="assets/images/horseCharge.png" style="width:25%;height:25%;">
     <img class="rohan chargeFive" alt="horse charge" src="assets/images/horseCharge.png" style="width:25%;height:25%;">
     <img class="rohan chargeSix" alt="horse charge" src="assets/images/horseCharge.png" style="width:25%;height:25%;">
-    <!-- Left Area Game -->
     <div class="gameArea leftSide">
     </div>
     <div class="battleground">
@@ -82,14 +81,13 @@
                 </div>
             </div>
             <div class="characterContainer ">
-
             </div>
             <div class="characterContainer">
                 <div class=" enemy enemy-2  invisible ">
                     <img src="assets/images/goblin.jpg" style="width:70%;height:90%;">
                 </div>
             </div>
-        </div>
+        </div> <!-- enemyRow -->
         <div class="enemyRow">
             <div class="characterContainer">
                 <div class="enemy enemy-3  invisible">
@@ -106,7 +104,7 @@
                     <img src="assets/images/hill-troll.jpg" style="width:70%;height:90%;">
                 </div>
             </div>
-        </div>
+        </div> <!-- enemyRow -->
         <div class="enemyRow">
             <div class="characterContainer">
                 <div class="enemy enemy-6  invisible ">
@@ -123,9 +121,8 @@
                     <img src="assets/images/troll.jpg" style="width:70%;height:90%;">
                 </div>
             </div>
-        </div>
-    </div>
-    <!-- Right Area Game -->
+        </div> <!-- enemyRow -->
+    </div><!-- battleground -->
     <div class="gameArea rightSide">
     </div>
     <!-- Bottom Bar -->
@@ -145,8 +142,8 @@
         <div class="info tutorial">
             Unique Card Info
         </div>
-    </div>
-</div>
+    </div><!-- gameInfo -->
+</div><!-- container -->
 </body>
 </html>
 
