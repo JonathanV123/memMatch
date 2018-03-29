@@ -1,4 +1,4 @@
-
+import '../css/main.scss'
 
 $(document).ready(function () {
     startGame();

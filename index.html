@@ -1,164 +1,157 @@
 <!DOCTYPE HTML>
 <html>
+
 <head>
     <meta charset="utf-8">
-    <link rel="stylesheet" type="text/css" href="src/sass/style.css">
     <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
-    <script src="dist/bundle.js"></script>
     <meta name="viewport" content="width=device-width">
+    <!-- <link rel="stylesheet" href="dist/main.css"> -->
     <title>Lord of The Rings Memory Match</title>
 </head>
+
 <body>
-<div class="flipScreenPage">
-    <h1>Lord of The Rings Memory Match</h1>
-    <p>
-        For the best experience, please hold your device in landscape mode.
-    </p>
-</div>
-<div class="restartGame invisible">
-    <p>
-        Play Again?
-    </p>
-    <div class="playAgainButton invisible">
-        Play
-    </div>
-</div>
-<div class="winDefeatNotification displayNoneClass defeat">
-    Defeat
-</div>
-<div class="winDefeatNotification displayNoneClass victory">
-    Victory
-</div>
-<div class="introScreen">
-    <div class="introTitle">
-        <img width="90%" alt ="Lord of The Rings Memory Match" src="assets/images/memoryMatchTitle.png">
-    </div>
-    <div class="exitIntroScreen">
-        <img width="50%" height="44%" alt ="Start Game" src="assets/images/startButton.png">
-    </div>
-    <div class="soundButton">
-    </div>
-    <audio id="song" autoplay="autoplay" muted="muted">
-        <source src="./music/lotrBattle.mp3" type="audio/mpeg">
-    </audio>
-</div><!-- introScreen -->
-<div class="container">
-    <div class="soundButtonInGame">
-    </div>
-    <div class="howToPlay invisible">
-        <div class="exitButton">&#10006</div>
-    </div>
-    <div class="howToPlayMobile invisible">
-        <div class="exitButton mobileCardInfo">&#10006</div>
-        <img class="imageSlides" alt ="Enemy Information" src="assets/images/enemyInfo.jpg">
-        <img class="imageSlides" alt ="Nazgul Stats" src="assets/images/nazgulInfo.jpg">
-        <img class="imageSlides" alt ="Healer Stats" src="assets/images/dwarfHealerInfo.jpg">
-        <img class="imageSlides" alt ="Rohan Charge Information" src="assets/images/rohanInfoFinal.jpg">
-        <button class="imageSlidesButton displayLeft">Prev</button>
-        <button class="imageSlidesButton displayRight">Next</button>
-    </div>
-    <div class="aboutPage invisible">
-        <p class="lotrDesc">Enemies will spawn in the middle of the screen when the
-            player matches incorrectly. Overtime, stronger enemies will begin to spawn. Your goal is to correctly
-            match all cards before your hit points reach 0. You cannot match a card on its same side; all card matches
-            are one card left side, one card right side.
+    <div class="flipScreenPage">
+        <h1>Lord of The Rings Memory Match</h1>
+        <p>
+            For the best experience, please hold your device in landscape mode.
         </p>
-        <div class="exitButton">&#10006</div>
     </div>
-    <img class="rohan chargeOne" alt="horse charge" src="assets/images/horseCharge.png" style="width:25%;height:25%;">
-    <img class="rohan chargeTwo" alt="horse charge" src="assets/images/horseCharge.png" style="width:25%;height:25%;">
-    <img class="rohan chargeThree" alt="horse charge" src="assets/images/horseCharge.png" style="width:25%;height:25%;">
-    <img class="rohan chargeFour" alt="horse charge" src="assets/images/horseCharge.png" style="width:25%;height:25%;">
-    <img class="rohan chargeFive" alt="horse charge" src="assets/images/horseCharge.png" style="width:25%;height:25%;">
-    <img class="rohan chargeSix" alt="horse charge" src="assets/images/horseCharge.png" style="width:25%;height:25%;">
-    <div class="gameArea leftSide">
+    <div class="restartGame invisible">
+        <p>
+            Play Again?
+        </p>
+        <div class="playAgainButton invisible">
+            Play
+        </div>
     </div>
-    <div class="battleground">
-        <div class="enemyRow">
-            <div class="characterContainer">
-                <div class="enemy enemy-1  invisible ">
-                    <img src="assets/images/goblin.jpg" style="width:70%;height:90%;">
-                </div>
-            </div>
-            <div class="characterContainer ">
-            </div>
-            <div class="characterContainer">
-                <div class=" enemy enemy-2  invisible ">
-                    <img src="assets/images/goblin.jpg" style="width:70%;height:90%;">
-                </div>
-            </div>
-        </div> <!-- enemyRow -->
-        <div class="enemyRow">
-            <div class="characterContainer">
-                <div class="enemy enemy-3  invisible">
-                    <img src="assets/images/hill-troll.jpg" style="width:70%;height:90%;">
-                </div>
-            </div>
-            <div class="characterContainer">
-                <div class="enemy enemy-4  invisible">
-                    <img src="assets/images/nazgul.jpg" style="width:70%;height:90%;">
-                </div>
-            </div>
-            <div class="characterContainer">
-                <div class="enemy enemy-5  invisible ">
-                    <img src="assets/images/hill-troll.jpg" style="width:70%;height:90%;">
-                </div>
-            </div>
-        </div> <!-- enemyRow -->
-        <div class="enemyRow">
-            <div class="characterContainer">
-                <div class="enemy enemy-6  invisible ">
-                    <img src="assets/images/uruk.jpg" style="width:70%;height:90%;">
-                </div>
-            </div>
-            <div class="characterContainer">
-                <div class="heroAvatar">
-                    <img src="assets/images/hero.jpg" style="width:90%;height:100%;">
-                </div>
-            </div>
-            <div class="characterContainer">
-                <div class="enemy enemy-7  invisible ">
-                    <img src="assets/images/troll.jpg" style="width:70%;height:90%;">
-                </div>
-            </div>
-        </div> <!-- enemyRow -->
-    </div><!-- battleground -->
-    <div class="gameArea rightSide">
+    <div class="winDefeatNotification displayNoneClass defeat">
+        Defeat
     </div>
-    <!-- Bottom Bar -->
-    <div class="game-info">
-        <div class=" info about">
-            How To Play
+    <div class="winDefeatNotification displayNoneClass victory">
+        Victory
+    </div>
+    <div class="introScreen">
+        <div class="introTitle">
+            <img width="90%" alt="Lord of The Rings Memory Match" src="assets/images/memoryMatchTitle.png">
         </div>
-        <div class="info armor">
-            <!--<div class = "armor armortext"></div>-->
-            <div class="armor"></div>
+        <div class="exitIntroScreen">
+            <img width="50%" height="44%" alt="Start Game" src="assets/images/startButton.png">
         </div>
-        <div class="info horn">
-            Horn of Rohan
+        <div class="soundButton">
         </div>
-        <div class="info hitPoints"></div>
+        <audio id="song" autoplay="autoplay" muted="muted">
+            <source src=" music/lotrBattle.mp3" type="audio/mp3">
+        </audio>
+    </div>
+    <!-- introScreen -->
+    <div class="container">
+        <div class="soundButtonInGame">
+        </div>
+        <div class="howToPlay invisible">
+            <div class="exitButton">&#10006</div>
+        </div>
+        <div class="howToPlayMobile invisible">
+            <div class="exitButton mobileCardInfo">&#10006</div>
+            <img class="imageSlides" alt="Enemy Information" src="assets/images/enemyInfo.jpg">
+            <img class="imageSlides" alt="Nazgul Stats" src="assets/images/nazgulInfo.jpg">
+            <img class="imageSlides" alt="Healer Stats" src="assets/images/dwarfHealerInfo.jpg">
+            <img class="imageSlides" alt="Rohan Charge Information" src="assets/images/rohanInfoFinal.jpg">
+            <button class="imageSlidesButton displayLeft">Prev</button>
+            <button class="imageSlidesButton displayRight">Next</button>
+        </div>
+        <div class="aboutPage invisible">
+            <p class="lotrDesc">Enemies will spawn in the middle of the screen when the player matches incorrectly. Overtime, stronger enemies
+                will begin to spawn. Your goal is to correctly match all cards before your hit points reach 0. You cannot
+                match a card on its same side; all card matches are one card left side, one card right side.
+            </p>
+            <div class="exitButton">&#10006</div>
+        </div>
+        <img class="rohan chargeOne" alt="horse charge" src="assets/images/horseCharge.png" style="width:25%;height:25%;">
+        <img class="rohan chargeTwo" alt="horse charge" src="assets/images/horseCharge.png" style="width:25%;height:25%;">
+        <img class="rohan chargeThree" alt="horse charge" src="assets/images/horseCharge.png" style="width:25%;height:25%;">
+        <img class="rohan chargeFour" alt="horse charge" src="assets/images/horseCharge.png" style="width:25%;height:25%;">
+        <img class="rohan chargeFive" alt="horse charge" src="assets/images/horseCharge.png" style="width:25%;height:25%;">
+        <img class="rohan chargeSix" alt="horse charge" src="assets/images/horseCharge.png" style="width:25%;height:25%;">
+        <div class="gameArea leftSide">
+        </div>
+        <div class="battleground">
+            <div class="enemyRow">
+                <div class="characterContainer">
+                    <div class="enemy enemy-1  invisible ">
+                        <img src="assets/images/goblin.jpg" style="width:70%;height:90%;">
+                    </div>
+                </div>
+                <div class="characterContainer ">
+                </div>
+                <div class="characterContainer">
+                    <div class=" enemy enemy-2  invisible ">
+                        <img src="assets/images/goblin.jpg" style="width:70%;height:90%;">
+                    </div>
+                </div>
+            </div>
+            <!-- enemyRow -->
+            <div class="enemyRow">
+                <div class="characterContainer">
+                    <div class="enemy enemy-3  invisible">
+                        <img src="assets/images/hill-troll.jpg" style="width:70%;height:90%;">
+                    </div>
+                </div>
+                <div class="characterContainer">
+                    <div class="enemy enemy-4  invisible">
+                        <img src="assets/images/nazgul.jpg" style="width:70%;height:90%;">
+                    </div>
+                </div>
+                <div class="characterContainer">
+                    <div class="enemy enemy-5  invisible ">
+                        <img src="assets/images/hill-troll.jpg" style="width:70%;height:90%;">
+                    </div>
+                </div>
+            </div>
+            <!-- enemyRow -->
+            <div class="enemyRow">
+                <div class="characterContainer">
+                    <div class="enemy enemy-6  invisible ">
+                        <img src="assets/images/uruk.jpg" style="width:70%;height:90%;">
+                    </div>
+                </div>
+                <div class="characterContainer">
+                    <div class="heroAvatar">
+                        <img src="assets/images/hero.jpg" style="width:90%;height:100%;">
+                    </div>
+                </div>
+                <div class="characterContainer">
+                    <div class="enemy enemy-7  invisible ">
+                        <img src="assets/images/troll.jpg" style="width:70%;height:90%;">
+                    </div>
+                </div>
+            </div>
+            <!-- enemyRow -->
+        </div>
+        <!-- battleground -->
+        <div class="gameArea rightSide">
+        </div>
+        <!-- Bottom Bar -->
+        <div class="game-info">
+            <div class=" info about">
+                How To Play
+            </div>
+            <div class="info armor">
+                <!--<div class = "armor armortext"></div>-->
+                <div class="armor"></div>
+            </div>
+            <div class="info horn">
+                Horn of Rohan
+            </div>
+            <div class="info hitPoints"></div>
 
-        <div class="info tutorial">
-            Unique Card Info
+            <div class="info tutorial">
+                Unique Card Info
+            </div>
         </div>
-    </div><!-- gameInfo -->
-</div><!-- container -->
+        <!-- gameInfo -->
+    </div>
+    <!-- container -->
+    <!-- <script src="dist/bundle.js"></script> -->
 </body>
+
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
